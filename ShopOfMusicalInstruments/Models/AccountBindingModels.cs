@@ -10,6 +10,7 @@ namespace ShopOfMusicalInstruments.Models
     {
         [Required]
         [Display(Name = "Внешний маркер доступа")]
+
         public string ExternalAccessToken { get; set; }
     }
 
