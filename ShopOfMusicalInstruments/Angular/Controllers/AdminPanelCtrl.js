@@ -21,7 +21,6 @@
                 size: 'lg',
                 controller: [
                     '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
-                        $scope.brand = { Name: "", Description: "" };
                         $scope.gridBrands = {
                             enableColumnResizing: true,
                             showGridFooter: true,
@@ -64,6 +63,7 @@
                             adminService.getAll().then(function (value) {
                                 $scope.listBrends = angular.copy(value);
                                 $scope.gridBrands.data = $scope.listBrends;
+
                             },
                                 function (errorObject) {
 
@@ -78,15 +78,25 @@
 
                         //открытие блока для добавления бренда
                         $scope.openWindowAdd = function (openModel) {
-                            $scope.openWindow = openModel;
+                            $scope.openWindow = openModel; 
                         };
+                        //закрытие блока для добавления бренда
+                        $scope.closeAddWindow = function(flag) {
+                            $scope.openWindow = flag;
+                        }
 
                         //добавление бренда
-                        $scope.addBrang = function () {
+                        $scope.addBrang = function (brand, formBrand) {
 
-                            adminService.add($scope.brand).then(function (value) {
+                            if (!formBrand.$valid) {
+                                return;
+                            }
+
+                            adminService.add(brand).then(function (value) {
                                 getAllBrends();
-                            },
+                              //  $scope.brand = { Name: "", Description: "" };
+                                    $scope.openWindow = false;
+                                },
                                 function (errorObject) {
 
                                 }).finally(function () {
