@@ -186,3 +186,26 @@ a {
 .distant {
     padding-left: 15px !important;
 }
+
+.ng-tr-custom {
+    text-align: left;
+    font-size: 12px;
+}
+.ng-buttons {
+    margin-bottom: 0px;
+    margin-right: 0px;
+}
+
+.ng-portlet {
+    padding: 0px 0px 0px 15px;
+}
+
+.ng-buttons-th {
+    width: 100px;
+}
+
+.ng-scroll-table {
+    /*max-height: 400px;*/
+    overflow-x: hidden;
+    overflow-y: auto;
+}

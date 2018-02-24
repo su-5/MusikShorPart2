@@ -21,7 +21,7 @@
                 size: 'lg',
                 controller: [
                     '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
-                        $scope.gridBrands = {
+                        $scope.gridBrands = {  
                             enableColumnResizing: true,
                             showGridFooter: true,
                             enableHorizontalScrollbar: 0,
@@ -44,10 +44,25 @@
                                 },
                                 {
                                     field: 'Description',
-                                    width: '50%',
+                                    width: '45%',
                                   //  enableCellEdit: false,
                                     displayName: 'Описание',
                                     cellTemplate: '<p style="margin-left:15px;" >{{row.entity.Description}}</p>'
+                                },
+                                {
+                                    field: 'buttons_edit_del',
+                                    displayName: '',
+                                    visible: true,
+                                    cellTemplate: "<div class=\"ui-grid-cell-contents\" align=\"center\">" +
+                                                        //"<button type=\"button\" class=\"btn btn-default btn-xs\" style=\"height: 20px; width: 24px;\" ng-click=\"grid.appScope.update(row.entity)\" uib-tooltip=\"{{grid.appScope.placement.update}}\" ng-disabled=\"isAdding\"><span class=\"ng-buttons glyphicon glyphicon-pencil\"></span></button>" +
+                                        "<button type='button' class='btn btn-danger btn-xs' style='margin-left: 2px; margin-right: 2px; height: 22px; width: 29px;padding: 0px 5px;font-size: 12px;' ng-click='grid.appScope.deleteDoc(row.entity.Id)'tooltip-placement ='left' uib-tooltip='Удалить запись'><i style='font-size: 15px;' class='fa fa-trash'></i></button>" +
+                                                  "</div>",
+                                  //  filterHeaderTemplate: "<div align=\"center\"style=\"margin-top: -21px;\"><button \"  type=\"button\" class=\"btn btn-xs btn-primary\" style=\"margin-left: 4px;\" tooltip-placement=\"left\" uib-tooltip=\"Добавить запись\" ng-click=\"grid.appScope.addNewDocument('newGroupDoks')\" ><span class=\"glyphicon glyphicon-plus\"></span></button></div>",
+                                    enableCellEdit: false,
+                                    enableFiltering: true,
+                                    enableSorting: false,
+                                    showSortMenu: false,
+                                    enableColumnMenu: false
                                 }
                             ],
                             onRegisterApi: function (gridApi) {
