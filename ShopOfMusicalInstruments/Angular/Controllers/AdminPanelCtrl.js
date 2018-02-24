@@ -45,6 +45,7 @@
                                 {
                                     field: 'Description',
                                     width: '50%',
+                                  //  enableCellEdit: false,
                                     displayName: 'Описание',
                                     cellTemplate: '<p style="margin-left:15px;" >{{row.entity.Description}}</p>'
                                 }
@@ -87,11 +88,9 @@
 
                         //добавление бренда
                         $scope.addBrang = function (brand, formBrand) {
-
                             if (!formBrand.$valid) {
                                 return;
                             }
-
                             adminService.add(brand).then(function (value) {
                                 getAllBrends();
                               //  $scope.brand = { Name: "", Description: "" };
@@ -102,6 +101,19 @@
                                 }).finally(function () {
 
                                 });
+                        };
+
+                        //Редактирование бренда
+                        $scope.SaveEdit = function () {
+                           
+                            adminService.edit($scope.gridBrands.data).then(function () {
+                                    getAllBrends();
+                                },
+                                function (errorObject) {
+
+                                }).finally(function () {
+
+                            });
                         };
                         getAllBrends();
                     }

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Results;
 using DAL.Core;
@@ -25,19 +26,19 @@ namespace ShopOfMusicalInstruments.Core.Controllers
         }
 
         [HttpPut]
-        public IHttpActionResult Put(int id, [FromBody] Brand brand)
+        public IHttpActionResult Edit(List<Brand> data)
         {
-            Brand objectBrand = _db.Brands.Find(id);
-            if (objectBrand != null)
+            foreach (var editBrand in data)
             {
-                objectBrand.Name = brand.Name;
-                objectBrand.Description = brand.Description;
+                var objectBrand = _db.Brands.Find(editBrand.Id);
+                if (objectBrand == null) continue;
+                objectBrand.Name = editBrand.Name;
+                objectBrand.Description = editBrand.Description;
                 _db.Entry(objectBrand).State = System.Data.Entity.EntityState.Modified;
-                _db.SaveChanges();
-                return Ok(objectBrand);
             }
 
-            return NotFound();
+            _db.SaveChanges();
+            return Ok();
         }
 
 
