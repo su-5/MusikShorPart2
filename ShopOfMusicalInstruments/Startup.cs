@@ -6,7 +6,7 @@ using ShopOfMusicalInstruments.Core;
 
 namespace ShopOfMusicalInstruments.Core
 {
-    public partial class Startup
+    public partial class Startup 
     {
         public void Configuration(IAppBuilder app)
         {
