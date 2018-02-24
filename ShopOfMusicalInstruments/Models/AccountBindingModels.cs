@@ -6,11 +6,10 @@ namespace ShopOfMusicalInstruments.Models
 {
     // Модели, используемые в качестве параметров действий AccountController.
 
-    public class AddExternalLoginBindingModel   
+    public class AddExternalLoginBindingModel  
     {
         [Required]
         [Display(Name = "Внешний маркер доступа")]
-
         public string ExternalAccessToken { get; set; }
     }
 

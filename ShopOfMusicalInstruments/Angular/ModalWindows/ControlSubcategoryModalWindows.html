@@ -1,0 +1,31 @@
+﻿
+<div>
+    <div class="modal-header">
+        <h3 style="margin-top: -8px;" class="text-center">
+            Справочник подкатегорий
+        </h3>
+        <div ng-if="openWindow" class="modal-list-height">
+            <form>
+                <div class="pull-left distant">
+                    <input ng-required placeholder="Название подкатегории" class="form-control label-size" type="text" ng-model="subcategory.Name"/>
+                </div>
+                <div class="pull-left distant">
+                    <input ng-required placeholder="Описание подкатегории" class="form-control label-size" type="text" ng-model="subcategory.Description" />
+                </div>
+                <div class="pull-left distant">
+                    <input ng-required placeholder="ID категории" class="form-control label-size" type="number" ng-model="subcategory.IDcategory" />
+                </div>
+                <div class="pull-left distant">
+                    <button style="padding: 3px 6px;" class="btn btn-xs btn-success" type="submit" ng-click="addSubcategory()">Добавить</button>
+                </div>
+            </form>
+        </div>
+        <div id="portlet" ui-grid="gridSubcategories" ui-grid-auto-resize ui-grid-resize-columns ui-grid-selection ng-style="{'height':300 + 'px'}">
+        </div>
+        <br />
+        <div align="right">
+            <button ng-disabled="openWindow" class="btn btn-xs btn-primary" type="button" ng-click="openWindowAdd(true)">Добавить новую подкатегорию</button>
+            <button class="btn btn-xs btn-warning" type="button" ng-click="cancel()">Закрыть</button>
+        </div>
+    </div>
+</div>

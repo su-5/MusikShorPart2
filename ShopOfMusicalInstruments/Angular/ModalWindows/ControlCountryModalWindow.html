@@ -1,0 +1,35 @@
+﻿<div>
+    <div class="modal-header">
+        <h3 style="margin-top: -8px;" class="text-center">
+            Справочник стран
+        </h3>
+        <div ng-if="openWindow" class="modal-list-height">
+            <form>
+                <div class="pull-left distant">
+                    <input ng-required placeholder="Название страны" class="form-control label-size" type="text" ng-model="country.Name" />
+
+                </div>
+                <div class="pull-left distant">
+                    <input ng-required placeholder="Описание страны" class="form-control label-size" type="text" ng-model="country.Description" />
+
+                </div>
+                <div class="pull-left distant">
+                    <button style="padding: 3px 6px;" class="btn btn-xs btn-success" type="submit" ng-click="addCountry()">Добавить</button>
+
+                </div>
+
+            </form>
+
+        </div>
+        <div id="portlet" ui-grid="gridCountries" ui-grid-auto-resize ui-grid-resize-columns ui-grid-selection ng-style="{'height':300 + 'px'}">
+        </div>
+        <br />
+        <div align="right">
+            <button ng-disabled="openWindow" class="btn btn-xs btn-primary" type="button" ng-click="openWindowAdd(true)">Добавить новую страну</button>
+            <button class="btn btn-xs btn-warning" type="button" ng-click="cancel()">
+                Закрыть
+            </button>
+
+        </div>
+    </div>
+</div>

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Owin;
+﻿using Microsoft.Owin;
 using Owin;
+using ShopOfMusicalInstruments.Core;
 
-[assembly: OwinStartup(typeof(ShopOfMusicalInstruments.Startup))]
+[assembly: OwinStartup(typeof(Startup))]
 
-namespace ShopOfMusicalInstruments
+namespace ShopOfMusicalInstruments.Core
 {
     public partial class Startup
     {

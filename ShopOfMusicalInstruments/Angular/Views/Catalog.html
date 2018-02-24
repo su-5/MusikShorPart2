@@ -1,0 +1,22 @@
+﻿    <table class="table table-striped table-bordered table-hover bg-info">
+        <thead>
+            <tr>
+                <th>Бренд</th>
+                <th>Страна</th>
+                <th>Дата выпуска</th>
+                <th>Кол-во продуктов</th>
+                <th>Кол-во струн</th>
+                <th>Цена</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="value in result">
+                <td>{{value.Brand.Name}}</td>
+                <td>{{value.Country.Name}}</td>
+                <td>{{value.DateManufacture | date:'MM/dd/yyyy'}}</td>
+                <td>{{value.NumberProduct}}</td>
+                <td>{{value.NumberString.Number}}</td>
+                <td>{{value.Price}}</td>
+            </tr>
+        </tbody>
+    </table>

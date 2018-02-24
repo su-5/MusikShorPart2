@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="49993b9ff78344ca8f5c936eb86a4391" Name="Diagram1" ZoomLevel="100">
+        <EntityTypeShape EntityType="MusicDataBaseModel.Category" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicDataBaseModel.Brand" Width="1.5" PointX="3" PointY="3.125" />
+        <EntityTypeShape EntityType="MusicDataBaseModel.Country" Width="1.5" PointX="3" PointY="5.75" />
+        <EntityTypeShape EntityType="MusicDataBaseModel.NumberString" Width="1.5" PointX="9" PointY="5.25" />
+        <EntityTypeShape EntityType="MusicDataBaseModel.Picture" Width="1.5" PointX="8.75" PointY="1.75" />
+        <EntityTypeShape EntityType="MusicDataBaseModel.Product" Width="1.5" PointX="5.5" PointY="1.25" />
+        <EntityTypeShape EntityType="MusicDataBaseModel.Subcategory" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="MusicDataBaseModel.FK_dbo_Product_dbo_Brand_BrandId" />
+        <AssociationConnector Association="MusicDataBaseModel.FK_dbo_Subcategories_dbo_Categories_CategoriesId" />
+        <AssociationConnector Association="MusicDataBaseModel.FK_dbo_Product_dbo_Country_CountryId" ManuallyRouted="true" >
+          <ConnectorPoint PointX="4.5" PointY="6.6439925130208337" />
+          <ConnectorPoint PointX="6.25" PointY="6.6439925130208337" />
+          <ConnectorPoint PointX="6.25" PointY="5.730205078125" />
+        </AssociationConnector>
+        <AssociationConnector Association="MusicDataBaseModel.FK_dbo_Product_dbo_NumberString_NumberStringId" />
+        <AssociationConnector Association="MusicDataBaseModel.FK_dbo_Product_dbo_Picture_PictureId" />
+        <AssociationConnector Association="MusicDataBaseModel.FK_dbo_Product_dbo_Subcategories_SubcategoriesId" />
+        <EntityTypeShape EntityType="MusicDataBaseModel.Role" Width="1.5" PointX="0.625" PointY="3.125" />
+        <EntityTypeShape EntityType="MusicDataBaseModel.User" Width="1.5" PointX="0.625" PointY="4.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
