@@ -16,6 +16,6 @@
     // register your controller into a dependent module 
     angular
         .module("Web.Controllers")
-        .controller("catalogController", ["$scope", "$rootScope","ProductService", catalogController]);
+        .controller("catalogController", ["$scope", "$rootScope","productService", catalogController]);
 
 })();

@@ -1,4 +1,4 @@
-﻿// Создание кода T4 для модели "C:\Users\zloy_developer\Source\Repos\MusikShop\ShopOfMusicalInstruments\DAL.Core\ModelDB.edmx" включено. 
+﻿// Создание кода T4 для модели "C:\Users\Andrei-PC\Source\Repos\dimaMisikInsrumentShop\DAL.Core\ModelDB.edmx" включено. 
 // Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
 // на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
 // открыта в конструкторе.

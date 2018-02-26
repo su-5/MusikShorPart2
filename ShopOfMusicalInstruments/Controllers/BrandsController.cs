@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Results;
@@ -13,7 +14,7 @@ namespace ShopOfMusicalInstruments.Core.Controllers
         [HttpGet]
         public IHttpActionResult GetAll()
         {
-            var result = _db.Brands.OrderBy(x => x.Name).ToList();
+            var result = _db.Brands.Where(w=>w.DeleteDate == null).OrderBy(x => x.Name).ToList();
             return Ok(result);
         }
 
@@ -45,13 +46,12 @@ namespace ShopOfMusicalInstruments.Core.Controllers
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
-            Brand objectBrand = _db.Brands.Find(id);
-            if (objectBrand != null)
-            {
-                _db.Brands.Remove(objectBrand);
-                _db.SaveChanges();
-            }
-            return Ok(objectBrand);
+            var objectBrand = _db.Brands.Find(id);
+            if (objectBrand == null) return Ok();
+            objectBrand.DeleteDate = DateTime.Now;
+            _db.Entry(objectBrand).State = System.Data.Entity.EntityState.Modified;
+            _db.SaveChanges();
+            return Ok();
         }
 
     }
