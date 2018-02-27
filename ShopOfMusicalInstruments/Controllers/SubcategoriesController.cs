@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using DAL.Core;
 
@@ -23,34 +25,33 @@ namespace ShopOfMusicalInstruments.Core.Controllers
         }
 
         [HttpPut]
-        public IHttpActionResult Put(int id, [FromBody] Subcategory subcategory)
+        public IHttpActionResult Edit(List<Subcategory> data)
         {
-            Subcategory objectSubcategory = _db.Subcategories.Find(id);
-            if (objectSubcategory != null)
+            foreach (var editSubcategory in data)
             {
-                objectSubcategory.Name = objectSubcategory.Name;
-                objectSubcategory.Description = objectSubcategory.Description;
-                objectSubcategory.CategoriesId = objectSubcategory.CategoriesId;
+                var objectSubcategory = _db.Subcategories.Find(editSubcategory.Id);
+                if (objectSubcategory == null) continue;
+                objectSubcategory.Name = editSubcategory.Name;
+                objectSubcategory.Description = editSubcategory.Description;
+                objectSubcategory.CategoriesId = editSubcategory.CategoriesId;
                 _db.Entry(objectSubcategory).State = System.Data.Entity.EntityState.Modified;
-                _db.SaveChanges();
-                return Ok(objectSubcategory);
             }
 
-            return NotFound();
+            _db.SaveChanges();
+            return Ok();
         }
 
 
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
-            Subcategory objectSubcategory = _db.Subcategories.Find(id);
-            if (objectSubcategory != null)
-            {
-                _db.Subcategories.Remove(objectSubcategory);
-                _db.SaveChanges();
-            }
-
+            var objectSubcategory = _db.Subcategories.Find(id);
+            if (objectSubcategory == null) return Ok();
+            objectSubcategory.DeleteDate = DateTime.Now;
+            _db.Entry(objectSubcategory).State = System.Data.Entity.EntityState.Modified;
+            _db.SaveChanges();
             return Ok();
         }
+
     }
 }

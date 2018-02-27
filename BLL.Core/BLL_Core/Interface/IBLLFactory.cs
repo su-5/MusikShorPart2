@@ -2,6 +2,7 @@
 {
     public interface IBLLFactory
     {
-        
+        IProductBLL ProductBll { get; }
+        IBrandBLL BrandBll { get; }
     }
 }

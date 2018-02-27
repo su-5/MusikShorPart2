@@ -53,6 +53,7 @@ namespace ShopOfMusicalInstruments.Core
                 defaults: new { id = RouteParameter.Optional }
             );
             config.Formatters.Remove(config.Formatters.XmlFormatter);
+            config.DependencyResolver = new DependenciesRegistry.UnityResolver(DependenciesRegistry.RegisterComponents());
         }
     }
 }

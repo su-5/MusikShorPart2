@@ -80,7 +80,9 @@
     <Compile Include="DAL_Core\DBFactory.cs" />
     <Compile Include="DAL_Core\IDALFactory.cs" />
     <Compile Include="DAL_Core\IDbFactory.cs" />
+    <Compile Include="GenericRepositoryModel\Interfaces\IBrandDAL.cs" />
     <Compile Include="GenericRepositoryModel\Interfaces\IProductDAL.cs" />
+    <Compile Include="GenericRepositoryModel\Repository\BrandDAL.cs" />
     <Compile Include="GenericRepositoryModel\Repository\ProductDAL.cs" />
     <Compile Include="GenericRepository\GenericRepository.cs" />
     <Compile Include="GenericRepository\IGenericRepository.cs" />

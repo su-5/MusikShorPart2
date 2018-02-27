@@ -352,6 +352,7 @@
     <Content Include="Angular\ModalWindows\ControlBrendModalMindow.html" />
     <Content Include="Angular\ModalWindows\ControlCountryModalWindow.html" />
     <Content Include="Angular\ModalWindows\ControlNumberStringModalWindow.html" />
+    <Content Include="Angular\ModalWindows\ControlProductModalWindow.html" />
     <Content Include="Angular\ModalWindows\ControlSubcategoryModalWindows.html" />
     <Content Include="Angular\Services\adminService.js" />
     <Content Include="Angular\Services\numberstringService.js" />

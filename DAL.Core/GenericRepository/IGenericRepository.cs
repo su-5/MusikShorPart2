@@ -19,8 +19,8 @@ namespace DAL.Core.GenericRepository
         IQueryable<T> Find(Expression<Func<T, bool>> where);
         void UpdateVoid(T entity, decimal key);
 
-        IQueryable<T> GetAllWithPaging<TKey>(int pageSize, int page, out int total,
-            Expression<Func<T, TKey>> orderBy, bool isOrderAsc,
-            Expression<Func<T, bool>> filter = null);
+        //IQueryable<T> GetAllWithPaging<TKey>(int pageSize, int page, out int total,
+        //    Expression<Func<T, TKey>> orderBy, bool isOrderAsc,
+        //    Expression<Func<T, bool>> filter = null);
     }
 }

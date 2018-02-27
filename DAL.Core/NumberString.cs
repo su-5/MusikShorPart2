@@ -22,6 +22,7 @@ namespace DAL.Core
     
         public int Id { get; set; }
         public int Number { get; set; }
+        public Nullable<System.DateTime> DeleteDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }

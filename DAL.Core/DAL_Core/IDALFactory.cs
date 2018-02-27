@@ -5,5 +5,6 @@ namespace DAL.Core.DAL_Core
     public interface IDALFactory
     {
         IProductDAL Product { get; }
+        IBrandDAL Brand { get; }
     }
 }

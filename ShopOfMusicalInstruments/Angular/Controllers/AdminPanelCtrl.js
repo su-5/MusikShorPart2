@@ -16,13 +16,12 @@
 
             $uibModal.open({
                 templateUrl: function () {
-                    return 'Angular/ModalWindows/ControlBrendModalMindow.html';
+                    return "Angular/ModalWindows/ControlBrendModalMindow.html";
                 },
                 size: 'lg',
                 controller: [
                     '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
-                       // bootbox.alert("This is the default alert!");
-                        $scope.gridBrands = {  
+                        $scope.gridBrands = {
                             enableColumnResizing: true,
                             showGridFooter: true,
                             enableHorizontalScrollbar: 0,
@@ -46,19 +45,18 @@
                                 {
                                     field: 'Description',
                                     width: '45%',
-                                  //  enableCellEdit: false,
                                     displayName: 'Описание',
                                     cellTemplate: '<p style="margin-left:15px;" >{{row.entity.Description}}</p>'
                                 },
                                 {
                                     field: 'buttons_edit_del',
-                                    displayName: '',
+                                    displayName: "",
                                     visible: true,
                                     cellTemplate: "<div class=\"ui-grid-cell-contents\" align=\"center\">" +
-                                                        //"<button type=\"button\" class=\"btn btn-default btn-xs\" style=\"height: 20px; width: 24px;\" ng-click=\"grid.appScope.update(row.entity)\" uib-tooltip=\"{{grid.appScope.placement.update}}\" ng-disabled=\"isAdding\"><span class=\"ng-buttons glyphicon glyphicon-pencil\"></span></button>" +
+
                                         "<button type='button' class='btn btn-danger btn-xs' style='margin-left: 2px; margin-right: 2px; height: 22px; width: 29px;padding: 0px 5px;font-size: 12px;' ng-click='grid.appScope.deleteBrand(row.entity.Id)'tooltip-placement ='left' uib-tooltip='Удалить запись'><i style='font-size: 15px;' class='fa fa-trash'></i></button>" +
                                                   "</div>",
-                                  //  filterHeaderTemplate: "<div align=\"center\"style=\"margin-top: -21px;\"><button \"  type=\"button\" class=\"btn btn-xs btn-primary\" style=\"margin-left: 4px;\" tooltip-placement=\"left\" uib-tooltip=\"Добавить запись\" ng-click=\"grid.appScope.addNewDocument('newGroupDoks')\" ><span class=\"glyphicon glyphicon-plus\"></span></button></div>",
+
                                     enableCellEdit: false,
                                     enableFiltering: true,
                                     enableSorting: false,
@@ -92,12 +90,12 @@
                         //удаление бренда
                         $scope.deleteBrand = function (brandId) {
                             adminService.delete(brandId).then(function () {
-                                    getAllBrends();
-                                },
+                                getAllBrends();
+                            },
                                 function (errorObject) {
 
                                 }).finally(function () {
-                            });
+                                });
                         }
 
                         $scope.cancel = function () {
@@ -106,10 +104,10 @@
 
                         //открытие блока для добавления бренда
                         $scope.openWindowAdd = function (openModel) {
-                            $scope.openWindow = openModel; 
+                            $scope.openWindow = openModel;
                         };
                         //закрытие блока для добавления бренда
-                        $scope.closeAddWindow = function(flag) {
+                        $scope.closeAddWindow = function (flag) {
                             $scope.openWindow = flag;
                         }
 
@@ -120,9 +118,8 @@
                             }
                             adminService.add(brand).then(function (value) {
                                 getAllBrends();
-                              //  $scope.brand = { Name: "", Description: "" };
-                                    $scope.openWindow = false;
-                                },
+                                $scope.openWindow = false;
+                            },
                                 function (errorObject) {
 
                                 }).finally(function () {
@@ -131,14 +128,14 @@
                         };
 
                         //Редактирование бренда
-                        $scope.SaveEdit = function () {                           
+                        $scope.SaveEdit = function () {
                             adminService.edit($scope.gridBrands.data).then(function () {
-                                    getAllBrends();
-                                },
+                                getAllBrends();
+                            },
                                 function (errorObject) {
 
                                 }).finally(function () {
-                            });
+                                });
                         };
                         getAllBrends();
                     }
@@ -190,9 +187,22 @@
                                 },
                                 {
                                     field: 'Description',
-                                    width: '50%',
+                                    width: '45%',
                                     displayName: 'Описание',
                                     cellTemplate: '<p style="margin-left:15px;" >{{row.entity.Description}}</p>'
+                                },
+                                {
+                                    field: 'buttons_edit_del',
+                                    displayName: "",
+                                    visible: true,
+                                    cellTemplate: "<div class=\"ui-grid-cell-contents\" align=\"center\">" +
+                                        "<button type='button' class='btn btn-danger btn-xs' style='margin-left: 2px; margin-right: 2px; height: 22px; width: 29px;padding: 0px 5px;font-size: 12px;' ng-click='grid.appScope.deleteBrand(row.entity.Id)'tooltip-placement ='left' uib-tooltip='Удалить запись'><i style='font-size: 15px;' class='fa fa-trash'></i></button>" +
+                                        "</div>",
+                                    enableCellEdit: false,
+                                    enableFiltering: true,
+                                    enableSorting: false,
+                                    showSortMenu: false,
+                                    enableColumnMenu: false
                                 }
                             ],
                             onRegisterApi: function (gridApi) {
@@ -217,20 +227,42 @@
                                 });
                         }
 
+                        //удаление стран 
+                        $scope.deleteCountry = function (countryId) {
+                            countryService.delete(countryId).then(function () {
+                                getAllCountries();
+                            },
+                                function (errorObject) {
+
+                                }).finally(function () {
+                                });
+                        }
+
                         $scope.cancel = function () {
                             $uibModalInstance.dismiss({ $value: 'cancel' });
                         };
+
+
 
                         //открытие блока для добавления страны 
                         $scope.openWindowAdd = function (openModel) {
                             $scope.openWindow = openModel;
                         };
 
-                        //добавление страны
-                        $scope.addCountry = function () {
+                        //закрытие блока для добавления страны
+                        $scope.closeAddWindow = function (flag) {
+                            $scope.openWindow = flag;
+                        }
 
-                            countryService.add($scope.country).then(function (value) {
+                        //добавление страны
+                        $scope.addCountry = function (country, formCountry) {
+                            if (!formCountry.$valid) {
+                                return;
+                            }
+
+                            countryService.add(country).then(function (value) {
                                 getAllCountries();
+                                $scope.openWindow = false;
                             },
                                 function (errorObject) {
 
@@ -238,11 +270,23 @@
 
                                 });
                         };
+
+                        //Редактирование страны 
+                        $scope.SaveEdit = function () {
+                            countryService.edit($scope.gridCountries.data).then(function () {
+                                getAllCountries();
+                            },
+                                function (errorObject) {
+
+                                }).finally(function () {
+                                });
+                        };
                         getAllCountries();
                     }
                 ]
             }).result.then(postClose, postClose);
         };
+
 
         //Modal Window для струн
 
@@ -259,7 +303,7 @@
                 templateUrl: function () {
                     return 'Angular/ModalWindows/ControlNumberStringModalWindow.html';
                 },
-                size: 'lg',
+                size: 'md',
                 controller: [
                     '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
 
@@ -282,9 +326,22 @@
 
                                 {
                                     field: 'Number',
-                                    width: '100%',
+                                    width: '70%',
                                     displayName: 'Номер',
-                                    cellTemplate: '<p style="margin-left:150px;" >{{row.entity.Number}}</p>'
+                                    cellTemplate: '<p style="margin-left:80px;" >{{row.entity.Number}}</p>'
+                                },
+                                {
+                                    field: 'buttons_edit_del',
+                                    displayName: "",
+                                    visible: true,
+                                    cellTemplate: "<div class=\"ui-grid-cell-contents\" align=\"center\">" +
+                                        "<button type='button' class='btn btn-danger btn-xs' style='margin-left: 2px; margin-right: 2px; height: 22px; width: 29px;padding: 0px 5px;font-size: 12px;' ng-click='grid.appScope.deleteBrand(row.entity.Id)'tooltip-placement ='left' uib-tooltip='Удалить запись'><i style='font-size: 15px;' class='fa fa-trash'></i></button>" +
+                                        "</div>",
+                                    enableCellEdit: false,
+                                    enableFiltering: true,
+                                    enableSorting: false,
+                                    showSortMenu: false,
+                                    enableColumnMenu: false
                                 }
                             ],
                             onRegisterApi: function (gridApi) {
@@ -313,22 +370,59 @@
                             $uibModalInstance.dismiss({ $value: 'cancel' });
                         };
 
+                        //удаление струн
+                        $scope.deleteNumberString = function (numberStringId) {
+                            numberstringService.delete(numberStringId).then(function () {
+                                getAllNumberStrings();
+                            },
+                                function (errorObject) {
+
+                                }).finally(function () {
+                                });
+                        }
+
+                        $scope.cancel = function () {
+                            $uibModalInstance.dismiss({ $value: 'cancel' });
+                        };
+
+
+
                         //открытие блока для добавления струны 
                         $scope.openWindowAdd = function (openModel) {
                             $scope.openWindow = openModel;
                         };
 
+                        //закрытие блока для добавления струны
+                        $scope.closeAddWindow = function (flag) {
+                            $scope.openWindow = flag;
+                        }
+
                         //добавление струны
-                        $scope.addNumberString = function () {
-                            debugger;
-                            numberstringService.add($scope.numberStr).then(function (value) {
+                        $scope.addNumberString = function (numberStr, formNumberString) {
+                            if (!formNumberString.$valid) {
+                                return;
+                            }
+
+                            numberstringService.add(number).then(function (value) {
                                 getAllNumberStrings();
+                                $scope.openWindow = false;
                             },
                                 function (errorObject) {
 
                                 }).finally(function () {
 
                                 });
+                        };
+
+                        //Редактирование струны 
+                        $scope.SaveEdit = function () {
+                            numberstringService.edit($scope.gridNumberStrings.data).then(function () {
+                                getAllNumberStrings();
+                            },
+                                 function (errorObject) {
+
+                                 }).finally(function () {
+                                 });
                         };
                         getAllNumberStrings();
                     }
@@ -356,7 +450,7 @@
                 controller: [
                     '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
 
-                        $scope.subcategory = { Name: "", Description: "" , IDcategory: "" };
+                        $scope.subcategory = { Name: "", Description: "", IDcategory: "" };
                         $scope.gridSubcategories = {
                             enableColumnResizing: true,
                             showGridFooter: true,
@@ -375,6 +469,7 @@
 
                                 {
                                     field: 'Category',
+                                    width: "30%",
                                     displayName: "Категория",
                                     cellTemplate: '<p style="margin-left:15px;" >{{row.entity.Category.Name}}</p>'
                                 },
@@ -390,8 +485,20 @@
                                     width: "30%",
                                     displayName: 'Описание подкатегории',
                                     cellTemplate: '<p style="margin-left:15px;" >{{row.entity.Description}}</p>'
+                                },
+                                {
+                                    field: 'buttons_edit_del',
+                                    displayName: "",
+                                    visible: true,
+                                    cellTemplate: "<div class=\"ui-grid-cell-contents\" align=\"center\">" +
+                                        "<button type='button' class='btn btn-danger btn-xs' style='margin-left: 2px; margin-right: 2px; height: 22px; width: 29px;padding: 0px 5px;font-size: 12px;' ng-click='grid.appScope.deleteBrand(row.entity.Id)'tooltip-placement ='left' uib-tooltip='Удалить запись'><i style='font-size: 15px;' class='fa fa-trash'></i></button>" +
+                                        "</div>",
+                                    enableCellEdit: false,
+                                    enableFiltering: true,
+                                    enableSorting: false,
+                                    showSortMenu: false,
+                                    enableColumnMenu: false
                                 }
-                               
                             ],
                             onRegisterApi: function (gridApi) {
                                 $scope.gridApi = gridApi;
@@ -419,28 +526,68 @@
                             $uibModalInstance.dismiss({ $value: 'cancel' });
                         };
 
-                        //открытие блока для добавления подкатегории
-                        $scope.openWindowAdd = function (openModel) {
-                            $scope.openWindow = openModel;
-                        };
-
-                        //добавление подкатегории
-                        $scope.addSubcategory = function () {
-                            debugger;
-                            subcategoryService.add($scope.subcategory).then(function (value) {
+                        //удаление подкатегорий
+                        $scope.deleteSubcategory = function (subcategoryId) {
+                            subcategoryService.delete(subcategoryId).then(function () {
                                 getAllSubcategories();
                             },
                                 function (errorObject) {
 
                                 }).finally(function () {
-
                                 });
+                        }
+
+                        $scope.cancel = function () {
+                            $uibModalInstance.dismiss({ $value: 'cancel' });
+                        };
+
+
+
+                        //открытие блока для добавления подкатегории
+                        $scope.openWindowAdd = function (openModel) {
+                            $scope.openWindow = openModel;
+                        };
+
+                        //закрытие блока для добавления подкатегории
+                        $scope.closeAddWindow = function (flag) {
+                            $scope.openWindow = flag;
+                        }
+
+                        //добавление подкатегории
+                        $scope.addSubcategory = function (subcategory, formSubcategory) {
+                            if (!formSubcategory.$valid) {
+                                return;
+                            }
+
+                            subcategoryService.add(subcategory).then(function (value) {
+                                getAllSubcategories();
+                                $scope.openWindow = false;
+                            },
+                                 function (errorObject) {
+
+                                 }).finally(function () {
+
+                                 });
+                        };
+
+                        //Редактирование подкатегории
+                        $scope.SaveEdit = function () {
+                            subcategoryService.edit($scope.gridSubcategories.data).then(function () {
+                                getAllSubcategories();
+                            },
+                                 function (errorObject) {
+
+                                 }).finally(function () {
+                                 });
                         };
                         getAllSubcategories();
                     }
                 ]
             }).result.then(postClose, postClose);
         };
+
+
+      
 
     }
     // register your controller into a dependent module 

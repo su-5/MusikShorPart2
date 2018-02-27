@@ -5,7 +5,7 @@
             Справочник подкатегорий
         </h3>
         <div ng-if="openWindow" class="modal-list-height">
-            <form>
+            <form name="formSubcategory">
                 <div class="pull-left distant">
                     <input ng-required placeholder="Название подкатегории" class="form-control label-size" type="text" ng-model="subcategory.Name"/>
                 </div>
@@ -16,15 +16,19 @@
                     <input ng-required placeholder="ID категории" class="form-control label-size" type="number" ng-model="subcategory.IDcategory" />
                 </div>
                 <div class="pull-left distant">
-                    <button style="padding: 3px 6px;" class="btn btn-xs btn-success" type="submit" ng-click="addSubcategory()">Добавить</button>
+                    <button style="padding: 3px 6px;" class="btn btn-xs btn-success" type="submit" ng-click="addSubcategory(subcategory, formSubcategory)">Добавить</button>
+                </div>
+                <div style="padding-left: 6px;" class="pull-left form-group">
+                    <button ng-click="closeAddWindow(false)" tooltip-placement="right-top" uib-tooltip="Закрыть" type="button" style="padding: 3px 9px;" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></button>
                 </div>
             </form>
         </div>
-        <div id="portlet" ui-grid="gridSubcategories" ui-grid-auto-resize ui-grid-resize-columns ui-grid-selection ng-style="{'height':300 + 'px'}">
+        <div id="portlet" ui-grid="gridSubcategories" ui-grid-edit ui-grid-cellnav ui-grid-auto-resize ui-grid-resize-columns ui-grid-selection ng-style="{'height':309 + 'px'}">
         </div>
         <br />
         <div align="right">
             <button ng-disabled="openWindow" class="btn btn-xs btn-primary" type="button" ng-click="openWindowAdd(true)">Добавить новую подкатегорию</button>
+            <button ng-disabled="openWindow" class="btn btn-xs btn-success" type="button" ng-click="SaveEdit()">Сохранить отредактированные данные</button>
             <button class="btn btn-xs btn-warning" type="button" ng-click="cancel()">Закрыть</button>
         </div>
     </div>

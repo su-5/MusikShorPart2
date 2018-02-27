@@ -2,7 +2,7 @@
     "use strict";
 
     function productService($cookies, $http, $rootScope, $q) {
-        this.getListProduct = function () {
+        this.getAll = function () {
             var deferred = $q.defer();
             $http.get('api/Product')
                 .then(function (response) {

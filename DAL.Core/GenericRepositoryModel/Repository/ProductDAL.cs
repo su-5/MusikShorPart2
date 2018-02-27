@@ -12,11 +12,5 @@ namespace DAL.Core.GenericRepositoryModel.Repository
        public ProductDAL(IDbFactory dbFactory) : base(dbFactory)
        {
        }
-
-       public IQueryable<Product> GetAllWithPaging<TKey>(int pageSize, int page, out int total, Expression<Func<Product, TKey>> orderBy, bool isOrderAsc,
-           Expression<Func<Product, bool>> filter = null)
-       {
-           throw new NotImplementedException();
-       }
    }
 }

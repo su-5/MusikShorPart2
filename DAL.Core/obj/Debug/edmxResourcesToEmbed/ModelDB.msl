@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Categories">
       <EntityTypeMapping TypeName="MusicDataBaseModel.Category">
         <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
@@ -13,6 +14,7 @@
     <EntitySetMapping Name="Countries">
       <EntityTypeMapping TypeName="MusicDataBaseModel.Country">
         <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
@@ -22,6 +24,7 @@
     <EntitySetMapping Name="NumberStrings">
       <EntityTypeMapping TypeName="MusicDataBaseModel.NumberString">
         <MappingFragment StoreEntitySet="NumberString">
+          <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
           <ScalarProperty Name="Number" ColumnName="Number" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
@@ -62,6 +65,7 @@
     <EntitySetMapping Name="Subcategories">
       <EntityTypeMapping TypeName="MusicDataBaseModel.Subcategory">
         <MappingFragment StoreEntitySet="Subcategories">
+          <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
           <ScalarProperty Name="CategoriesId" ColumnName="CategoriesId" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Name" ColumnName="Name" />

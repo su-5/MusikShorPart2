@@ -17,6 +17,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="DeleteDate" Type="datetime" />
   </EntityType>
   <EntityType Name="Country">
     <Key>
@@ -25,6 +26,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="60" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DeleteDate" Type="datetime" />
   </EntityType>
   <EntityType Name="NumberString">
     <Key>
@@ -32,6 +34,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Number" Type="int" Nullable="false" />
+    <Property Name="DeleteDate" Type="datetime" />
   </EntityType>
   <EntityType Name="Picture">
     <Key>
@@ -78,6 +81,7 @@
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CategoriesId" Type="int" Nullable="false" />
+    <Property Name="DeleteDate" Type="datetime" />
   </EntityType>
   <EntityType Name="Users">
     <Key>

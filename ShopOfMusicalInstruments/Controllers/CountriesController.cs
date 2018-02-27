@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using DAL.Core;
 
@@ -7,6 +9,7 @@ namespace ShopOfMusicalInstruments.Core.Controllers
     public class CountriesController : ApiController
     {
         private readonly MusicDataBaseEntities _db = new MusicDataBaseEntities();
+
         [HttpGet]
         public IHttpActionResult GetAll()
         {
@@ -21,35 +24,36 @@ namespace ShopOfMusicalInstruments.Core.Controllers
             _db.SaveChanges();
             return Ok();
         }
+
         [HttpPut]
-        public IHttpActionResult Put(int id, [FromBody] Country country)
+        public IHttpActionResult Edit(List<Country> data)
         {
-            Country objectCountry = _db.Countries.Find(id);
-            if (objectCountry != null)
+            foreach (var editCountry in data)
             {
-                objectCountry.Name = country.Name;
-                objectCountry.Description = country.Description;
+                var objectCountry = _db.Countries.Find(editCountry.Id);
+                if (objectCountry == null) continue;
+                objectCountry.Name = editCountry.Name;
+                objectCountry.Description = editCountry.Description;
                 _db.Entry(objectCountry).State = System.Data.Entity.EntityState.Modified;
-                _db.SaveChanges();
-                return Ok(objectCountry);
             }
 
-            return NotFound();
+            _db.SaveChanges();
+            return Ok();
         }
 
 
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
-            Country objectCountry = _db.Countries.Find(id);
-            if (objectCountry != null)
-            {
-                _db.Countries.Remove(objectCountry);
-                _db.SaveChanges();
-            }
-            return Ok(objectCountry);
+            var objectCountry = _db.Countries.Find(id);
+            if (objectCountry == null) return Ok();
+            objectCountry.DeleteDate = DateTime.Now;
+            _db.Entry(objectCountry).State = System.Data.Entity.EntityState.Modified;
+            _db.SaveChanges();
+            return Ok();
         }
 
     }
 }
-   
+
+

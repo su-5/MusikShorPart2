@@ -7,12 +7,13 @@ namespace BLL.Core.BLL_Core.Repository
     {
         private readonly DalFactory _dalFactory;
         private IProductBLL _product;
-
+        private IBrandBLL _brand;
         public BLLFactory()
         {
             _dalFactory = new DalFactory(new DbFactory());
         }
 
-        public IProductBLL Product => _product ?? (_product = new ProductBLL(_dalFactory));
+        public IProductBLL ProductBll => _product ?? (_product = new ProductBLL(_dalFactory));
+        public IBrandBLL BrandBll => _brand ?? (_brand = new BrandBLL(_dalFactory));
     }
 }
