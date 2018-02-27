@@ -14,7 +14,7 @@
         };
 
         this.add = function (brend) {
-            var newBrand = { Name: brend.Name, Description: brend.Description};
+            var newBrand = { Name: brend.Name, Description: brend.Description};  
             var deferred = $q.defer();
             $http.post("api/Brands", newBrand)
                 .then(function (response) {

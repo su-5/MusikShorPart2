@@ -12,17 +12,3 @@ C:\Users\zloy_developer\Source\Repos\MusikShop\ShopOfMusicalInstruments\DAL.Core
 C:\Users\zloy_developer\Source\Repos\MusikShop\ShopOfMusicalInstruments\DAL.Core\obj\Debug\DAL.Core.dll
 C:\Users\zloy_developer\Source\Repos\MusikShop\ShopOfMusicalInstruments\DAL.Core\obj\Debug\DAL.Core.pdb
 C:\Users\zloy_developer\Source\Repos\MusikShop\ShopOfMusicalInstruments\DAL.Core\obj\Debug\DAL.Core.csprojResolveAssemblyReference.cache
-C:\Users\Andrei-PC\Source\Repos\dimaMisikInsrumentShop\DAL.Core\bin\Debug\DAL.Core.dll.config
-C:\Users\Andrei-PC\Source\Repos\dimaMisikInsrumentShop\DAL.Core\bin\Debug\DAL.Core.dll
-C:\Users\Andrei-PC\Source\Repos\dimaMisikInsrumentShop\DAL.Core\bin\Debug\DAL.Core.pdb
-C:\Users\Andrei-PC\Source\Repos\dimaMisikInsrumentShop\DAL.Core\bin\Debug\AutoMapper.dll
-C:\Users\Andrei-PC\Source\Repos\dimaMisikInsrumentShop\DAL.Core\bin\Debug\EntityFramework.dll
-C:\Users\Andrei-PC\Source\Repos\dimaMisikInsrumentShop\DAL.Core\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\Andrei-PC\Source\Repos\dimaMisikInsrumentShop\DAL.Core\bin\Debug\AutoMapper.xml
-C:\Users\Andrei-PC\Source\Repos\dimaMisikInsrumentShop\DAL.Core\bin\Debug\EntityFramework.xml
-C:\Users\Andrei-PC\Source\Repos\dimaMisikInsrumentShop\DAL.Core\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Andrei-PC\Source\Repos\dimaMisikInsrumentShop\DAL.Core\bin\Debug\ru\EntityFramework.resources.dll
-C:\Users\Andrei-PC\Source\Repos\dimaMisikInsrumentShop\DAL.Core\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
-C:\Users\Andrei-PC\Source\Repos\dimaMisikInsrumentShop\DAL.Core\obj\Debug\DAL.Core.dll
-C:\Users\Andrei-PC\Source\Repos\dimaMisikInsrumentShop\DAL.Core\obj\Debug\DAL.Core.pdb
-C:\Users\Andrei-PC\Source\Repos\dimaMisikInsrumentShop\DAL.Core\obj\Debug\DAL.Core.csprojResolveAssemblyReference.cache
