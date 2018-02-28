@@ -9,9 +9,6 @@ namespace ShopOfMusicalInstruments.Core
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
-
-
-
         protected void Application_Start()
         {
             HttpConfiguration config = GlobalConfiguration.Configuration;

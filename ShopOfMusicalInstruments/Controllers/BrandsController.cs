@@ -36,18 +36,9 @@ namespace ShopOfMusicalInstruments.Core.Controllers
         }
 
         [HttpPut]
-        public IHttpActionResult Edit(List<Brand> data)
+        public IHttpActionResult Edit(List<BrandDTO> data)
         {
-            //foreach (var editBrand in data)
-            //{
-            //    var objectBrand = _db.Brands.Find(editBrand.Id);
-            //    if (objectBrand == null) continue;
-            //    objectBrand.Name = editBrand.Name;
-            //    objectBrand.Description = editBrand.Description;
-            //    _db.Entry(objectBrand).State = System.Data.Entity.EntityState.Modified;
-            //}
-
-            //_db.SaveChanges();
+            _bllFactory.BrandBll.Edit(data);
             return Ok();
         }
 
@@ -55,6 +46,7 @@ namespace ShopOfMusicalInstruments.Core.Controllers
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
+            
             //var objectBrand = _db.Brands.Find(id);
             //if (objectBrand == null) return Ok();
             //objectBrand.DeleteDate = DateTime.Now;

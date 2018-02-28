@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using BLL.Core.BLL_Core.Interface;
@@ -28,6 +29,21 @@ namespace BLL.Core.BLL_Core.Repository
         {
             Brand result = Mapper.Map<BrandDTO, Brand>(brand);
             _dalFactory.Brand.Add(result);
+        }
+
+        public void Edit(List<BrandDTO> data)
+        {
+            foreach (BrandDTO brand in data)
+            {
+                Brand result = Mapper.Map<BrandDTO, Brand>(brand);
+                _dalFactory.Brand.UpdateVoid(result, result.Id);
+            }
+        }
+
+        public void Delete(BrandDTO id)
+        {
+            Brand result = Mapper.Map<BrandDTO, Brand>(id);
+            _dalFactory.Brand.Delete(result);
         }
     }
 }
