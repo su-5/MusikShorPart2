@@ -8,7 +8,7 @@ using DAL.Core.ModelDTO;
 
 namespace BLL.Core.BLL_Core.Repository
 {
-    public class BrandBLL:IBrandBLL
+    public class BrandBLL : IBrandBLL
     {
         private readonly DalFactory _dalFactory;
 
@@ -20,14 +20,14 @@ namespace BLL.Core.BLL_Core.Repository
         public List<BrandDTO> GetAll()
         {
             List<Brand> brandList = _dalFactory.Brand.GetAll().Where(w => w.DeleteDate == null).OrderBy(x => x.Name).ToList();
-            var result = Mapper.Map<List<Brand>,List<BrandDTO>>(brandList);
+            var result = Mapper.Map<List<Brand>, List<BrandDTO>>(brandList);
             return result;
         }
 
         public void Add(BrandDTO brand)
         {
-           Brand result = Mapper.Map<BrandDTO,Brand>(brand);
-             _dalFactory.Brand.Add(result);
+            Brand result = Mapper.Map<BrandDTO, Brand>(brand);
+            _dalFactory.Brand.Add(result);
         }
     }
 }
