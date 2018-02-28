@@ -12422,7 +12422,7 @@ module.filter('px', function() {
           placeholder: 'Search...',
           showingItems: 'Showing Items:',
           selectedItems: 'Selected Items:',
-          totalItems: 'Total Items:',
+          totalItems: 'Всего записей:',
           size: 'Page Size:',
           first: 'First Page',
           next: 'Next Page',

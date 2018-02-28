@@ -31,7 +31,7 @@ namespace ShopOfMusicalInstruments.Core.Controllers
         [HttpPost]
         public IHttpActionResult Add(BrandDTO brand)
         {
-           _bllFactory.BrandBll.Add(brand);
+            _bllFactory.BrandBll.Add(brand);
             return Ok();
         }
 
@@ -46,12 +46,7 @@ namespace ShopOfMusicalInstruments.Core.Controllers
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
-            
-            //var objectBrand = _db.Brands.Find(id);
-            //if (objectBrand == null) return Ok();
-            //objectBrand.DeleteDate = DateTime.Now;
-            //_db.Entry(objectBrand).State = System.Data.Entity.EntityState.Modified;
-            //_db.SaveChanges();
+            _bllFactory.BrandBll.Delete(id);
             return Ok();
         }
 

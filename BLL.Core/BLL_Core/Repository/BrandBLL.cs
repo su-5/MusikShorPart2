@@ -40,10 +40,11 @@ namespace BLL.Core.BLL_Core.Repository
             }
         }
 
-        public void Delete(BrandDTO id)
+        public void Delete(int id)
         {
-            Brand result = Mapper.Map<BrandDTO, Brand>(id);
-            _dalFactory.Brand.Delete(result);
+            var entity = _dalFactory.Brand.GetById(id);
+            entity.DeleteDate = DateTime.Now;
+            _dalFactory.Brand.UpdateVoid(entity, entity.Id);
         }
     }
 }

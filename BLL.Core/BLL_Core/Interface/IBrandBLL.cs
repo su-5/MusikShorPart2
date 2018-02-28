@@ -9,6 +9,6 @@ namespace BLL.Core.BLL_Core.Interface
         List<BrandDTO> GetAll();
         void Add(BrandDTO brand);
         void Edit(List<BrandDTO> data);
-        void Delete(BrandDTO id);
+        void Delete(int id);
     }
 }
