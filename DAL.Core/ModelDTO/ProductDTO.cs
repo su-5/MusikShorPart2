@@ -17,6 +17,7 @@ namespace DAL.Core.ModelDTO
         public DateTime DateUpdate { get; set; }
         public DateTime DateDelete { get; set; }
         public int SubcategoriesId { get; set; }
+        public bool? Window { get; set; }
 
         public Brand Brand { get; set; }
         public Country Country { get; set; }

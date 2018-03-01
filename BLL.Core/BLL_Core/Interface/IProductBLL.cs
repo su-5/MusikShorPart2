@@ -6,5 +6,8 @@ namespace BLL.Core.BLL_Core.Interface
     public interface IProductBLL
     {
         List<ProductDTO> GetAll();
+        void Add(ProductDTO product);
+        void Edit(List<ProductDTO> data);
+        void Delete(int id);
     }
 }

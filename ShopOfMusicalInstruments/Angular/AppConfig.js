@@ -17,6 +17,7 @@
                 controller: "adminController"
             });
 
+        
             $urlRouterProvider.otherwise("/catalog");
         }]);
 })();

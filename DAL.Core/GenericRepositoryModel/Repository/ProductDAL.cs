@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
-using DAL.Core.DAL_Core;
+﻿using DAL.Core.DAL_Core;
 using DAL.Core.GenericRepository;
 using DAL.Core.GenericRepositoryModel.Interfaces;
 

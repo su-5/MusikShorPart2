@@ -642,7 +642,7 @@
                                     field: 'Country.Name',
                                     width: "10%",
                                     displayName: 'Страна'
-                                },                                                            
+                                },
                                 {
                                     field: 'Subcategory.Name',
                                     width: "10%",
@@ -772,7 +772,6 @@
                 ]
             }).result.then(postClose, postClose);
         };
-
 
     }
     // register your controller into a dependent module 
