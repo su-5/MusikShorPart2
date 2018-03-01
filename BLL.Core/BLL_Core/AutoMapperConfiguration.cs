@@ -13,6 +13,7 @@ namespace BLL.Core.BLL_Core
                 x.AddProfile<CountryMapper>();
                 x.AddProfile<NumberStringMapper>();
                 x.AddProfile<SubcategoryMapper>();
+                x.AddProfile<ProductMapper>();
             });
         }
     }

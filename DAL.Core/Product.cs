@@ -27,6 +27,7 @@ namespace DAL.Core
         public Nullable<System.DateTime> DateUpdate { get; set; }
         public Nullable<System.DateTime> DateDelete { get; set; }
         public int SubcategoriesId { get; set; }
+        public Nullable<bool> Window { get; set; }
     
         public virtual Country Country { get; set; }
         public virtual NumberString NumberString { get; set; }

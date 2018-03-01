@@ -46,6 +46,7 @@
     <EntitySetMapping Name="Products">
       <EntityTypeMapping TypeName="MusicDataBaseModel.Product">
         <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="Window" ColumnName="Window" />
           <ScalarProperty Name="SubcategoriesId" ColumnName="SubcategoriesId" />
           <ScalarProperty Name="DateDelete" ColumnName="DateDelete" />
           <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />

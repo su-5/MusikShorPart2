@@ -70,6 +70,7 @@
           <Property Name="DateUpdate" Type="datetime" />
           <Property Name="DateDelete" Type="datetime" />
           <Property Name="SubcategoriesId" Type="int" Nullable="false" />
+          <Property Name="Window" Type="bit" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -310,6 +311,7 @@
           <Property Name="SubcategoriesId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Subcategory" Relationship="MusicDataBaseModel.FK_dbo_Product_dbo_Subcategories_SubcategoriesId" FromRole="Product" ToRole="Subcategory" />
           <NavigationProperty Name="Brand" Relationship="MusicDataBaseModel.FK_dbo_Product_dbo_Brand_BrandId" FromRole="Product" ToRole="Brand" />
+          <Property Name="Window" Type="Boolean" />
         </EntityType>
         <EntityType Name="Subcategory">
           <Key>
@@ -476,6 +478,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="MusicDataBaseModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Window" ColumnName="Window" />
                 <ScalarProperty Name="SubcategoriesId" ColumnName="SubcategoriesId" />
                 <ScalarProperty Name="DateDelete" ColumnName="DateDelete" />
                 <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />

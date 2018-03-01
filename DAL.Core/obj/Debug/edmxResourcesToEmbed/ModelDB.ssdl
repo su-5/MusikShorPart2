@@ -65,6 +65,7 @@
     <Property Name="DateUpdate" Type="datetime" />
     <Property Name="DateDelete" Type="datetime" />
     <Property Name="SubcategoriesId" Type="int" Nullable="false" />
+    <Property Name="Window" Type="bit" />
   </EntityType>
   <EntityType Name="Roles">
     <Key>

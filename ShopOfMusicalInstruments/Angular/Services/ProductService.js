@@ -4,7 +4,18 @@
     function productService($cookies, $http, $rootScope, $q) {
         this.getAll = function () {
             var deferred = $q.defer();
-            $http.get('api/Product')
+            $http.get('api/Product/GetAllDataBase')
+                .then(function (response) {
+                    deferred.resolve(response.data);
+                }).catch(function onError(response) {
+                    deferred.reject(response.data);
+                });
+            return deferred.promise;
+        };
+
+        this.getAllCatalog = function () {
+            var deferred = $q.defer();
+            $http.get('api/Product/GetAllCatalog')
                 .then(function (response) {
                     deferred.resolve(response.data);
                 }).catch(function onError(response) {

@@ -606,64 +606,70 @@
                 controller: [
                     '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
 
-                        $scope.product = { Name: "", Price: "", NumberProduct: "", CountryId: "", BrandId: "", NumberStringId: "", SubcategoriesId: ""};
+                        $scope.product = { Name: "", Price: "", NumberProduct: "", CountryId: "", BrandId: "", NumberStringId: "", SubcategoriesId: "" };
                         $scope.gridProducts = {
                             enableColumnResizing: true,
-                            showGridFooter: true,
+                            showGridFooter: false,
                             enableHorizontalScrollbar: 0,
                             enableVerticalScrollbar: 1,
                             enableColumnMenus: false,
                             showColumnFooter: false,
-                            enableFiltering: false,
+                            enableFiltering: true,
                             gridColumnFooterHeight: 20,
                             enableRowSelection: true,
-                            enableRowHeaderSelection: false,
+                            enableRowHeaderSelection: true,
+                            enableSelectAll: true,
                             noUnselect: false,
-                            multiSelect: false,
-                            rowHeight: 22,
+                            multiSelect: true,
                             columnDefs: [
-
+                                {
+                                    field: 'Brand.Name',
+                                    width: "10%",
+                                    displayName: 'Бренд'
+                                },
                                 {
                                     field: 'Name',
-                                    width: "13%",
-                                    displayName: "Название",
+                                    width: "10%",
+                                    displayName: "Название инструмента",
                                     cellTemplate: '<p style="margin-left:15px;" >{{row.entity.Name}}</p>'
                                 },
                                 {
+                                    field: 'NumberString.Number',
+                                    width: "10%",
+                                    displayName: 'Количество струн'
+                                },
+                                {
+                                    field: 'Country.Name',
+                                    width: "10%",
+                                    displayName: 'Страна'
+                                },                                                            
+                                {
+                                    field: 'Subcategory.Name',
+                                    width: "10%",
+                                    displayName: "Подкатегория"
+                                },
+                                {
+                                    field: 'Subcategory.Category.Name',
+                                    width: "10%",
+                                    displayName: "Категория"
+                                },
+                                {
                                     field: 'Price',
-                                    width: "13%",
+                                    width: "10%",
                                     displayName: 'Цена',
                                     cellTemplate: '<p style="margin-left:15px;" >{{row.entity.Price}}</p>'
                                 },
                                 {
                                     field: 'NumberProduct',
-                                    width: "13%",
-                                    displayName: 'Номер продукта',
+                                    width: "10%",
+                                    displayName: 'Количество на складе',
                                     cellTemplate: '<p style="margin-left:15px;" >{{row.entity.NumberProduct}}</p>'
                                 },
                                 {
-                                    field: 'CountryId',
-                                    width: "13%",
-                                    displayName: 'Id страны',
-                                    cellTemplate: '<p style="margin-left:15px;" >{{row.entity.CountryId}}</p>'
-                                },
-                                {
-                                    field: 'BrandId',
-                                    width: "13%",
-                                    displayName: 'Id бренда',
-                                    cellTemplate: '<p style="margin-left:15px;" >{{row.entity.BrandId}}</p>'
-                                },
-                                {
-                                    field: 'NumberStringId',
-                                    width: "13%",
-                                    displayName: 'Id номера струны',
-                                    cellTemplate: '<p style="margin-left:15px;" >{{row.entity.NumberStringId}}</p>'
-                                },
-                                {
-                                    field: 'SubcategoriesId',
-                                    width: "13%",
-                                    displayName: 'Id подкатегории',
-                                    cellTemplate: '<p style="margin-left:15px;" >{{row.entity.SubcategoriesId}}</p>'
+                                    field: 'DateManufacture',
+                                    width: "15%",
+                                    displayName: 'Дата выпуска',
+                                    cellTemplate: "<p style='margin-left:15px;'>{{row.entity.DateManufacture | date:'MM/dd/yyyy'}}</p>"
                                 },
 
                                 {
@@ -693,6 +699,7 @@
                             $rootScope.loadingShow();
                             productService.getAll().then(function (value) {
                                 $scope.listproduct = angular.copy(value);
+                                debugger;
                                 $scope.gridProducts.data = $scope.listproduct;
                             },
                                 function (errorObject) {

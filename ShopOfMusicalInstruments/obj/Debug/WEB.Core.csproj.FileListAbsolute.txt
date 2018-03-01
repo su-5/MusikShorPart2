@@ -685,3 +685,5 @@ C:\Users\Дмитрий\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\bin
 C:\Users\Дмитрий\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\obj\Debug\WEB.Core.csprojResolveAssemblyReference.cache
 C:\Users\Дмитрий\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\obj\Debug\ShopOfMusicalInstruments.Core.dll
 C:\Users\Дмитрий\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\obj\Debug\ShopOfMusicalInstruments.Core.pdb
+C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\bin\Microsoft.QualityTools.Testing.Fakes.dll
+C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\bin\ru\Microsoft.QualityTools.Testing.Fakes.resources.dll

@@ -99,6 +99,7 @@
     <Property Name="SubcategoriesId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Subcategory" Relationship="MusicDataBaseModel.FK_dbo_Product_dbo_Subcategories_SubcategoriesId" FromRole="Product" ToRole="Subcategory" />
     <NavigationProperty Name="Brand" Relationship="MusicDataBaseModel.FK_dbo_Product_dbo_Brand_BrandId" FromRole="Product" ToRole="Brand" />
+    <Property Name="Window" Type="Boolean" />
   </EntityType>
   <EntityType Name="Subcategory">
     <Key>
