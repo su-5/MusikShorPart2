@@ -1,5 +1,5 @@
-﻿using BLL.Core.BLL_Core.Mapping;
-using static AutoMapper.Mapper;
+﻿using AutoMapper;
+using BLL.Core.BLL_Core.Mapping;
 
 namespace BLL.Core.BLL_Core
 {
@@ -7,12 +7,15 @@ namespace BLL.Core.BLL_Core
     {
         public static void Configure()
         {
-            //Initialize(x => x.AddProfile<ProductMapper>());
-            Initialize(x => x.AddProfile<NumberStringMapper>());
-            Initialize(x => x.AddProfile<CountryMapper>());
-            Initialize(x => x.AddProfile<BrandMapper>());
-            Initialize(x => x.AddProfile<SubcategoryMapper>());
-
+            Mapper.Initialize(x =>
+            {
+                x.AddProfile<BrandMapper>();
+                x.AddProfile<CountryMapper>();
+                x.AddProfile<NumberStringMapper>();
+                x.AddProfile<SubcategoryMapper>();
+            });
         }
     }
 }
+
+
