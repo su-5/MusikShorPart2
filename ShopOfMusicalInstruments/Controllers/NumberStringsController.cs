@@ -2,39 +2,42 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using BLL.Core.BLL_Core.Interface;
 using DAL.Core;
+using DAL.Core.ModelDTO;
 
 namespace ShopOfMusicalInstruments.Core.Controllers
 {
     public class NumberStringsController : ApiController
     {
-        private readonly MusicDataBaseEntities _db = new MusicDataBaseEntities();
+        private IBLLFactory _bllFactory;
+        public NumberStringsController(IBLLFactory bllFactory)
+        {
+            if (bllFactory == null)
+            {
+                throw new ArgumentNullException(nameof(bllFactory));
+            }
+
+            _bllFactory = bllFactory;
+        }
+
         [HttpGet]
         public IHttpActionResult GetAll()
         {
-            var result = _db.NumberStrings.OrderBy(x => x.Number).ToList();
+            var result = _bllFactory.NumberStringBll.GetAll().OrderBy(x => x.Number).ToList();
             return Ok(result);
         }
 
         [HttpPost]
-        public IHttpActionResult Add(NumberString numberString)
+        public IHttpActionResult Add(NumberStringDTO numberString)
         {
-            _db.NumberStrings.Add(numberString);
-            _db.SaveChanges();
+            _bllFactory.NumberStringBll.Add(numberString);
             return Ok();
         }
         [HttpPut]
-        public IHttpActionResult Edit(List<NumberString> data)
+        public IHttpActionResult Edit(List<NumberStringDTO> data)
         {
-            foreach (var editNumberString in data)
-            {
-                var objectNumberString = _db.NumberStrings.Find(editNumberString.Id);
-                if (objectNumberString == null) continue;
-                objectNumberString.Number = editNumberString.Number;
-                _db.Entry(objectNumberString).State = System.Data.Entity.EntityState.Modified;
-            }
-
-            _db.SaveChanges();
+            _bllFactory.NumberStringBll.Edit(data);
             return Ok();
         }
 
@@ -42,11 +45,7 @@ namespace ShopOfMusicalInstruments.Core.Controllers
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
-            var objectNumberString = _db.NumberStrings.Find(id);
-            if (objectNumberString == null) return Ok();
-            objectNumberString.DeleteDate = DateTime.Now;
-            _db.Entry(objectNumberString).State = System.Data.Entity.EntityState.Modified;
-            _db.SaveChanges();
+           _bllFactory.NumberStringBll.Delete(id);
             return Ok();
         }
 

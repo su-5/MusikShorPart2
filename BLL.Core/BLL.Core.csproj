@@ -47,7 +47,10 @@
     <Compile Include="BLL_Core\AutoMapperConfiguration.cs" />
     <Compile Include="BLL_Core\Interface\IBLLFactory.cs" />
     <Compile Include="BLL_Core\Interface\IBrandBLL.cs" />
+    <Compile Include="BLL_Core\Interface\ICountryBLL.cs" />
+    <Compile Include="BLL_Core\Interface\INumberStringBLL.cs" />
     <Compile Include="BLL_Core\Interface\IProductBLL.cs" />
+    <Compile Include="BLL_Core\Interface\ISubcategoryBLL.cs" />
     <Compile Include="BLL_Core\Mapping\BrandMapper.cs" />
     <Compile Include="BLL_Core\Mapping\CountryMapper.cs" />
     <Compile Include="BLL_Core\Mapping\NumberStringMapper.cs" />
@@ -55,7 +58,10 @@
     <Compile Include="BLL_Core\Mapping\SubcategoryMapper.cs" />
     <Compile Include="BLL_Core\Repository\BLLFactory.cs" />
     <Compile Include="BLL_Core\Repository\BrandBLL.cs" />
+    <Compile Include="BLL_Core\Repository\CountryBLL.cs" />
+    <Compile Include="BLL_Core\Repository\NumberStringBLL.cs" />
     <Compile Include="BLL_Core\Repository\ProductBLL.cs" />
+    <Compile Include="BLL_Core\Repository\SubcategoryBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

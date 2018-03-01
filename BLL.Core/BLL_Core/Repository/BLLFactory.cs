@@ -8,6 +8,9 @@ namespace BLL.Core.BLL_Core.Repository
         private readonly DalFactory _dalFactory;
         private IProductBLL _product;
         private IBrandBLL _brand;
+        private ICountryBLL _country;
+        private INumberStringBLL _numberString;
+        private ISubcategoryBLL _subcategory;
         public BLLFactory()
         {
             _dalFactory = new DalFactory(new DbFactory());
@@ -15,5 +18,8 @@ namespace BLL.Core.BLL_Core.Repository
 
         public IProductBLL ProductBll => _product ?? (_product = new ProductBLL(_dalFactory));
         public IBrandBLL BrandBll => _brand ?? (_brand = new BrandBLL(_dalFactory));
+        public ICountryBLL CountryBll => _country ?? (_country = new CountryBLL(_dalFactory));
+        public INumberStringBLL NumberStringBll => _numberString ?? (_numberString = new NumberStringBLL(_dalFactory));
+        public ISubcategoryBLL SubcategoryBll => _subcategory ?? (_subcategory = new SubcategoryBLL(_dalFactory));
     }
 }

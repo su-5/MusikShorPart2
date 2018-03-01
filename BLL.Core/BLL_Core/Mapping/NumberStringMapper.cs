@@ -9,8 +9,12 @@ namespace BLL.Core.BLL_Core.Mapping
         public NumberStringMapper()
         {
             CreateMap<NumberString, NumberStringDTO>()
-                .ForMember(d => d.Id, opts => opts.MapFrom(src => src.Id))
-                .ForMember(d => d.Number, opts => opts.MapFrom(src => src.Number));
+                .ForMember(d => d.Id, opt => opt.MapFrom(src => src.Id))
+                .ForMember(d => d.Number, opt => opt.MapFrom(src => src.Number));
+
+            CreateMap<NumberStringDTO, NumberString>()
+                .ForMember(d => d.Id, opt => opt.MapFrom(src => src.Id))
+                .ForMember(d => d.Number, opt => opt.MapFrom(src => src.Number));
 
         }
     }

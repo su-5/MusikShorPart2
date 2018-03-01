@@ -7,6 +7,9 @@ namespace DAL.Core.DAL_Core
     {
         private IProductDAL _product;
         private IBrandDAL _brand;
+        private ICountryDAL _country;
+        private INumberStringDAL _numberString;
+        private ISubcategoryDAL _subcategory;
         private MusicDataBaseEntities _dbContext;
         private readonly IDbFactory _dbFactory;
 
@@ -16,6 +19,9 @@ namespace DAL.Core.DAL_Core
         }
 
         public IBrandDAL Brand => _brand ?? (_brand = new BrandDAL(_dbFactory));
+        public ICountryDAL Country => _country ?? (_country = new CountryDAL(_dbFactory));
+        public INumberStringDAL NumberString => _numberString ?? (_numberString = new NumberStringDAL(_dbFactory));
+        public ISubcategoryDAL Subcategory => _subcategory ?? (_subcategory = new SubcategoryDAL(_dbFactory));
         public MusicDataBaseEntities DbContext => _dbContext ?? (_dbContext = _dbFactory.Init());
         public IProductDAL Product => _product ?? (_product = new ProductDAL(_dbFactory));
     }

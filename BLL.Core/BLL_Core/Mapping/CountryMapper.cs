@@ -8,8 +8,12 @@ namespace BLL.Core.BLL_Core.Mapping
     {
         public CountryMapper()
         {
+            
             CreateMap<Country, CountryDTO>()
-                .ForMember(d => d.Id, opts => opts.MapFrom(src => src.Id));
+                .ForMember(d => d.Id, opt => opt.MapFrom(src => src.Id));
+          
+            CreateMap<CountryDTO, Country>()
+                .ForMember(d => d.Id, opt => opt.MapFrom(src => src.Id));
 
         }
     }

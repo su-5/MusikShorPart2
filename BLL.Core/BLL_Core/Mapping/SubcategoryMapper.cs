@@ -10,8 +10,10 @@ namespace BLL.Core.BLL_Core.Mapping
         public SubcategoryMapper()
         {
             CreateMap<Subcategory, SubcategoryDTO>()
-                .ForMember(d => d.Id, opts => opts.MapFrom(src => src.Id));
+                .ForMember(d => d.Id, opt => opt.MapFrom(src => src.Id));
 
+            CreateMap<SubcategoryDTO, Subcategory>()
+                .ForMember(d => d.Id, opt => opt.MapFrom(src => src.Id));
 
 
         }

@@ -4,5 +4,8 @@
     {
         IProductBLL ProductBll { get; }
         IBrandBLL BrandBll { get; }
+        ICountryBLL CountryBll { get; }
+        INumberStringBLL NumberStringBll { get; }
+        ISubcategoryBLL SubcategoryBll { get; }
     }
 }

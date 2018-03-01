@@ -6,5 +6,8 @@ namespace DAL.Core.DAL_Core
     {
         IProductDAL Product { get; }
         IBrandDAL Brand { get; }
+        ICountryDAL Country { get; }
+        INumberStringDAL NumberString { get; }
+        ISubcategoryDAL Subcategory { get; }
     }
 }

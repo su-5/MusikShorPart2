@@ -4,7 +4,7 @@ using DAL.Core.GenericRepositoryModel.Interfaces;
 
 namespace DAL.Core.GenericRepositoryModel.Repository
 {
-    class BrandDAL: GenericRepository<Brand>, IBrandDAL
+    public class BrandDAL: GenericRepository<Brand>, IBrandDAL
     {
         public BrandDAL(IDbFactory dbFactory) : base(dbFactory)
         {
