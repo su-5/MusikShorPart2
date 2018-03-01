@@ -53,3 +53,4 @@ C:\Users\Дмитрий\Source\Repos\MusikShorPart2\DAL.Core\bin\Debug\ru\Entity
 C:\Users\Дмитрий\Source\Repos\MusikShorPart2\DAL.Core\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
 C:\Users\Дмитрий\Source\Repos\MusikShorPart2\DAL.Core\obj\Debug\DAL.Core.dll
 C:\Users\Дмитрий\Source\Repos\MusikShorPart2\DAL.Core\obj\Debug\DAL.Core.pdb
+C:\Users\Дмитрий\Source\Repos\MusikShorPart2\DAL.Core\obj\Debug\DAL.Core.csprojResolveAssemblyReference.cache

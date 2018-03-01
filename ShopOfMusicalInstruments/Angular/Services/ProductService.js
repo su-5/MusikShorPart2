@@ -12,6 +12,42 @@
                 });
             return deferred.promise;
         };
+
+        this.add = function (product) {
+            var newProduct = { Name: product.Name, Description: product.Description };
+            var deferred = $q.defer();
+            $http.post("api/Product", newProduct)
+                .then(function (response) {
+                    deferred.resolve(response.data);
+                }).catch(function onError(response) {
+                    deferred.reject(response.data);
+                });
+            return deferred.promise;
+        };
+
+        this.edit = function (gridData) {
+            var data = gridData;
+            var deferred = $q.defer();
+            $http.put("api/Product", data)
+                .then(function (response) {
+                    deferred.resolve(response.data);
+                }).catch(function onError(response) {
+                    deferred.reject(response.data);
+                });
+            return deferred.promise;
+        };
+
+        this.delete = function (productId) {
+            var id = productId;
+            var deferred = $q.defer();
+            $http.delete("api/Product?Id=" + id)
+                .then(function (response) {
+                    deferred.resolve(response.data);
+                }).catch(function onError(response) {
+                    deferred.reject(response.data);
+                });
+            return deferred.promise;
+        };
     };
 
     angular

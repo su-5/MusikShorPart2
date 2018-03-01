@@ -8,6 +8,26 @@
                 <div class="pull-left distant">
                     <input required placeholder="Название" class="form-control label-size" type="text" ng-model="product.Name" />
                 </div>
+                <div class="pull-left distant">
+                    <input required placeholder="Цена" class="form-control label-size" type="text" ng-model="product.Price" />
+                </div>
+                <div class="pull-left distant">
+                    <input required placeholder="Номер продукта" class="form-control label-size" type="text" ng-model="product.NumberProduct" />
+                </div>
+                <div class="pull-left distant">
+                    <input required placeholder="Id страны  class="form-control label-size" type="number" ng-model="product.CountryId" />
+                </div>
+                <div class="pull-left distant">
+                    <input required placeholder="Id бренда" class="form-control label-size" type="number" ng-model="product.BrandId" />
+                </div>
+                <div class="pull-left distant">
+                    <input required placeholder="Id номера струны" class="form-control label-size" type="number" ng-model="product.NumberStringId" />
+                </div>
+                <div class="pull-left distant">
+                    <input required placeholder="Id подкатегорий" class="form-control label-size" type="number" ng-model="product.SubcategoriesId" />
+                </div>
+                
+                
                 <div class="pull-left distant form-group">
                     <button style="padding: 3px 6px;" class="btn btn-xs btn-success" type="submit" ng-click="addProduct(product,formProduct)">Добавить</button>
                 </div>
