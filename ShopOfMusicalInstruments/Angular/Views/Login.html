@@ -1,0 +1,13 @@
+﻿<h1>Авторизация</h1>
+<div align="center">
+    <h3>Войдите в систему или воспользуйтесь процедурой<a href="" ui-sref="mainPage/Registration">регистрации</a>!</h3>
+</div>
+
+
+<div align="center">
+    <form style="width: 200px; height: 60px" class="form-group" name="login">
+        <input type="text" class="btn-block  form-control" name="login" id="name" placeholder="Логин" ng-model="user.login" />
+        <input type="password" class="btn-block  form-control" name="password" id="password" placeholder="Пароль" ng-model="user.password" />
+        <input type="submit" class="btn-block  form-control" placeholder="Войти" ng-click="addBrang(user,login)" />
+    </form>
+</div>

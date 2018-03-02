@@ -356,6 +356,8 @@
     <Content Include="Angular\appConfig.js" />
     <Content Include="Angular\Controllers\AdminPanelCtrl.js" />
     <Content Include="Angular\Controllers\CatalogCtrl.js" />
+    <Content Include="Angular\Controllers\LoginCtrl.js" />
+    <Content Include="Angular\Controllers\RegistrationCtrl.js" />
     <Content Include="Angular\ModalWindows\ControlBrendModalMindow.html" />
     <Content Include="Angular\ModalWindows\ControlCountryModalWindow.html" />
     <Content Include="Angular\ModalWindows\ControlNumberStringModalWindow.html" />
@@ -369,6 +371,8 @@
     <Content Include="Angular\Services\subcategoryService.js" />
     <Content Include="Angular\Views\AdminPanel.html" />
     <Content Include="Angular\Views\Catalog.html" />
+    <Content Include="Angular\Views\Login.html" />
+    <Content Include="Angular\Views\Registration.html" />
     <Content Include="App_Data\MusicDataBase.mdf" />
     <Content Include="App_Data\MusicDataBase_log.ldf">
       <DependentUpon>MusicDataBase.mdf</DependentUpon>

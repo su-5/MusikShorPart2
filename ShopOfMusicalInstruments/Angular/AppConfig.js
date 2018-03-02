@@ -17,7 +17,19 @@
                 controller: "adminController"
             });
 
+            $stateProvider.state("mainPage/Login", {
+                url: "/login",
+                templateUrl:"Angular/Views/Login.html",
+                controller: "loginController"
+            });
+
+            $stateProvider.state("mainPage/Registration", {
+                url: "/registration",
+                templateUrl:"Angular/Views/Registration.html",
+                controller: "regintrationController"
+            });
+
         
-            $urlRouterProvider.otherwise("/catalog");
+            $urlRouterProvider.otherwise("/registration");
         }]);
 })();
