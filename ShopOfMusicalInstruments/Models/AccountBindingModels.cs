@@ -35,6 +35,10 @@ namespace ShopOfMusicalInstruments.Models
     public class RegisterBindingModel
     {
         [Required]
+        [Display(Name = "Имя")]
+        public string Name { get; set; }
+
+        [Required]
         [Display(Name = "Адрес электронной почты")]
         public string Email { get; set; }
 
@@ -46,7 +50,7 @@ namespace ShopOfMusicalInstruments.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Подтверждение пароля")]
-        [Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
+      //  [Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
         public string ConfirmPassword { get; set; }
     }
 

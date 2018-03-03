@@ -16,7 +16,7 @@ using ShopOfMusicalInstruments.Models;
 using ShopOfMusicalInstruments.Providers;
 using ShopOfMusicalInstruments.Results;
 
-namespace ShopOfMusicalInstruments.Core.Controllers
+namespace ShopOfMusicalInstruments.Core.Controllers 
 {
     [Authorize]
     [RoutePrefix("api/Account")]
@@ -316,6 +316,7 @@ namespace ShopOfMusicalInstruments.Core.Controllers
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
+            model.ConfirmPassword = model.Password;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

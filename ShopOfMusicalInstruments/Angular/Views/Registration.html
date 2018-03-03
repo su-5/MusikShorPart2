@@ -3,20 +3,19 @@
     <h3>Уже зарегистрированы?<a href="" ui-sref="mainPage/Login">Войти!</a></h3>
 </div>
 
-
 <div align="center">
     <form style="width: 200px; height: 60px" class="form-group" name="formreg">
 
-        <input class="form-control" type="text" placeholder="Имя" required="" />
+        <input class="form-control" type="text" placeholder="Имя" required ng-model="user.Name" />
 
         <input class="form-control" type="text" placeholder="Фамилия" required="" />
 
         <input class="form-control" type="text" placeholder="Отчество" required="" />
 
-        <input class="form-control" type="text" placeholder="Email" required="" />
+        <input class="form-control" type="email" placeholder="Email" required="" ng-model="user.Email" />
 
-        <input class="form-control" type="password" placeholder="Пароль" required="" />
+        <input class="form-control" type="password" placeholder="Пароль" required="" ng-model="user.Password" />
 
-        <input type="submit" class="btn-block btn-sm btn-info form-control" value="Отправить" ng-click="addBrang(user,formreg)" />
+        <input type="submit" class="btn-block btn-sm btn-info form-control" value="Отправить" ng-click="registration(user,formreg)" />
     </form>
 </div>
