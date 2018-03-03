@@ -1,22 +1,22 @@
-﻿<h1>Регистрация</h1>
+﻿<h1 align="center">Регистрация</h1>
 <div align="center">
-    <h3>Зарегистрируйтесь! Если у Вас есть Логин и пароль, воспользуйтесь формой<a href="" ui-sref="mainPage/Login">Авторизации</a>!</h3>
+    <h3>Уже зарегистрированы?<a href="" ui-sref="mainPage/Login">Войти!</a></h3>
 </div>
 
 
 <div align="center">
-    <form style="width: 200px; height: 60px" class="form-group" name="login">
-        <label><strong>Имя</strong></label>
-        <input class="form-control" type="text" style="padding: 0;" />
-        <label><strong>Фамилия</strong></label>
-        <input class="form-control" type="text" style="padding: 0;" />
-        <label><strong>Отчество</strong></label>
-        <input class="form-control" type="text" style="padding: 0;" />
-        <label><strong>Email</strong></label>
-        <input class="form-control" type="text" style="padding: 0;" />
-        <label><strong>Пароль</strong></label>
-        <input class="form-control" type="password" style="padding: 0;" />
-        <label><strong>Повторите пароль</strong></label>
-        <input type="submit" class="btn-block  form-control" placeholder="Войти" ng-click="addBrang(user,login)" />
+    <form style="width: 200px; height: 60px" class="form-group" name="formreg">
+
+        <input class="form-control" type="text" placeholder="Имя" required="" />
+
+        <input class="form-control" type="text" placeholder="Фамилия" required="" />
+
+        <input class="form-control" type="text" placeholder="Отчество" required="" />
+
+        <input class="form-control" type="text" placeholder="Email" required="" />
+
+        <input class="form-control" type="password" placeholder="Пароль" required="" />
+
+        <input type="submit" class="btn-block btn-sm btn-info form-control" value="Отправить" ng-click="addBrang(user,formreg)" />
     </form>
 </div>

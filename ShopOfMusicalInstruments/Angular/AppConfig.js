@@ -26,7 +26,7 @@
             $stateProvider.state("mainPage/Registration", {
                 url: "/registration",
                 templateUrl:"Angular/Views/Registration.html",
-                controller: "regintrationController"
+                controller: "registrationController"
             });
 
         
