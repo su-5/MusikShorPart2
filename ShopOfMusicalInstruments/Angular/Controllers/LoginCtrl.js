@@ -3,7 +3,7 @@
 
     // controller class definintion
     var loginController = function ($scope, $rootScope) {
-
+       
     };
 
     // register your controller into a dependent module 
