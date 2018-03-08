@@ -1,47 +1,64 @@
-﻿<div>
+﻿<style type="text/css">
+    .modal-dialog {
+        width: 25% !important;
+    }
+</style>
+
+<div>
     <div class="modal-header">
         <h3 style="margin-top: -8px;" class="text-center">
             Добавление нового продукта
         </h3>
     </div>
-    <div class="modal-body">
-        <form name="addProductForm">
-            <div style="float: left">
-                <label>Бренд</label>
-                <select id="" class="form-control" name="" ng-model="Brand" style="width: auto;" required ng-options="obj.id as obj.Name for obj in allBrands">
-                    <option selected="selected" value="">-- Выберите бренд --</option>
+    <form name="addProductForm">
+        <div class="modal-body">
+            <div>
+                <label>Категория продукта{{Product}}</label>
+                <select id="" class="form-control ng-buttons-th" name="" ng-model="Product.BrandId" required ng-options="obj.Id as obj.Name for obj in allBrands">
+                    <option value="">-- Выберите категорию --</option>
                 </select>
             </div>
-            <div style="float: left">
-                <label>Страна</label>
-                <select id="" class="form-control" name="" ng-model="Country" style="width: auto;" required ng-options="obj.id as obj.Name for obj in allCounties">
-                    <option value="">-- Выберите страну--</option>
-                </select>
-            </div>
-            <div style="float: left">
-                <label>Подкатегория</label>
-                <select id="" class="form-control" name="" ng-model="Subcategory" style="width: auto;" required ng-options="obj.id as obj.Name for obj in allSubcategories">
+            <div>
+                <label>Подкатегория продукта</label>
+                <select id="" ng-disabled="(!Product)" class="form-control ng-buttons-th" name="" ng-model="Subcategory" required ng-options="obj.id as obj.Name for obj in allSubcategories">
                     <option value="">-- Выберите подкатегорию--</option>
                 </select>
             </div>
-            <div style="float: left">
+
+            <div>
+                <label>Бренд</label>
+                <select id="" class="form-control ng-buttons-th" name="" ng-model="Product.BrandId" required ng-options="obj.Id as obj.Name for obj in allBrands">
+                    <option value="">-- Выберите бренд --</option>
+                </select>
+            </div>
+            <div>
+                <label>Страна</label>
+                <select id="" class="form-control ng-buttons-th" name="" ng-model="Country" required ng-options="obj.id as obj.Name for obj in allCounties">
+                    <option value="">-- Выберите страну--</option>
+                </select>
+            </div>
+            <div>
                 <label>Цена</label>
-                <select id="" class="form-control" name="" ng-model="Price" style="width: auto;" required ng-options="obj.id as obj.Price for obj in allPrice">
+                <select id="" class="form-control ng-buttons-th" name="" ng-model="Price" required ng-options="obj.id as obj.Price for obj in allPrice">
                     <option value="">-- Выберите цену--</option>
                 </select>
             </div>
-            <div style="float: left">
+            <div>
                 <label>Кол-во на складе</label>
-                <select id="" class="form-control" name="" ng-model="NumberProduct" style="width: auto;" required ng-options="obj.id as obj.NumberProduct for obj in allNumberProducts">
+                <select id="" class="form-control ng-buttons-th" name="" ng-model="NumberProduct" required ng-options="obj.id as obj.NumberProduct for obj in allNumberProducts">
                     <option value="">-- Выберите кол-во товара--</option>
                 </select>
             </div>
-            <div style="float: left">
+            <div>
                 <label>Кол-во струн</label>
-                <select id="" class="form-control" name="" ng-model="NumberString" style="width: auto;" required ng-options="obj.id as obj.NumberString for obj in allNumberStrings">
+                <select id="" class="form-control ng-buttons-th" name="" ng-model="NumberString" required ng-options="obj.id as obj.NumberString for obj in allNumberStrings">
                     <option value="">-- Выберите кол-во струн--</option>
                 </select>
             </div>
-        </form>
-    </div>
+        </div>
+        <div class="modal-footer" align="right">
+            <button class="btn btn-xs btn-primary" type="submit" ng-click="openWindowAdd()">Добавить</button>
+            <button class="btn btn-xs btn-warning" type="button" ng-click="cancelWindow()">Отмена</button>           
+        </div>
+    </form>
 </div>

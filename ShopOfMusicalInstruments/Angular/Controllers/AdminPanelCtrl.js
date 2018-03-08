@@ -586,10 +586,56 @@
             }).result.then(postClose, postClose);
         };
 
+        $scope.openProduct = function () {
+            openProduct();
+        }
+
+        //Добавление нового продукта
+        function openWindowAddProdukts() {
+            $scope.asideState = {
+                open: true
+            };
+
+            function postClose() {
+                $scope.asideState.open = false;
+            }
+
+            //модальное отно добавление нового продукта
+            $uibModal.open({
+                templateUrl: function () {
+                    return "Angular/ModalWindows/ControlAddNewProductModalWindow.html";
+                },
+                size: 'sm',
+                scope: $scope,
+                controller: [
+                    '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
+                        $rootScope.loadingShow();
+                        adminService.getAll().then(function (value) {
+                            $scope.listBrends = angular.copy(value);
+                            $scope.allBrands = $scope.listBrends;
+                        },
+                            function (errorObject) {
+
+                            }).finally(function () {
+                                $rootScope.loadingHide();
+                            });
+
+                        $scope.cancel = function () {
+                            $uibModalInstance.dismiss({ $value: 'cancel' });
+                        };
+
+                        $scope.cancelWindow = function () {
+                            $scope.cancel();
+                            openProduct();
+                        }
+                    }
+                ]
+            }).result.then(postClose, postClose);
+        };
 
         //Modal Window для продуктов
+        function openProduct() {
 
-        $scope.openProduct = function () {
             $scope.asideState = {
                 open: true
             };
@@ -606,7 +652,14 @@
                 controller: [
                     '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
 
-                        $scope.product = { Name: "", Price: "", CountryId: "", BrandId: "", NumberStringId: "", SubcategoriesId: "" };
+                        $scope.product = {
+                            Name: "",
+                            Price: "",
+                            CountryId: "",
+                            BrandId: "",
+                            NumberStringId: "",
+                            SubcategoriesId: ""
+                        };
                         $scope.gridProducts = {
                             enableColumnResizing: true,
                             showGridFooter: false,
@@ -671,9 +724,9 @@
                                     field: 'DateManufacture',
                                     width: "15%",
                                     displayName: 'Дата выпуска',
-                                    cellTemplate: "<p style='margin-left:15px;'>{{row.entity.DateManufacture | date:'MM/dd/yyyy'}}</p>"
+                                    cellTemplate:
+                                        "<p style='margin-left:15px;'>{{row.entity.DateManufacture | date:'MM/dd/yyyy'}}</p>"
                                 },
-
                                 {
                                     field: 'buttons_edit_del',
                                     displayName: "",
@@ -714,88 +767,6 @@
                             $uibModalInstance.dismiss({ $value: 'cancel' });
                         };
 
-                        //удаление продуктов
-                        $scope.deleteProduct = function (productId) {
-                            subcategoryService.delete(productId).then(function () {
-                                getAllProducts();
-                            },
-                                function (errorObject) {
-
-                                }).finally(function () {
-                                });
-                        }
-
-                        $scope.cancel = function () {
-                            $uibModalInstance.dismiss({ $value: 'cancel' });
-                        };
-
-
-
-                        //открытие блока для добавления продуктов
-                        $scope.openWindowAdd = function (openModel) {
-                            $scope.openWindow = openModel;
-                        };
-
-                        //закрытие блока для добавления продуктов
-                        $scope.closeAddWindow = function (flag) {
-                            $scope.openWindow = flag;
-                        }
-
-                        //добавление продуктов
-                        $scope.addProduct = function (product, formProduct) {
-                            if (!formProduct.$valid) {
-                                return;
-                            }
-
-                            productService.add(product).then(function (value) {
-                                getAllProducts();
-                                $scope.openWindow = false;
-                            },
-                                function (errorObject) {
-
-                                }).finally(function () {
-
-                                });
-                        };
-
-
-                        //Добавление нового продукта
-                        $scope.openWindowAdd = function (e) {
-                            $scope.asideState = {
-                                open: true
-                            };
-
-                            function postClose() {
-                                $scope.asideState.open = false;
-                            }
-
-                            $uibModal.open({
-                                templateUrl: function () {
-                                    return "Angular/ModalWindows/ControlAddNewProductModalWindow.html";
-                                },
-                                size: 'md',
-                                controller: [
-                                    '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
-                                        $rootScope.loadingShow();
-                                        adminService.getAll().then(function (value) {
-                                            $scope.listBrends = angular.copy(value);
-                                            $scope.allBrands = $scope.listBrends;
-                                        },
-                                            function (errorObject) {
-
-                                            }).finally(function () {
-                                                $rootScope.loadingHide();
-                                            });
-
-                                        $scope.cancel = function () {
-                                            $uibModalInstance.dismiss({ $value: 'cancel' });
-                                        };
-                                    }
-                                ]
-                            }).result.then(postClose, postClose);
-                        };
-
-
                         //Редактирование продуктов
                         $scope.SaveEdit = function () {
                             productService.edit($scope.gridProducts.data).then(function () {
@@ -806,11 +777,17 @@
                                 }).finally(function () {
                                 });
                         };
+
+                        $scope.openWindowAdd = function (e) {
+                            $scope.cancel();
+                            openWindowAddProdukts();
+
+                        }
                         getAllProducts();
                     }
                 ]
             }).result.then(postClose, postClose);
-        };
+        }
 
     }
     // register your controller into a dependent module 

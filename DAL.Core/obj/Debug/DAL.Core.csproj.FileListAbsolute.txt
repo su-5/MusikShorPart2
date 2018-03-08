@@ -53,6 +53,6 @@ C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\DAL.Core\bin\Debug\ru\EntityFrame
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\DAL.Core\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\DAL.Core\obj\Debug\DAL.Core.dll
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\DAL.Core\obj\Debug\DAL.Core.pdb
-C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\DAL.Core\obj\Debug\DAL.Core.csprojResolveAssemblyReference.cache
 C:\Users\Дмитрий\Source\Repos\MusikShorPart2\DAL.Core\obj\Debug\DAL.Core.csproj.CoreCompileInputs.cache
 C:\Users\Дмитрий\Source\Repos\MusikShorPart2\DAL.Core\obj\Debug\DAL.Core.csproj.CopyComplete
+C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\DAL.Core\obj\Debug\DAL.Core.csprojResolveAssemblyReference.cache
