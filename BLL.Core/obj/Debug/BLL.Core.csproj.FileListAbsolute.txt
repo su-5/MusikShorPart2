@@ -47,3 +47,6 @@ C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\BLL.Core\bin\Debug\ru\EntityFrame
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\BLL.Core\obj\Debug\BLL.Core.csprojResolveAssemblyReference.cache
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\BLL.Core\obj\Debug\BLL.Core.dll
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\BLL.Core\obj\Debug\BLL.Core.pdb
+C:\Users\Дмитрий\Source\Repos\MusikShorPart2\BLL.Core\bin\Debug\DAL.Core.dll.config
+C:\Users\Дмитрий\Source\Repos\MusikShorPart2\BLL.Core\obj\Debug\BLL.Core.csproj.CoreCompileInputs.cache
+C:\Users\Дмитрий\Source\Repos\MusikShorPart2\BLL.Core\obj\Debug\BLL.Core.csproj.CopyComplete

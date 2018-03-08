@@ -78,8 +78,8 @@
                             adminService.getAll().then(function (value) {
                                 $scope.listBrends = angular.copy(value);
                                 $scope.gridBrands.data = $scope.listBrends;
-                                    return $scope.listBrends;
-                                },
+                                return $scope.listBrends;
+                            },
                                 function (errorObject) {
 
                                 }).finally(function () {
@@ -759,7 +759,7 @@
                         };
 
 
-                        //add Product
+                        //Добавление нового продукта
                         $scope.openWindowAdd = function (e) {
                             $scope.asideState = {
                                 open: true
@@ -778,21 +778,18 @@
                                     '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
                                         $rootScope.loadingShow();
                                         adminService.getAll().then(function (value) {
-                                                $scope.listBrends = angular.copy(value);
-                                                $scope.allBrands = $scope.listBrends;
-
-                                            },
+                                            $scope.listBrends = angular.copy(value);
+                                            $scope.allBrands = $scope.listBrends;
+                                        },
                                             function (errorObject) {
 
                                             }).finally(function () {
-                                            $rootScope.loadingHide();
-                                        });
-                                       
+                                                $rootScope.loadingHide();
+                                            });
+
                                         $scope.cancel = function () {
                                             $uibModalInstance.dismiss({ $value: 'cancel' });
                                         };
-
-
                                     }
                                 ]
                             }).result.then(postClose, postClose);

@@ -6,10 +6,40 @@
     </div>
     <div class="modal-body">
         <form name="addProductForm">
-            <div>
-                <label>Brand</label>
-                <select id=""  class="form-control" name="" ng-model=""  required ng-options="obj.id as obj.Name for obj in allBrands">
-                    <option value="">-- Выберите brand --</option>
+            <div style="float: left">
+                <label>Бренд</label>
+                <select id="" class="form-control" name="" ng-model="Brand" style="width: auto;" required ng-options="obj.id as obj.Name for obj in allBrands">
+                    <option selected="selected" value="">-- Выберите бренд --</option>
+                </select>
+            </div>
+            <div style="float: left">
+                <label>Страна</label>
+                <select id="" class="form-control" name="" ng-model="Country" style="width: auto;" required ng-options="obj.id as obj.Name for obj in allCounties">
+                    <option value="">-- Выберите страну--</option>
+                </select>
+            </div>
+            <div style="float: left">
+                <label>Подкатегория</label>
+                <select id="" class="form-control" name="" ng-model="Subcategory" style="width: auto;" required ng-options="obj.id as obj.Name for obj in allSubcategories">
+                    <option value="">-- Выберите подкатегорию--</option>
+                </select>
+            </div>
+            <div style="float: left">
+                <label>Цена</label>
+                <select id="" class="form-control" name="" ng-model="Price" style="width: auto;" required ng-options="obj.id as obj.Price for obj in allPrice">
+                    <option value="">-- Выберите цену--</option>
+                </select>
+            </div>
+            <div style="float: left">
+                <label>Кол-во на складе</label>
+                <select id="" class="form-control" name="" ng-model="NumberProduct" style="width: auto;" required ng-options="obj.id as obj.NumberProduct for obj in allNumberProducts">
+                    <option value="">-- Выберите кол-во товара--</option>
+                </select>
+            </div>
+            <div style="float: left">
+                <label>Кол-во струн</label>
+                <select id="" class="form-control" name="" ng-model="NumberString" style="width: auto;" required ng-options="obj.id as obj.NumberString for obj in allNumberStrings">
+                    <option value="">-- Выберите кол-во струн--</option>
                 </select>
             </div>
         </form>
