@@ -356,6 +356,7 @@
     <Content Include="Angular\Controllers\CatalogCtrl.js" />
     <Content Include="Angular\Controllers\LoginCtrl.js" />
     <Content Include="Angular\Controllers\RegistrationCtrl.js" />
+    <Content Include="Angular\ModalWindows\ControlAddNewProductModalWindow.html" />
     <Content Include="Angular\ModalWindows\ControlBrendModalMindow.html" />
     <Content Include="Angular\ModalWindows\ControlCountryModalWindow.html" />
     <Content Include="Angular\ModalWindows\ControlNumberStringModalWindow.html" />
@@ -368,6 +369,7 @@
     <Content Include="Angular\Services\productService.js" />
     <Content Include="Angular\Services\registerationService.js" />
     <Content Include="Angular\Services\subcategoryService.js" />
+    <Content Include="Angular\Templates\WindowCheckBox.html" />
     <Content Include="Angular\Views\AdminPanel.html" />
     <Content Include="Angular\Views\Catalog.html" />
     <Content Include="Angular\Views\Login.html" />

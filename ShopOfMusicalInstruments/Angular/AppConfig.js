@@ -30,6 +30,6 @@
             });
 
         
-            $urlRouterProvider.otherwise("/registration");
+            $urlRouterProvider.otherwise("/adminPanel");
         }]);
 })();

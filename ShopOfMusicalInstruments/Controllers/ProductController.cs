@@ -29,6 +29,7 @@ namespace ShopOfMusicalInstruments.Core.Controllers
             var result = _bllFactory.ProductBll.GetAll();
             return Ok(result);
         }
+
         [HttpGet]
         [Route("GetAllCatalog")]
         public IHttpActionResult GetAllCatalog()

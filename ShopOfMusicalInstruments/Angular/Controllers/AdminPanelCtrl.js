@@ -55,7 +55,7 @@
                                     cellTemplate: "<div class=\"ui-grid-cell-contents\" align=\"center\">" +
 
                                         "<button type='button' class='btn btn-danger btn-xs' style='margin-left: 2px; margin-right: 2px; height: 22px; width: 29px;padding: 0px 5px;font-size: 12px;' ng-click='grid.appScope.deleteBrand(row.entity.Id)'tooltip-placement ='left' uib-tooltip='Удалить запись'><i style='font-size: 15px;' class='fa fa-trash'></i></button>" +
-                                                  "</div>",
+                                        "</div>",
 
                                     enableCellEdit: false,
                                     enableFiltering: true,
@@ -78,8 +78,8 @@
                             adminService.getAll().then(function (value) {
                                 $scope.listBrends = angular.copy(value);
                                 $scope.gridBrands.data = $scope.listBrends;
-
-                            },
+                                    return $scope.listBrends;
+                                },
                                 function (errorObject) {
 
                                 }).finally(function () {
@@ -419,10 +419,10 @@
                             numberstringService.edit($scope.gridNumberStrings.data).then(function () {
                                 getAllNumberStrings();
                             },
-                                 function (errorObject) {
+                                function (errorObject) {
 
-                                 }).finally(function () {
-                                 });
+                                }).finally(function () {
+                                });
                         };
                         getAllNumberStrings();
                     }
@@ -563,11 +563,11 @@
                                 getAllSubcategories();
                                 $scope.openWindow = false;
                             },
-                                 function (errorObject) {
+                                function (errorObject) {
 
-                                 }).finally(function () {
+                                }).finally(function () {
 
-                                 });
+                                });
                         };
 
                         //Редактирование подкатегории
@@ -575,10 +575,10 @@
                             subcategoryService.edit($scope.gridSubcategories.data).then(function () {
                                 getAllSubcategories();
                             },
-                                 function (errorObject) {
+                                function (errorObject) {
 
-                                 }).finally(function () {
-                                 });
+                                }).finally(function () {
+                                });
                         };
                         getAllSubcategories();
                     }
@@ -606,7 +606,7 @@
                 controller: [
                     '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
 
-                        $scope.product = { Name: "", Price: "", NumberProduct: "", CountryId: "", BrandId: "", NumberStringId: "", SubcategoriesId: "" };
+                        $scope.product = { Name: "", Price: "", CountryId: "", BrandId: "", NumberStringId: "", SubcategoriesId: "" };
                         $scope.gridProducts = {
                             enableColumnResizing: true,
                             showGridFooter: false,
@@ -616,11 +616,11 @@
                             showColumnFooter: false,
                             enableFiltering: true,
                             gridColumnFooterHeight: 20,
-                            enableRowSelection: true,
-                            enableRowHeaderSelection: true,
-                            enableSelectAll: true,
+                            enableRowSelection: false,
+                            enableRowHeaderSelection: false,
+                            enableSelectAll: false,
                             noUnselect: false,
-                            multiSelect: true,
+                            multiSelect: false,
                             columnDefs: [
                                 {
                                     field: 'Brand.Name',
@@ -634,9 +634,11 @@
                                     cellTemplate: '<p style="margin-left:15px;" >{{row.entity.Name}}</p>'
                                 },
                                 {
-                                    field: 'NumberString.Number',
-                                    width: "10%",
-                                    displayName: 'Количество струн'
+                                    field: 'Window',
+                                    width: "7%",
+                                    enableCellEdit: false,
+                                    displayName: 'Витрина',
+                                    cellTemplate: 'Angular/Templates/WindowCheckBox.html'
                                 },
                                 {
                                     field: 'Country.Name',
@@ -699,7 +701,6 @@
                             $rootScope.loadingShow();
                             productService.getAll().then(function (value) {
                                 $scope.listproduct = angular.copy(value);
-                                debugger;
                                 $scope.gridProducts.data = $scope.listproduct;
                             },
                                 function (errorObject) {
@@ -750,22 +751,63 @@
                                 getAllProducts();
                                 $scope.openWindow = false;
                             },
-                                 function (errorObject) {
+                                function (errorObject) {
 
-                                 }).finally(function () {
+                                }).finally(function () {
 
-                                 });
+                                });
                         };
+
+
+                        //add Product
+                        $scope.openWindowAdd = function (e) {
+                            $scope.asideState = {
+                                open: true
+                            };
+
+                            function postClose() {
+                                $scope.asideState.open = false;
+                            }
+
+                            $uibModal.open({
+                                templateUrl: function () {
+                                    return "Angular/ModalWindows/ControlAddNewProductModalWindow.html";
+                                },
+                                size: 'md',
+                                controller: [
+                                    '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
+                                        $rootScope.loadingShow();
+                                        adminService.getAll().then(function (value) {
+                                                $scope.listBrends = angular.copy(value);
+                                                $scope.allBrands = $scope.listBrends;
+
+                                            },
+                                            function (errorObject) {
+
+                                            }).finally(function () {
+                                            $rootScope.loadingHide();
+                                        });
+                                       
+                                        $scope.cancel = function () {
+                                            $uibModalInstance.dismiss({ $value: 'cancel' });
+                                        };
+
+
+                                    }
+                                ]
+                            }).result.then(postClose, postClose);
+                        };
+
 
                         //Редактирование продуктов
                         $scope.SaveEdit = function () {
                             productService.edit($scope.gridProducts.data).then(function () {
                                 getAllProducts();
                             },
-                                 function (errorObject) {
+                                function (errorObject) {
 
-                                 }).finally(function () {
-                                 });
+                                }).finally(function () {
+                                });
                         };
                         getAllProducts();
                     }
