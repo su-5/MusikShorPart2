@@ -517,8 +517,6 @@ C:\Users\Дмитрий\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\obj
 C:\Users\Дмитрий\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\bin\DAL.Core.dll.config
 C:\Users\Дмитрий\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\obj\Debug\WEB.Core.csproj.CoreCompileInputs.cache
 C:\Users\Дмитрий\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\obj\Debug\WEB.Core.csproj.CopyComplete
-C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\obj\Debug\WEB.Core.csproj.CoreCompileInputs.cache
-C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\obj\Debug\WEB.Core.csprojResolveAssemblyReference.cache
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\bin\ApplicationInsights.config
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\bin\ShopOfMusicalInstruments.Core.dll.config
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\bin\ShopOfMusicalInstruments.Core.dll
@@ -690,5 +688,7 @@ C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\bin\ru\M
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\bin\ru\Microsoft.Owin.Security.Twitter.resources.dll
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\bin\ru\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\bin\ru\System.Web.Http.Owin.resources.dll
+C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\obj\Debug\WEB.Core.csprojResolveAssemblyReference.cache
+C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\obj\Debug\WEB.Core.csproj.CoreCompileInputs.cache
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\obj\Debug\ShopOfMusicalInstruments.Core.dll
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\obj\Debug\ShopOfMusicalInstruments.Core.pdb
