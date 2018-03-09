@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin;
+﻿using BLL.Core.Identity;
+using Microsoft.Owin;
 using Owin;
 using ShopOfMusicalInstruments.Core;
 
@@ -6,11 +7,12 @@ using ShopOfMusicalInstruments.Core;
 
 namespace ShopOfMusicalInstruments.Core
 {
-    public partial class Startup 
+    public class Startup
     {
+        private readonly StartupAuth _startupAuth = new StartupAuth();
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+            _startupAuth.ConfigureAuth(app);
         }
     }
 }

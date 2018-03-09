@@ -14,6 +14,7 @@ namespace BLL.Core.BLL_Core
                 x.AddProfile<NumberStringMapper>();
                 x.AddProfile<SubcategoryMapper>();
                 x.AddProfile<ProductMapper>();
+                x.AddProfile<UserMapper>();
             });
         }
     }

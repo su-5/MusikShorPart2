@@ -13,45 +13,43 @@
     <form name="addProductForm">
         <div class="modal-body">
             <div>
-                <label>Категория продукта{{Product}}</label>
-                <select id="" class="form-control ng-buttons-th" name="" ng-model="Product.BrandId" required ng-options="obj.Id as obj.Name for obj in allBrands">
+                <label>Категория продукта</label>
+                <select id="" class="form-control ng-buttons-th" name="" ng-model="Product.Category.Id" required ng-options="obj.Id as obj.Name for obj in allCategories">
                     <option value="">-- Выберите категорию --</option>
                 </select>
             </div>
             <div>
                 <label>Подкатегория продукта</label>
-                <select id="" ng-disabled="(!Product)" class="form-control ng-buttons-th" name="" ng-model="Subcategory" required ng-options="obj.id as obj.Name for obj in allSubcategories">
+                <select id="" ng-disabled="(!Product)" class="form-control ng-buttons-th" name="" ng-model="Product.SubcategoryId" required ng-options="obj.Id as obj.Name for obj in allSubcategories">
                     <option value="">-- Выберите подкатегорию--</option>
                 </select>
             </div>
 
             <div>
                 <label>Бренд</label>
-                <select id="" class="form-control ng-buttons-th" name="" ng-model="Product.BrandId" required ng-options="obj.Id as obj.Name for obj in allBrands">
+                <select class="form-control ng-buttons-th" name="" ng-model="Product.Brand.Id" required ng-options="obj.Id as obj.Name for obj in allBrands">
                     <option value="">-- Выберите бренд --</option>
                 </select>
             </div>
             <div>
                 <label>Страна</label>
-                <select id="" class="form-control ng-buttons-th" name="" ng-model="Country" required ng-options="obj.id as obj.Name for obj in allCounties">
+                <select id="" class="form-control ng-buttons-th" name="" ng-model="Product.Country.Id" required ng-options="obj.Id as obj.Name for obj in allCountries">
                     <option value="">-- Выберите страну--</option>
                 </select>
             </div>
             <div>
                 <label>Цена</label>
-                <select id="" class="form-control ng-buttons-th" name="" ng-model="Price" required ng-options="obj.id as obj.Price for obj in allPrice">
-                    <option value="">-- Выберите цену--</option>
-                </select>
+                <input class="form-control ng-buttons-th" type="number"/>
             </div>
             <div>
                 <label>Кол-во на складе</label>
-                <select id="" class="form-control ng-buttons-th" name="" ng-model="NumberProduct" required ng-options="obj.id as obj.NumberProduct for obj in allNumberProducts">
+                <select id="" class="form-control ng-buttons-th" name="" ng-model="NumberProduct" required ng-options="obj.Id as obj.NumberProduct for obj in allNumberProducts">
                     <option value="">-- Выберите кол-во товара--</option>
                 </select>
             </div>
             <div>
                 <label>Кол-во струн</label>
-                <select id="" class="form-control ng-buttons-th" name="" ng-model="NumberString" required ng-options="obj.id as obj.NumberString for obj in allNumberStrings">
+                <select id="" class="form-control ng-buttons-th" name="" ng-model="NumberString" required ng-options="obj.Id as obj.NumberString for obj in allNumberStrings">
                     <option value="">-- Выберите кол-во струн--</option>
                 </select>
             </div>

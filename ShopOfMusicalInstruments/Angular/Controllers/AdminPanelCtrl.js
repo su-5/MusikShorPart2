@@ -600,7 +600,7 @@
                 $scope.asideState.open = false;
             }
 
-            //модальное отно добавление нового продукта
+            //модальное окно добавление нового продукта
             $uibModal.open({
                 templateUrl: function () {
                     return "Angular/ModalWindows/ControlAddNewProductModalWindow.html";
@@ -611,14 +611,22 @@
                     '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
                         $rootScope.loadingShow();
                         adminService.getAll().then(function (value) {
-                            $scope.listBrends = angular.copy(value);
-                            $scope.allBrands = $scope.listBrends;
+                            $scope.allBrands = angular.copy(value);
                         },
                             function (errorObject) {
 
                             }).finally(function () {
                                 $rootScope.loadingHide();
                             });
+
+                        countryService.getAll().then(function (value) {
+                            $scope.allCountries = angular.copy(value);
+                            },
+                            function (errorObject) {
+
+                            }).finally(function () {
+                            $rootScope.loadingHide();
+                        });
 
                         $scope.cancel = function () {
                             $uibModalInstance.dismiss({ $value: 'cancel' });
@@ -778,6 +786,7 @@
                                 });
                         };
 
+                        //обработчик нажатия кнопки "добавить новой пробукт" 
                         $scope.openWindowAdd = function (e) {
                             $scope.cancel();
                             openWindowAddProdukts();
