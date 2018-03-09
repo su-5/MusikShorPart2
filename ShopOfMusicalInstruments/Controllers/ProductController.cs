@@ -14,12 +14,7 @@ namespace ShopOfMusicalInstruments.Core.Controllers
 
         public ProductController(IBLLFactory bllFactory)
         {
-            if (bllFactory == null)
-            {
-                throw new ArgumentNullException(nameof(bllFactory));
-            }
-
-            _bllFactory = bllFactory;
+            _bllFactory = bllFactory ?? throw new ArgumentNullException(nameof(bllFactory));
         }
 
         [HttpGet]

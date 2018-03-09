@@ -14,10 +14,7 @@ namespace DAL.Core.GenericRepository
         private readonly IDbSet<T> _dbSet;
         protected IDbFactory DbFactory { get; private set; }
 
-        protected MusicDataBaseEntities DbContext
-        {
-            get { return _dataContext ?? (_dataContext = DbFactory.Init()); }
-        }
+        protected MusicDataBaseEntities DbContext => _dataContext ?? (_dataContext = DbFactory.Init());
 
         protected GenericRepository(IDbFactory dbFactory)
         {

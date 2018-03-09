@@ -4,9 +4,9 @@ using DAL.Core.GenericRepositoryModel.Interfaces;
 
 namespace DAL.Core.GenericRepositoryModel.Repository
 {
-    public class SubcategoryDAL : GenericRepository<Subcategory>, ISubcategoryDAL
+    public class CategoryDAL : GenericRepository<Category>, ICategoryDAL
     {
-        public SubcategoryDAL(IDbFactory dbFactory) : base(dbFactory)
+        public CategoryDAL(IDbFactory dbFactory) : base(dbFactory)
         {
         }
     }

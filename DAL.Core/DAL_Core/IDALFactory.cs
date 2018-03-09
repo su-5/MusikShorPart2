@@ -9,5 +9,6 @@ namespace DAL.Core.DAL_Core
         ICountryDAL Country { get; }
         INumberStringDAL NumberString { get; }
         ISubcategoryDAL Subcategory { get; }
+        ICategoryDAL Category { get; }
     }
 }

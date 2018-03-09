@@ -24,12 +24,7 @@ namespace DAL.Core
         {
             throw new UnintentionalCodeFirstException();
         }
-
-        public static MusicDataBaseEntities Create()
-        {
-            return new MusicDataBaseEntities();
-        }
-
+    
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<NumberString> NumberStrings { get; set; }

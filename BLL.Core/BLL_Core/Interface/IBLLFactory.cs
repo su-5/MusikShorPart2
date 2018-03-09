@@ -7,5 +7,6 @@
         ICountryBLL CountryBll { get; }
         INumberStringBLL NumberStringBll { get; }
         ISubcategoryBLL SubcategoryBll { get; }
+        ICategoryBLL CategoryBll { get; }
     }
 }

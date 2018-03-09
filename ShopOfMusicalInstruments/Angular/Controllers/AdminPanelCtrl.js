@@ -2,7 +2,7 @@
     "use strict";
 
     // controller class definintion
-    var adminController = function ($scope, $rootScope, $uibModal, adminService, countryService, numberstringService, subcategoryService, productService) {
+    var adminController = function ($scope, $rootScope, $uibModal, adminService, countryService, numberstringService, subcategoryService, categoryService, productService) {
 
         //Modal Window для брендов 
         $scope.openList = function () {
@@ -196,7 +196,7 @@
                                     displayName: "",
                                     visible: true,
                                     cellTemplate: "<div class=\"ui-grid-cell-contents\" align=\"center\">" +
-                                        "<button type='button' class='btn btn-danger btn-xs' style='margin-left: 2px; margin-right: 2px; height: 22px; width: 29px;padding: 0px 5px;font-size: 12px;' ng-click='grid.appScope.deleteBrand(row.entity.Id)'tooltip-placement ='left' uib-tooltip='Удалить запись'><i style='font-size: 15px;' class='fa fa-trash'></i></button>" +
+                                        "<button type='button' class='btn btn-danger btn-xs' style='margin-left: 2px; margin-right: 2px; height: 22px; width: 29px;padding: 0px 5px;font-size: 12px;' ng-click='grid.appScope.deleteCountry(row.entity.Id)'tooltip-placement ='left' uib-tooltip='Удалить запись'><i style='font-size: 15px;' class='fa fa-trash'></i></button>" +
                                         "</div>",
                                     enableCellEdit: false,
                                     enableFiltering: true,
@@ -335,7 +335,7 @@
                                     displayName: "",
                                     visible: true,
                                     cellTemplate: "<div class=\"ui-grid-cell-contents\" align=\"center\">" +
-                                        "<button type='button' class='btn btn-danger btn-xs' style='margin-left: 2px; margin-right: 2px; height: 22px; width: 29px;padding: 0px 5px;font-size: 12px;' ng-click='grid.appScope.deleteBrand(row.entity.Id)'tooltip-placement ='left' uib-tooltip='Удалить запись'><i style='font-size: 15px;' class='fa fa-trash'></i></button>" +
+                                        "<button type='button' class='btn btn-danger btn-xs' style='margin-left: 2px; margin-right: 2px; height: 22px; width: 29px;padding: 0px 5px;font-size: 12px;' ng-click='grid.appScope.deleteNumberString(row.entity.Id)'tooltip-placement ='left' uib-tooltip='Удалить запись'><i style='font-size: 15px;' class='fa fa-trash'></i></button>" +
                                         "</div>",
                                     enableCellEdit: false,
                                     enableFiltering: true,
@@ -491,7 +491,7 @@
                                     displayName: "",
                                     visible: true,
                                     cellTemplate: "<div class=\"ui-grid-cell-contents\" align=\"center\">" +
-                                        "<button type='button' class='btn btn-danger btn-xs' style='margin-left: 2px; margin-right: 2px; height: 22px; width: 29px;padding: 0px 5px;font-size: 12px;' ng-click='grid.appScope.deleteBrand(row.entity.Id)'tooltip-placement ='left' uib-tooltip='Удалить запись'><i style='font-size: 15px;' class='fa fa-trash'></i></button>" +
+                                        "<button type='button' class='btn btn-danger btn-xs' style='margin-left: 2px; margin-right: 2px; height: 22px; width: 29px;padding: 0px 5px;font-size: 12px;' ng-click='grid.appScope.deleteSubcategory(row.entity.Id)'tooltip-placement ='left' uib-tooltip='Удалить запись'><i style='font-size: 15px;' class='fa fa-trash'></i></button>" +
                                         "</div>",
                                     enableCellEdit: false,
                                     enableFiltering: true,
@@ -591,7 +591,7 @@
         }
 
         //Добавление нового продукта
-        function openWindowAddProdukts() {
+        function openWindowAddProducts() {
             $scope.asideState = {
                 open: true
             };
@@ -600,7 +600,7 @@
                 $scope.asideState.open = false;
             }
 
-            //модальное окно добавление нового продукта
+            //Модальное окно добавление нового продукта
             $uibModal.open({
                 templateUrl: function () {
                     return "Angular/ModalWindows/ControlAddNewProductModalWindow.html";
@@ -610,6 +610,7 @@
                 controller: [
                     '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
                         $rootScope.loadingShow();
+
                         adminService.getAll().then(function (value) {
                             $scope.allBrands = angular.copy(value);
                         },
@@ -621,12 +622,40 @@
 
                         countryService.getAll().then(function (value) {
                             $scope.allCountries = angular.copy(value);
-                            },
+                        },
                             function (errorObject) {
 
                             }).finally(function () {
-                            $rootScope.loadingHide();
-                        });
+                                $rootScope.loadingHide();
+                            });
+
+                        numberstringService.getAll().then(function (value) {
+                            $scope.allNumberStrings = angular.copy(value);
+                        },
+                            function (errorObject) {
+
+                            }).finally(function () {
+                                $rootScope.loadingHide();
+                            });
+
+                        subcategoryService.getAll().then(function (value) {
+                            $scope.allSubcategories = angular.copy(value);
+                        },
+                            function (errorObject) {
+
+                            }).finally(function () {
+                                $rootScope.loadingHide();
+                            });
+
+                        categoryService.getAll().then(function (value) {
+                            $scope.allCategories = angular.copy(value);
+                        },
+                            function (errorObject) {
+
+                            }).finally(function () {
+                                $rootScope.loadingHide();
+                            });
+
 
                         $scope.cancel = function () {
                             $uibModalInstance.dismiss({ $value: 'cancel' });
@@ -686,13 +715,14 @@
                                 {
                                     field: 'Brand.Name',
                                     width: "10%",
-                                    displayName: 'Бренд'
+                                    displayName: 'Бренд',
+                                    cellTemplate: '<p style="margin-left:15px;">{{row.entity.Brand.Name}}</p>'
                                 },
                                 {
                                     field: 'Name',
                                     width: "10%",
                                     displayName: "Название инструмента",
-                                    cellTemplate: '<p style="margin-left:15px;" >{{row.entity.Name}}</p>'
+                                    cellTemplate: '<p style="margin-left:15px;">{{row.entity.Name}}</p>'
                                 },
                                 {
                                     field: 'Window',
@@ -704,29 +734,32 @@
                                 {
                                     field: 'Country.Name',
                                     width: "10%",
-                                    displayName: 'Страна'
+                                    displayName: 'Страна',
+                                    cellTemplate: '<p style="margin-left:15px;">{{row.entity.Country.Name}}</p>'
                                 },
                                 {
                                     field: 'Subcategory.Name',
                                     width: "10%",
-                                    displayName: "Подкатегория"
+                                    displayName: "Подкатегория",
+                                    cellTemplate: '<p style="margin-left:15px;">{{row.entity.Subcategory.Name}}</p>'
                                 },
                                 {
                                     field: 'Subcategory.Category.Name',
                                     width: "10%",
-                                    displayName: "Категория"
+                                    displayName: "Категория",
+                                    cellTemplate: '<p style="margin-left:15px;">{{row.entity.Subcategory.Category.Name}}</p>'
                                 },
                                 {
                                     field: 'Price',
                                     width: "10%",
                                     displayName: 'Цена',
-                                    cellTemplate: '<p style="margin-left:15px;" >{{row.entity.Price}}</p>'
+                                    cellTemplate: '<p style="margin-left:15px;">{{row.entity.Price}}</p>'
                                 },
                                 {
                                     field: 'NumberProduct',
                                     width: "10%",
                                     displayName: 'Количество на складе',
-                                    cellTemplate: '<p style="margin-left:15px;" >{{row.entity.NumberProduct}}</p>'
+                                    cellTemplate: '<p style="margin-left:15px;">{{row.entity.NumberProduct}}</p>'
                                 },
                                 {
                                     field: 'DateManufacture',
@@ -740,7 +773,7 @@
                                     displayName: "",
                                     visible: true,
                                     cellTemplate: "<div class=\"ui-grid-cell-contents\" align=\"center\">" +
-                                        "<button type='button' class='btn btn-danger btn-xs' style='margin-left: 2px; margin-right: 2px; height: 22px; width: 29px;padding: 0px 5px;font-size: 12px;' ng-click='grid.appScope.deleteBrand(row.entity.Id)'tooltip-placement ='left' uib-tooltip='Удалить запись'><i style='font-size: 15px;' class='fa fa-trash'></i></button>" +
+                                        "<button type='button' class='btn btn-danger btn-xs' style='margin-left: 2px; margin-right: 2px; height: 22px; width: 29px;padding: 0px 5px;font-size: 12px;' ng-click='grid.appScope.deleteProduct(row.entity.Id)'tooltip-placement ='left' uib-tooltip='Удалить запись'><i style='font-size: 15px;' class='fa fa-trash'></i></button>" +
                                         "</div>",
                                     enableCellEdit: false,
                                     enableFiltering: true,
@@ -786,10 +819,36 @@
                                 });
                         };
 
-                        //обработчик нажатия кнопки "добавить новой пробукт" 
+                        //удаление продуктов
+                        $scope.deleteProduct = function (productId) {
+                            productService.delete(productId).then(function () {
+                                getAllProducts();
+                            },
+                                function (errorObject) {
+
+                                }).finally(function () {
+                                });
+                        }
+
+                        $scope.cancel = function () {
+                            $uibModalInstance.dismiss({ $value: 'cancel' });
+                        };
+
+                        //открытие блока для добавления продукта
+                        $scope.openWindowAdd = function (openModel) {
+                            $scope.openWindow = openModel;
+                        };
+
+                        //закрытие блока для добавления продукта
+                        $scope.closeAddWindow = function (flag) {
+                            $scope.openWindow = flag;
+                        }
+
+
+                        //Обработчик нажатия кнопки "добавить новый продукт" 
                         $scope.openWindowAdd = function (e) {
                             $scope.cancel();
-                            openWindowAddProdukts();
+                            openWindowAddProducts();
 
                         }
                         getAllProducts();
@@ -798,12 +857,160 @@
             }).result.then(postClose, postClose);
         }
 
+        //Modal Window для категорий
+
+        $scope.openCategory = function () {
+            $scope.asideState = {
+                open: true
+            };
+
+            function postClose() {
+                $scope.asideState.open = false;
+            }
+
+            $uibModal.open({
+                templateUrl: function () {
+                    return "Angular/ModalWindows/ControlCategoryModalWindow.html";
+                },
+                size: 'lg',
+                controller: [
+                    '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
+
+                        $scope.category = {};
+                        $scope.gridCategories = {
+                            enableColumnResizing: true,
+                            showGridFooter: true,
+                            enableHorizontalScrollbar: 0,
+                            enableVerticalScrollbar: 1,
+                            enableColumnMenus: false,
+                            showColumnFooter: false,
+                            enableFiltering: false,
+                            gridColumnFooterHeight: 20,
+                            enableRowSelection: true,
+                            enableRowHeaderSelection: false,
+                            noUnselect: false,
+                            multiSelect: false,
+                            rowHeight: 22,
+                            columnDefs: [
+
+                                {
+                                    field: 'Subcategory.Name',
+                                    width: "45%",
+                                    displayName: "Подкатегория"
+
+                                },
+                                {
+                                    field: 'Subcategory.Category.Name',
+                                    width: "45%",
+                                    displayName: "Категория"
+                                },
+
+                                {
+                                    field: 'buttons_edit_del',
+                                    displayName: "",
+                                    visible: true,
+                                    cellTemplate: "<div class=\"ui-grid-cell-contents\" align=\"center\">" +
+                                        "<button type='button' class='btn btn-danger btn-xs' style='margin-left: 2px; margin-right: 2px; height: 22px; width: 29px;padding: 0px 5px;font-size: 12px;' ng-click='grid.appScope.deleteCategory(row.entity.Id)'tooltip-placement ='left' uib-tooltip='Удалить запись'><i style='font-size: 15px;' class='fa fa-trash'></i></button>" +
+                                        "</div>",
+                                    enableCellEdit: false,
+                                    enableFiltering: true,
+                                    enableSorting: false,
+                                    showSortMenu: false,
+                                    enableColumnMenu: false
+                                }
+                            ],
+                            onRegisterApi: function (gridApi) {
+                                $scope.gridApi = gridApi;
+                                $scope.gridApi.selection.on.rowSelectionChanged($scope,
+                                    function (row) {
+                                    });
+                            }
+                        };
+
+                        //запрос на список категорий
+                        function getAllCategories() {
+                            $rootScope.loadingShow();
+                            categoryService.getAll().then(function (value) {
+                                $scope.listcategory = angular.copy(value);
+                                $scope.gridCategories.data = $scope.listcategory;
+                            },
+                                function (errorObject) {
+
+                                }).finally(function () {
+                                    $rootScope.loadingHide();
+                                });
+                        }
+
+                        $scope.cancel = function () {
+                            $uibModalInstance.dismiss({ $value: 'cancel' });
+                        };
+
+                        //удаление категорий
+                        $scope.deleteCategory = function (categoryId) {
+                            categoryService.delete(categoryId).then(function () {
+                                getAllCategories();
+                            },
+                                function (errorObject) {
+
+                                }).finally(function () {
+                                });
+                        }
+
+                        $scope.cancel = function () {
+                            $uibModalInstance.dismiss({ $value: 'cancel' });
+                        };
+
+
+
+                        //открытие блока для добавления категории
+                        $scope.openWindowAdd = function (openModel) {
+                            $scope.openWindow = openModel;
+                        };
+
+                        //закрытие блока для добавления категории
+                        $scope.closeAddWindow = function (flag) {
+                            $scope.openWindow = flag;
+                        }
+
+                        //добавление категории
+                        $scope.addCategory = function (category, formCategory) {
+                            if (!formCategory.$valid) {
+                                return;
+                            }
+
+                            categoryService.add(category).then(function (value) {
+                                getAllCategories();
+                                $scope.openWindow = false;
+                            },
+                                function (errorObject) {
+
+                                }).finally(function () {
+
+                                });
+                        };
+
+                        //Редактирование категории
+                        $scope.SaveEdit = function () {
+                            categoryService.edit($scope.gridCategories.data).then(function () {
+                                getAllCategories();
+                            },
+                                function (errorObject) {
+
+                                }).finally(function () {
+                                });
+                        };
+                        getAllCategories();
+                    }
+                ]
+            }).result.then(postClose, postClose);
+        };
+
     }
     // register your controller into a dependent module 
     angular
         .module("Web.Controllers")
         .controller("adminController",
-        ["$scope", "$rootScope", "$uibModal", "adminService", "countryService", 'numberstringService', "subcategoryService", "productService", adminController]);
+        ["$scope", "$rootScope", "$uibModal", "adminService", "countryService", 'numberstringService', "subcategoryService", "productService", "categoryService", adminController]);
 
 })();
 

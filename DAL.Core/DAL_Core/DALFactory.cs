@@ -10,6 +10,7 @@ namespace DAL.Core.DAL_Core
         private ICountryDAL _country;
         private INumberStringDAL _numberString;
         private ISubcategoryDAL _subcategory;
+        private ICategoryDAL _category;
         private MusicDataBaseEntities _dbContext;
         private readonly IDbFactory _dbFactory;
 
@@ -24,6 +25,7 @@ namespace DAL.Core.DAL_Core
         public ISubcategoryDAL Subcategory => _subcategory ?? (_subcategory = new SubcategoryDAL(_dbFactory));
         public MusicDataBaseEntities DbContext => _dbContext ?? (_dbContext = _dbFactory.Init());
         public IProductDAL Product => _product ?? (_product = new ProductDAL(_dbFactory));
+        public ICategoryDAL Category => _category ?? (_category = new CategoryDAL(_dbFactory));
     }
 
 }

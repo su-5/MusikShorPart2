@@ -330,6 +330,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BrandsController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CountriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NumberStringsController.cs" />
@@ -356,11 +357,13 @@
     <Content Include="Angular\Controllers\RegistrationCtrl.js" />
     <Content Include="Angular\ModalWindows\ControlAddNewProductModalWindow.html" />
     <Content Include="Angular\ModalWindows\ControlBrendModalMindow.html" />
+    <Content Include="Angular\ModalWindows\ControlCategoryModalWindow.html" />
     <Content Include="Angular\ModalWindows\ControlCountryModalWindow.html" />
     <Content Include="Angular\ModalWindows\ControlNumberStringModalWindow.html" />
     <Content Include="Angular\ModalWindows\ControlProductModalWindow.html" />
     <Content Include="Angular\ModalWindows\ControlSubcategoryModalWindows.html" />
     <Content Include="Angular\Services\adminService.js" />
+    <Content Include="Angular\Services\categoryService.js" />
     <Content Include="Angular\Services\numberstringService.js" />
     <Content Include="Angular\Services\countryService.js" />
     <Content Include="Angular\Services\loadingService.js" />

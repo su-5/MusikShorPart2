@@ -84,11 +84,13 @@
     <Compile Include="DAL_Core\IDALFactory.cs" />
     <Compile Include="DAL_Core\IDbFactory.cs" />
     <Compile Include="GenericRepositoryModel\Interfaces\IBrandDAL.cs" />
+    <Compile Include="GenericRepositoryModel\Interfaces\ICategoryDAL.cs" />
     <Compile Include="GenericRepositoryModel\Interfaces\ICountryDAL.cs" />
     <Compile Include="GenericRepositoryModel\Interfaces\INumberStringDAL.cs" />
     <Compile Include="GenericRepositoryModel\Interfaces\IProductDAL.cs" />
     <Compile Include="GenericRepositoryModel\Interfaces\ISubcategoryDAL.cs" />
     <Compile Include="GenericRepositoryModel\Repository\BrandDAL.cs" />
+    <Compile Include="GenericRepositoryModel\Repository\CategoryDAL.cs" />
     <Compile Include="GenericRepositoryModel\Repository\CountryDAL.cs" />
     <Compile Include="GenericRepositoryModel\Repository\NumberStringDAL.cs" />
     <Compile Include="GenericRepositoryModel\Repository\ProductDAL.cs" />
@@ -112,6 +114,7 @@
     </Compile>
     <Compile Include="ModelDTO\AppUserDto.cs" />
     <Compile Include="ModelDTO\BrandDTO.cs" />
+    <Compile Include="ModelDTO\CategoryDTO.cs" />
     <Compile Include="ModelDTO\CountryDTO.cs" />
     <Compile Include="ModelDTO\NumberStringDTO.cs" />
     <Compile Include="ModelDTO\ProductDTO.cs" />
