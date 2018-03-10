@@ -692,3 +692,4 @@ C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\obj\Debu
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\obj\Debug\WEB.Core.csproj.CoreCompileInputs.cache
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\obj\Debug\ShopOfMusicalInstruments.Core.dll
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\obj\Debug\ShopOfMusicalInstruments.Core.pdb
+C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\ShopOfMusicalInstruments\bin\BLL.Core.dll.config

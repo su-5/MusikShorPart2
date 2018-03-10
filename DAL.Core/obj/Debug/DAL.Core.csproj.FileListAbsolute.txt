@@ -56,7 +56,6 @@ C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\DAL.Core\bin\Debug\Microsoft.AspN
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\DAL.Core\bin\Debug\ru\EntityFramework.resources.dll
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\DAL.Core\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\DAL.Core\bin\Debug\ru\Microsoft.AspNet.Identity.Core.resources.dll
-C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\DAL.Core\obj\Debug\DAL.Core.csprojResolveAssemblyReference.cache
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\DAL.Core\obj\Debug\DAL.Core.csproj.CoreCompileInputs.cache
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\DAL.Core\obj\Debug\DAL.Core.dll
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\DAL.Core\obj\Debug\DAL.Core.pdb
