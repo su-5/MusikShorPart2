@@ -25,7 +25,7 @@
         };
 
         this.add = function (product) {
-            var newProduct = { Name: product.Name, Description: product.Description };
+            var newProduct = { Name: product.Name, Description: product.Description};
             var deferred = $q.defer();
             $http.post("api/Product", newProduct)
                 .then(function (response) {

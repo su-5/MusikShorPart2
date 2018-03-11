@@ -604,7 +604,7 @@
                 templateUrl: function () {
                     return "Angular/ModalWindows/ControlAddNewProductModalWindow.html";
                 },
-                size: 'sm',
+                size: 'md',
                 scope: $scope,
                 controller: [
                     '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
@@ -659,7 +659,7 @@
                             }
                         });
 
-                        $scope.AddNewProdukt = function (product, addProductForm) {
+                        $scope.AddNewProduct = function (product, addProductForm) {
                             if (!addProductForm.$valid) {
                                 return;
                             }
@@ -757,7 +757,7 @@
                                 },
                                 {
                                     field: 'Subcategory.Name',
-                                    width: "12%",
+                                    width: "13%",
                                     displayName: "Подкатегория",
                                     cellTemplate: '<p style="margin-left:15px;">{{row.entity.Subcategory.Name}}</p>'
                                 },
