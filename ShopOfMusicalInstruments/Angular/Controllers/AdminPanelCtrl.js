@@ -466,14 +466,6 @@
                             multiSelect: false,
                             rowHeight: 22,
                             columnDefs: [
-
-                                {
-                                    field: 'Category',
-                                    width: "30%",
-                                    displayName: "Категория",
-                                    cellTemplate: '<p style="margin-left:15px;" >{{row.entity.Category.Name}}</p>'
-                                },
-
                                 {
                                     field: 'Name',
                                     width: "30%",
@@ -486,6 +478,13 @@
                                     displayName: 'Описание подкатегории',
                                     cellTemplate: '<p style="margin-left:15px;" >{{row.entity.Description}}</p>'
                                 },
+                                {
+                                    field: 'Category',
+                                    width: "30%",
+                                    displayName: "Категория",
+                                    cellTemplate: '<p style="margin-left:15px;" >{{row.entity.Category.Name}}</p>'
+                                },
+
                                 {
                                     field: 'buttons_edit_del',
                                     displayName: "",
@@ -638,15 +637,6 @@
                                 $rootScope.loadingHide();
                             });
 
-                        subcategoryService.getAll().then(function (value) {
-                            $scope.allSubcategories = angular.copy(value);
-                        },
-                            function (errorObject) {
-
-                            }).finally(function () {
-                                $rootScope.loadingHide();
-                            });
-
                         categoryService.getAll().then(function (value) {
                             $scope.allCategories = angular.copy(value);
                         },
@@ -656,6 +646,34 @@
                                 $rootScope.loadingHide();
                             });
 
+                        $scope.$watch('Product.CategoryId', function (newValue, oldValue) {
+                            if (newValue !== undefined) {
+                                subcategoryService.getSubcategoryOnCategories(newValue).then(function (value) {
+                                    $scope.allSubcategories = angular.copy(value);
+                                },
+                                    function (errorObject) {
+
+                                    }).finally(function () {
+                                        $rootScope.loadingHide();
+                                    });
+                            }
+                        });
+
+                        $scope.AddNewProdukt = function (product, addProductForm) {
+                            if (!addProductForm.$valid) {
+                                return;
+                            }
+                            productService.add(product).then(function (value) {
+                                $scope.cancel();
+                                openProduct();
+                            },
+                                function (errorObject) {
+
+                                }).finally(function () {
+                                    $rootScope.loadingHide();
+                                });
+
+                        }
 
                         $scope.cancel = function () {
                             $uibModalInstance.dismiss({ $value: 'cancel' });
@@ -739,7 +757,7 @@
                                 },
                                 {
                                     field: 'Subcategory.Name',
-                                    width: "10%",
+                                    width: "12%",
                                     displayName: "Подкатегория",
                                     cellTemplate: '<p style="margin-left:15px;">{{row.entity.Subcategory.Name}}</p>'
                                 },
@@ -830,21 +848,6 @@
                                 });
                         }
 
-                        $scope.cancel = function () {
-                            $uibModalInstance.dismiss({ $value: 'cancel' });
-                        };
-
-                        //открытие блока для добавления продукта
-                        $scope.openWindowAdd = function (openModel) {
-                            $scope.openWindow = openModel;
-                        };
-
-                        //закрытие блока для добавления продукта
-                        $scope.closeAddWindow = function (flag) {
-                            $scope.openWindow = flag;
-                        }
-
-
                         //Обработчик нажатия кнопки "добавить новый продукт" 
                         $scope.openWindowAdd = function (e) {
                             $scope.cancel();
@@ -896,7 +899,7 @@
                                 {
                                     field: 'Name',
                                     width: "95%",
-                                    displayName: "Подкатегория"
+                                    displayName: "Категория"
 
                                 },
 

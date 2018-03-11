@@ -27,17 +27,18 @@ namespace BLL.Core.Identity
 
         public Task CreateAsync(AppUserDto user)
         {
-            //return Task.Factory.StartNew(() =>
-            //{
-            //    user.AspNetRoles = new Collection<AspNetRoles>();
-            //    foreach (AspNetRoles c in _db.UserRolesEntitys.Where(co => ("user" == co.Name)).ToList())
-            //    {
-            //        user.AspNetRoles.Add(c);
-            //    }
-            //    _db.UsersEntitys.Add(user);
-            //    _db.SaveChanges();
-            //});
-            return null;
+            return Task.Factory.StartNew(() =>
+            {
+                User userDb = Mapper.Map<AppUserDto,User>(user);
+                userDb.Roles = new Collection<Role>();
+                foreach (Role c in _db.Roles.Where(co => ("user" == co.Name)).ToList())
+                {
+                    userDb.Roles.Add(c);
+                }
+                _db.Users.Add(userDb);
+                _db.SaveChanges();
+            });
+
         }
 
         public Task UpdateAsync(AppUserDto user)

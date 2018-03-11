@@ -9,6 +9,6 @@ namespace BLL.Core.BLL_Core.Interface
         void Add(SubcategoryDTO subcategory);
         void Edit(List<SubcategoryDTO> data);
         void Delete(int id);
-
+        List<SubcategoryDTO> GetSubcategoryOnCategories(int id);
     }
 }

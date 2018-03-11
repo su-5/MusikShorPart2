@@ -8,22 +8,27 @@ using DAL.Core.ModelDTO;
 
 namespace ShopOfMusicalInstruments.Core.Controllers
 {
+    [RoutePrefix("api/Subcategories")]
     public class SubcategoriesController : ApiController
     {
-        private IBLLFactory _bllFactory;
+        private readonly IBLLFactory _bllFactory;
         public SubcategoriesController(IBLLFactory bllFactory)
         {
-            if (bllFactory == null)
-            {
-                throw new ArgumentNullException(nameof(bllFactory));
-            }
-
-            _bllFactory = bllFactory;
+            _bllFactory = bllFactory ?? throw new ArgumentNullException(nameof(bllFactory));
         }
         [HttpGet]
+        [Route("GetAll")]
         public IHttpActionResult GetAll()
         {
-            var result = _bllFactory.SubcategoryBll.GetAll().OrderBy(x => x.Category.Name).ThenBy(s=>s.Name).ToList();
+            List<SubcategoryDTO> result = _bllFactory.SubcategoryBll.GetAll().OrderBy(x => x.Category.Name).ThenBy(s=>s.Name).ToList();
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("GetSubcategoryOnCategories")]
+        public IHttpActionResult SubcategoryOnCategories(int id)
+        {
+            List<SubcategoryDTO> result = _bllFactory.SubcategoryBll.GetSubcategoryOnCategories(id);
             return Ok(result);
         }
 
@@ -33,6 +38,7 @@ namespace ShopOfMusicalInstruments.Core.Controllers
             _bllFactory.SubcategoryBll.Add(subcategory);
             return Ok();
         }
+
 
         [HttpPut]
         public IHttpActionResult Edit(List<SubcategoryDTO> data)

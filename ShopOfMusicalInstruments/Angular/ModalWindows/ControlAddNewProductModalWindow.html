@@ -12,7 +12,7 @@
     </div>
     <form name="addProductForm">
         <div class="modal-body">
-            <div>
+            <div style="margin-top: -19px;">
                 <label>Категория продукта</label>
                 <select id="" class="form-control ng-buttons-th" name="" ng-model="Product.CategoryId" required ng-options="obj.Id as obj.Name for obj in allCategories">
                     <option value="">-- Выберите категорию --</option>
@@ -20,7 +20,7 @@
             </div>
             <div>
                 <label>Подкатегория продукта</label>
-                <select id="" class="form-control ng-buttons-th" name="" ng-model="Product.SubcategoryId" required ng-options="obj.Id as obj.Name for obj in allSubcategories">
+                <select ng-disabled="!Product.CategoryId" id="" class="form-control ng-buttons-th" name="" ng-model="Product.SubcategoryId" required ng-options="obj.Id as obj.Name for obj in allSubcategories">
                     <option value="">-- Выберите подкатегорию--</option>
                 </select>
             </div>
@@ -39,11 +39,11 @@
             </div>
             <div>
                 <label>Цена</label>
-                <input class="form-control ng-buttons-th" type="number" ng-model={{Price}} required />
+                <input class="form-control ng-buttons-th" type="number" ng-model="Product.Price" required />
             </div>
             <div>
                 <label>Кол-во на складе</label>
-                <input class="form-control ng-buttons-th" type="number" ng-model={{NumberProduct}} required />
+                <input class="form-control ng-buttons-th" type="number" ng-model="Product.NumberProduct" required />
             </div>
             <div>
                 <label>Кол-во струн</label>
@@ -53,8 +53,8 @@
             </div>
         </div>
         <div class="modal-footer" align="right">
-            <button class="btn btn-xs btn-primary" type="submit" ng-click="openWindowAdd()">Добавить</button>
-            <button class="btn btn-xs btn-warning" type="button" ng-click="cancel()">Отмена</button>
+            <button class="btn btn-xs btn-primary" type="submit" ng-click="AddNewProdukt(Product,addProductForm)">Добавить</button>
+            <button class="btn btn-xs btn-warning" type="button" ng-click="cancelWindow()">Отмена</button>
         </div>
     </form>
 </div>

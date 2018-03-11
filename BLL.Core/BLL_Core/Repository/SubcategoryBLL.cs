@@ -20,7 +20,7 @@ namespace BLL.Core.BLL_Core.Repository
 
         public List<SubcategoryDTO> GetAll()
         {
-            List<Subcategory> subcategoryList = _dalFactory.Subcategory.GetAll().Where(w => w.DeleteDate == null).OrderBy(x => x.Name).ToList();
+            List<Subcategory> subcategoryList = _dalFactory.Subcategory.GetAll().Where(w => w.DeleteDate == null).ToList();
             var result = Mapper.Map<List<Subcategory>, List<SubcategoryDTO>>(subcategoryList);
             return result;
         }
@@ -45,6 +45,12 @@ namespace BLL.Core.BLL_Core.Repository
             var entity = _dalFactory.Subcategory.GetById(id);
             entity.DeleteDate = DateTime.Now;
             _dalFactory.Subcategory.UpdateVoid(entity, entity.Id);
+        }
+
+        public List<SubcategoryDTO> GetSubcategoryOnCategories(int id)
+        {
+            var result = GetAll().Where(e => e.CategoriesId == id).ToList();
+            return result;
         }
     }
 }
