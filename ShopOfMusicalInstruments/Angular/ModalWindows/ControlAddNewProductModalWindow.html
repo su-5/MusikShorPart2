@@ -14,13 +14,13 @@
         <div class="modal-body">
             <div>
                 <label>Категория продукта</label>
-                <select id="" class="form-control ng-buttons-th" name="" ng-model="Product.CategoryId" required ng-options="obj.Id as obj.Subcategory.Name for obj in allCategories">
+                <select id="" class="form-control ng-buttons-th" name="" ng-model="Product.CategoryId" required ng-options="obj.Id as obj.Name for obj in allCategories">
                     <option value="">-- Выберите категорию --</option>
                 </select>
             </div>
             <div>
                 <label>Подкатегория продукта</label>
-                <select id="" class="form-control ng-buttons-th" name="" ng-model="Product.SubcategoryId" required ng-options="obj.Id as obj.Category.Name for obj in allSubcategories">
+                <select id="" class="form-control ng-buttons-th" name="" ng-model="Product.SubcategoryId" required ng-options="obj.Id as obj.Name for obj in allSubcategories">
                     <option value="">-- Выберите подкатегорию--</option>
                 </select>
             </div>
@@ -39,11 +39,11 @@
             </div>
             <div>
                 <label>Цена</label>
-                <input class="form-control ng-buttons-th" type="number" ng-model="Product.Price" required />
+                <input class="form-control ng-buttons-th" type="number" ng-model={{Price}} required />
             </div>
             <div>
                 <label>Кол-во на складе</label>
-                <input class="form-control ng-buttons-th" type="number" ng-model="Product.NumberProduct" required />
+                <input class="form-control ng-buttons-th" type="number" ng-model={{NumberProduct}} required />
             </div>
             <div>
                 <label>Кол-во струн</label>

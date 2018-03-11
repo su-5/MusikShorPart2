@@ -2,7 +2,7 @@
     "use strict";
 
     // controller class definintion
-    var adminController = function ($scope, $rootScope, $uibModal, adminService, countryService, numberstringService, subcategoryService, productService, categoryService ) {
+    var adminController = function ($scope, $rootScope, $uibModal, adminService, countryService, numberstringService, subcategoryService, productService, categoryService) {
 
         //Modal Window для брендов 
         $scope.openList = function () {
@@ -899,11 +899,6 @@
                                     displayName: "Подкатегория"
 
                                 },
-                                //{
-                                //    field: 'Subcategory.Name',
-                                //    width: "45%",
-                                //    displayName: "Категория"
-                                //},
 
                                 {
                                     field: 'buttons_edit_del',
