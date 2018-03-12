@@ -875,7 +875,7 @@
                 templateUrl: function () {
                     return "Angular/ModalWindows/ControlCategoryModalWindow.html";
                 },
-                size: 'lg',
+                size: 'md',
                 controller: [
                     '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
 

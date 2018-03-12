@@ -13,52 +13,48 @@
     <form name="addProductForm">
         <div class="modal-body">
             <div style="margin-top: -19px;">
-                <label>Категория продукта</label>
                 <select id="" class="form-control ng-buttons-th" name="" ng-model="Product.CategoryId" required ng-options="obj.Id as obj.Name for obj in allCategories">
-                    <option value="">-- Выберите категорию --</option>
+                    <option value="">--Выберите категорию продукта--</option>
                 </select>
             </div>
-            <div>
-                <label>Подкатегория продукта</label>
+            <div class="margin-produck-interval">
                 <select ng-disabled="!Product.CategoryId" id="" class="form-control ng-buttons-th" name="" ng-model="Product.SubcategoryId" required ng-options="obj.Id as obj.Name for obj in allSubcategories">
-                    <option value="">-- Выберите подкатегорию--</option>
+                    <option value="">--Выберите подкатегорию продукта--</option>
                 </select>
             </div>
 
-            <div>
-                <label>Бренд</label>
+            <div class="margin-produck-interval">
                 <select id="" class="form-control ng-buttons-th" name="" ng-model="Product.BrandId" required ng-options="obj.Id as obj.Name for obj in allBrands">
-                    <option value="">-- Выберите бренд --</option>
+                    <option value="">--Выберите бренд--</option>
                 </select>
             </div>
-            <div>
-                <label>Страна</label>
+            <div class="margin-produck-interval">
+                <input class="form-control ng-buttons-th" type="text" placeholder="Название продукта" ng-model="Product.Name" required />
+            </div>
+            <div class="margin-produck-interval">
                 <select id="" class="form-control ng-buttons-th" name="" ng-model="Product.CountryId" required ng-options="obj.Id as obj.Name for obj in allCountries">
-                    <option value="">-- Выберите страну--</option>
+                    <option value="">--Выберите страну проиводства--</option>
                 </select>
-            </div><br/>
-            <div>
-                <input class="form-control ng-buttons-th" type="number" placeholder="Цена" ng-model="Product.Price" required />
-            </div><br/>
-            <div>
-                <input class="form-control ng-buttons-th" type="number" placeholder="Кол-во на складе" ng-model="Product.NumberProduct" required />
-            </div><br/>
-            <div>
-                <label>Кол-во струн</label>
+            </div>
+            <div class="margin-produck-interval">
+                <input class="form-control ng-buttons-th" type="number" placeholder="Введите стоимость продукта" ng-model="Product.Price" required />
+            </div>
+            <div class="margin-produck-interval">
+                <input class="form-control ng-buttons-th" type="number" placeholder="Введите кол-во на складе (шт)" ng-model="Product.NumberProduct" required />
+            </div>
+            <div class="margin-produck-interval">
                 <select id="" class="form-control ng-buttons-th" name="" ng-model="Product.NumberStr" required ng-options="obj.Id as obj.Number for obj in allNumberStrings">
-                    <option value="">-- Выберите кол-во струн--</option>
+                    <option value="">--Выберите кол-во струн--</option>
                 </select>
-            </div><br/>
-            <div>
-                <input class="form-control ng-buttons-th" type="text" placeholder="Название" ng-model="Product.Name" required />
-            </div><br/>
-            <div>
+            </div>
+            <div class="margin-produck-interval">
                 <input type="date" style="width: 100%" placeholder="Дата выпуска" ng-model="Product.DateManufacture" required />
-            </div><br/>
-            <label>Витрина</label>
-            <input type="checkbox" ng-model="Product.Window" />
+            </div>
+            <div class="margin-produck-interval">
+                <label style="font-weight: normal;">Витрина &nbsp;&nbsp;&nbsp;<input type="checkbox" ng-model="Product.Window" /></label>
+            </div>
         </div>
-        <div class="modal-footer" align="right">
+        <div class="modal-footer" align="right" style="padding: 5px 18px 20px;margin-top: -18px;">
             <button class="btn btn-xs btn-primary" type="submit" ng-click="AddNewProduct(product,addProductForm)">Добавить</button>
             <button class="btn btn-xs btn-warning" type="button" ng-click="cancelWindow()">Отмена</button>
         </div>
