@@ -25,7 +25,11 @@
         };
 
         this.add = function (product) {
-            var newProduct = { Name: product.Name, Description: product.Description};
+            var newProduct = {
+                Name: product.Name, CountryId: product.CountryId, BrandId: product.BrandId, NumberStringId: product.NumberStrId,
+                Price: product.Price, NumberProduct: product.NumberProduct, DateManufacture: product.DateManufacture, Window: product.Window,
+                SubcategoriesId: product.SubcategoryId
+            };
             var deferred = $q.defer();
             $http.post("api/Product", newProduct)
                 .then(function (response) {

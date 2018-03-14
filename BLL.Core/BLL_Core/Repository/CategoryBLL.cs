@@ -28,6 +28,7 @@ namespace BLL.Core.BLL_Core.Repository
         public void Add(CategoryDTO category)
         {
             Category result = Mapper.Map<CategoryDTO, Category>(category);
+            result.DeleteDate = null;
             _dalFactory.Category.Add(result);
         }
 
@@ -36,13 +37,14 @@ namespace BLL.Core.BLL_Core.Repository
             foreach (CategoryDTO category in data)
             {
                 Category result = Mapper.Map<CategoryDTO, Category>(category);
+                result.DeleteDate = null;
                 _dalFactory.Category.UpdateVoid(result, result.Id);
             }
         }
 
         public void Delete(int id)
         {
-            var entity = _dalFactory.Category.GetById(id);
+            Category entity = _dalFactory.Category.GetById(id);
             entity.DeleteDate = DateTime.Now;
             _dalFactory.Category.UpdateVoid(entity, entity.Id);
         }

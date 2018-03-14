@@ -14,7 +14,7 @@
         };
 
         this.add = function (category) {
-            var newCategory = { Name: category.subcategoriesId.Name, Description: category.subcategoriesId.Description, CategoriesId: subcategory.IDcategory};
+            var newCategory = {Name:category.Name};
             var deferred = $q.defer();
             $http.post("api/Categories", newCategory)
                 .then(function (response) {

@@ -898,7 +898,7 @@
 
                                 {
                                     field: 'Name',
-                                    width: "95%",
+                                    width: "92%",
                                     displayName: "Категория"
 
                                 },

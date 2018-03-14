@@ -43,7 +43,7 @@
                 <input class="form-control ng-buttons-th" type="number" placeholder="Введите кол-во на складе (шт)" ng-model="Product.NumberProduct" required />
             </div>
             <div class="margin-produck-interval">
-                <select id="" class="form-control ng-buttons-th" name="" ng-model="Product.NumberStr" required ng-options="obj.Id as obj.Number for obj in allNumberStrings">
+                <select id="" class="form-control ng-buttons-th" name="" ng-model="Product.NumberStrId" required ng-options="obj.Id as obj.Number for obj in allNumberStrings">
                     <option value="">--Выберите кол-во струн--</option>
                 </select>
             </div>
@@ -55,7 +55,7 @@
             </div>
         </div>
         <div class="modal-footer" align="right" style="padding: 5px 18px 20px;margin-top: -18px;">
-            <button class="btn btn-xs btn-primary" type="submit" ng-click="AddNewProduct(product,addProductForm)">Добавить</button>
+            <button class="btn btn-xs btn-primary" type="submit" ng-click="AddNewProduct(Product,addProductForm)">Добавить</button>
             <button class="btn btn-xs btn-warning" type="button" ng-click="cancelWindow()">Отмена</button>
         </div>
     </form>

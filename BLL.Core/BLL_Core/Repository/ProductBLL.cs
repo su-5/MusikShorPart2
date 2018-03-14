@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using AutoMapper;
 using BLL.Core.BLL_Core.Interface;
 using DAL.Core;
@@ -29,6 +30,13 @@ namespace BLL.Core.BLL_Core.Repository
 
         {
             Product result = Mapper.Map<ProductDTO, Product>(product);
+            if (result.NumberProduct == 0)
+            {
+                result.Window = false;
+            }
+            result.DateCreate = DateTime.Now;
+            result.DateDelete = null;
+            result.DateUpdate = null;
             _dalFactory.Product.Add(result);
         }
 

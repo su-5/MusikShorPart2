@@ -1,15 +1,12 @@
 ﻿<div>
     <div class="modal-header">
         <h3 style="margin-top: -8px;" class="text-center">
-            Справочник категорий
+            Справочник категорий 
         </h3>
         <div ng-if="openWindow" class="modal-list-height">
             <form name="formCategory">
                 <div class="pull-left distant">
-                    <input ng-required placeholder="Название категории" class="form-control label-size" type="text" ng-model="category.Name" />
-                </div>
-                <div class="pull-left distant">
-                    <input ng-required placeholder="Описание категории" class="form-control label-size" type="text" ng-model="category.Description" />
+                    <input required placeholder="Название категории" class="form-control label-size" type="text" ng-model="category.Name" />
                 </div>
                 <div class="pull-left distant">
                     <button style="padding: 3px 6px;" class="btn btn-xs btn-success" type="submit" ng-click="addCategory(category, formCategory)">Добавить</button>
