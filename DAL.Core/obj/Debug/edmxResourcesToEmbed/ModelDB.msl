@@ -114,5 +114,29 @@
         <ScalarProperty Name="Id" ColumnName="RolesId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="MusicDataBaseModel.Order">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="DateActiveOrders" ColumnName="DateActiveOrders" />
+          <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
+          <ScalarProperty Name="IdPaymentMethod" ColumnName="IdPaymentMethod" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Currency" ColumnName="Currency" />
+          <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentSystems">
+      <EntityTypeMapping TypeName="MusicDataBaseModel.PaymentSystem">
+        <MappingFragment StoreEntitySet="PaymentSystems">
+          <ScalarProperty Name="NamePaymentSystems" ColumnName="NamePaymentSystems" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

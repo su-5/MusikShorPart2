@@ -13,9 +13,9 @@
         <EntityTypeShape EntityType="MusicDataBaseModel.Subcategory" Width="1.5" PointX="3" PointY="0.75" />
         <AssociationConnector Association="MusicDataBaseModel.FK_dbo_Subcategories_dbo_Categories_CategoriesId" />
         <AssociationConnector Association="MusicDataBaseModel.FK_dbo_Product_dbo_Country_CountryId" ManuallyRouted="true" >
-          <ConnectorPoint PointX="4.5" PointY="6.9874886067708326" />
-          <ConnectorPoint PointX="6.25" PointY="6.9874886067708326" />
-          <ConnectorPoint PointX="6.25" PointY="5.9225065104166656" />
+          <ConnectorPoint PointX="4.5" PointY="6.826396984375" />
+          <ConnectorPoint PointX="6.21875" PointY="6.826396984375" />
+          <ConnectorPoint PointX="6.21875" PointY="5.9225065104166656" />
         </AssociationConnector>
         <AssociationConnector Association="MusicDataBaseModel.FK_dbo_Product_dbo_NumberString_NumberStringId" />
         <AssociationConnector Association="MusicDataBaseModel.FK_dbo_Product_dbo_Picture_PictureId" />
@@ -25,6 +25,8 @@
         <EntityTypeShape EntityType="MusicDataBaseModel.Role" Width="1.5" PointX="0.875" PointY="3.125" />
         <EntityTypeShape EntityType="MusicDataBaseModel.User" Width="1.5" PointX="0.875" PointY="5.75" />
         <AssociationConnector Association="MusicDataBaseModel.UsersRoles" />
+        <EntityTypeShape EntityType="MusicDataBaseModel.Order" Width="1.5" PointX="11.125" PointY="2" />
+        <EntityTypeShape EntityType="MusicDataBaseModel.PaymentSystem" Width="1.5" PointX="11.25" PointY="5.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

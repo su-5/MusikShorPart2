@@ -646,18 +646,19 @@
                                 $rootScope.loadingHide();
                             });
 
-                        $scope.$watch('Product.CategoryId', function (newValue, oldValue) {
-                            if (newValue !== undefined) {
-                                subcategoryService.getSubcategoryOnCategories(newValue).then(function (value) {
-                                    $scope.allSubcategories = angular.copy(value);
-                                },
-                                    function (errorObject) {
+                        $scope.$watch('Product.CategoryId',
+                            function (newValue, oldValue) {
+                                if (newValue !== undefined) {
+                                    subcategoryService.getSubcategoryOnCategories(newValue).then(function (value) {
+                                        $scope.allSubcategories = angular.copy(value);
+                                    },
+                                        function (errorObject) {
 
-                                    }).finally(function () {
-                                        $rootScope.loadingHide();
-                                    });
-                            }
-                        });
+                                        }).finally(function () {
+                                            $rootScope.loadingHide();
+                                        });
+                                }
+                            });
 
                         $scope.AddNewProduct = function (product, addProductForm) {
                             if (!addProductForm.$valid) {
@@ -685,7 +686,7 @@
                         }
                     }
                 ]
-            }).result.then(postClose, postClose);
+            }).function.then(postClose, postClose);
         };
 
         //Modal Window для продуктов
@@ -715,6 +716,7 @@
                             NumberStringId: "",
                             SubcategoriesId: ""
                         };
+
                         $scope.gridProducts = {
                             enableColumnResizing: true,
                             showGridFooter: false,
@@ -776,8 +778,8 @@
                                 {
                                     field: 'NumberProduct',
                                     width: "10%",
-                                    displayName: 'Количество на складе',
-                                    cellTemplate: '<p style="margin-left:15px;">{{row.entity.NumberProduct}}</p>'
+                                    displayName: 'Количество на складе',   
+                                    cellTemplate: 'Angular/Templates/isCheckNotZero.html'
                                 },
                                 {
                                     field: 'DateManufacture',
@@ -806,7 +808,15 @@
                                     function (row) {
                                     });
                             }
+
                         };
+
+                        $scope.isCheckNotZero = function (row) {
+                            var entity = row.entity;
+                            if (entity.NumberProduct === 0) {
+                                entity.Window = false;
+                            }
+                        }
 
                         //запрос на список продуктов
                         function getAllProducts() {

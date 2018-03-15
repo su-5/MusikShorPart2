@@ -36,6 +36,28 @@
     <Property Name="Number" Type="int" Nullable="false" />
     <Property Name="DeleteDate" Type="datetime" />
   </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUser" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Amount" Type="int" Nullable="false" />
+    <Property Name="OrderNumber" Type="int" Nullable="false" />
+    <Property Name="Currency" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdPaymentMethod" Type="int" Nullable="false" />
+    <Property Name="BillingAddress" Type="nvarchar(max)" />
+    <Property Name="DateActiveOrders" Type="nvarchar(max)" />
+    <Property Name="Date" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="PaymentSystems">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NamePaymentSystems" Type="nvarchar(max)" />
+  </EntityType>
   <EntityType Name="Picture">
     <Key>
       <PropertyRef Name="Id" />
@@ -209,6 +231,8 @@
     <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NumberString" EntityType="Self.NumberString" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentSystems" EntityType="Self.PaymentSystems" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />

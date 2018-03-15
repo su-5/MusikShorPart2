@@ -122,6 +122,12 @@
     <Compile Include="NumberString.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Order.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentSystem.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Picture.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>

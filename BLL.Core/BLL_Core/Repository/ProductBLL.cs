@@ -45,6 +45,10 @@ namespace BLL.Core.BLL_Core.Repository
             foreach (ProductDTO product in data)
             {
                 Product result = Mapper.Map<ProductDTO, Product>(product);
+                if (result.NumberProduct == 0)
+                {
+                    result.Window = false;
+                }
                 result.DateDelete = null;
                 _dalFactory.Product.UpdateVoid(result, result.Id);
             }

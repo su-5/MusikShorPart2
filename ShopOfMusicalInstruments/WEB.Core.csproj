@@ -370,6 +370,7 @@
     <Content Include="Angular\Services\productService.js" />
     <Content Include="Angular\Services\registerationService.js" />
     <Content Include="Angular\Services\subcategoryService.js" />
+    <Content Include="Angular\Templates\isCheckNotZero.html" />
     <Content Include="Angular\Templates\WindowCheckBox.html" />
     <Content Include="Angular\Views\AdminPanel.html" />
     <Content Include="Angular\Views\Catalog.html" />
