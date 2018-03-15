@@ -115,8 +115,8 @@
     <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="MiddleName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="PasswordHash" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Cookie" Type="nvarchar" MaxLength="50" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Cookie" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="UsersRoles">
     <Key>

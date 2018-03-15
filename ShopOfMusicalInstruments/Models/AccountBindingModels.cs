@@ -39,6 +39,15 @@ namespace ShopOfMusicalInstruments.Models
         public string Name { get; set; }
 
         [Required]
+        [Display(Name = "Фамилия")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Фамилия")]
+        public string MiddleName { get; set; }
+
+
+        [Required]
         [Display(Name = "Адрес электронной почты")]
         public string Email { get; set; }
 

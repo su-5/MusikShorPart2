@@ -324,7 +324,7 @@ namespace ShopOfMusicalInstruments.Core.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new AppUserDto() { UserName = model.Email, Email = model.Email };
+            var user = new AppUserDto() { UserName = model.Name, Email = model.Email,LastName = model.LastName,MiddleName = model.MiddleName};
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 

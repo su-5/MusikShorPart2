@@ -32,9 +32,9 @@ namespace DAL.Core
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Subcategory> Subcategories { get; set; }
         public virtual DbSet<Brand> Brands { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<PaymentSystem> PaymentSystems { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

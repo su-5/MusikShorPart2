@@ -120,8 +120,8 @@
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="MiddleName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="PasswordHash" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Cookie" Type="nvarchar" MaxLength="50" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Cookie" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="UsersRoles">
           <Key>
@@ -323,14 +323,14 @@
             <End Role="Brand" EntitySet="Brands" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
+          <EntitySet Name="Orders" EntityType="MusicDataBaseModel.Order" />
+          <EntitySet Name="PaymentSystems" EntityType="MusicDataBaseModel.PaymentSystem" />
           <EntitySet Name="Roles" EntityType="MusicDataBaseModel.Role" />
           <EntitySet Name="Users" EntityType="MusicDataBaseModel.User" />
           <AssociationSet Name="UsersRoles" Association="MusicDataBaseModel.UsersRoles">
             <End Role="Role" EntitySet="Roles" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
-          <EntitySet Name="Orders" EntityType="MusicDataBaseModel.Order" />
-          <EntitySet Name="PaymentSystems" EntityType="MusicDataBaseModel.PaymentSystem" />
         </EntityContainer>
         <EntityType Name="Country">
           <Key>
@@ -483,31 +483,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Role">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Users" Relationship="MusicDataBaseModel.UsersRoles" FromRole="Role" ToRole="User" />
-        </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MiddleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Cookie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Roles" Relationship="MusicDataBaseModel.UsersRoles" FromRole="User" ToRole="Role" />
-        </EntityType>
-        <Association Name="UsersRoles">
-          <End Type="MusicDataBaseModel.Role" Role="Role" Multiplicity="*" />
-          <End Type="MusicDataBaseModel.User" Role="User" Multiplicity="*" />
-        </Association>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="Id" />
@@ -530,6 +505,31 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NamePaymentSystems" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="MusicDataBaseModel.UsersRoles" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Cookie" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Roles" Relationship="MusicDataBaseModel.UsersRoles" FromRole="User" ToRole="Role" />
+        </EntityType>
+        <Association Name="UsersRoles">
+          <End Type="MusicDataBaseModel.Role" Role="Role" Multiplicity="*" />
+          <End Type="MusicDataBaseModel.User" Role="User" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -620,6 +620,30 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="MusicDataBaseModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="DateActiveOrders" ColumnName="DateActiveOrders" />
+                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
+                <ScalarProperty Name="IdPaymentMethod" ColumnName="IdPaymentMethod" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentSystems">
+            <EntityTypeMapping TypeName="MusicDataBaseModel.PaymentSystem">
+              <MappingFragment StoreEntitySet="PaymentSystems">
+                <ScalarProperty Name="NamePaymentSystems" ColumnName="NamePaymentSystems" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="MusicDataBaseModel.Role">
               <MappingFragment StoreEntitySet="Roles">
@@ -649,30 +673,6 @@
               <ScalarProperty Name="Id" ColumnName="RolesId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="MusicDataBaseModel.Order">
-              <MappingFragment StoreEntitySet="Orders">
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="DateActiveOrders" ColumnName="DateActiveOrders" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-                <ScalarProperty Name="IdPaymentMethod" ColumnName="IdPaymentMethod" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Currency" ColumnName="Currency" />
-                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PaymentSystems">
-            <EntityTypeMapping TypeName="MusicDataBaseModel.PaymentSystem">
-              <MappingFragment StoreEntitySet="PaymentSystems">
-                <ScalarProperty Name="NamePaymentSystems" ColumnName="NamePaymentSystems" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

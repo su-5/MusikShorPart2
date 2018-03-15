@@ -43,7 +43,6 @@ C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\DAL.Core\bin\Debug\ru\Microsoft.A
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\DAL.Core\obj\Debug\DAL.Core.csproj.CoreCompileInputs.cache
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\DAL.Core\obj\Debug\DAL.Core.dll
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\DAL.Core\obj\Debug\DAL.Core.pdb
-C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\DAL.Core\obj\Debug\DAL.Core.csprojResolveAssemblyReference.cache
 C:\Users\Дмитрий\Source\Repos\MusikShorPart2\DAL.Core\bin\Debug\DAL.Core.dll.config
 C:\Users\Дмитрий\Source\Repos\MusikShorPart2\DAL.Core\bin\Debug\DAL.Core.dll
 C:\Users\Дмитрий\Source\Repos\MusikShorPart2\DAL.Core\bin\Debug\DAL.Core.pdb
