@@ -53,7 +53,9 @@ namespace BLL.Core.Identity
 
         public Task<AppUserDto> FindByIdAsync(string userId)
         {
-            throw new System.NotImplementedException();
+            Task<User> userIsResult = Task<User>.Factory.StartNew(() => _db.Users.FirstOrDefault(x => x.Id.Equals(userId)));
+            var result = Mapper.Map<Task<User>, Task<AppUserDto>>(userIsResult);
+            return result;
         }
 
         public Task<AppUserDto> FindByNameAsync(string userName)
@@ -116,7 +118,19 @@ namespace BLL.Core.Identity
 
         public Task<IList<string>> GetRolesAsync(AppUserDto user)
         {
-            throw new System.NotImplementedException();
+            User userDb = Mapper.Map<AppUserDto, User>(user);
+            if (userDb == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+            foreach (var roles in userDb.Roles.Select(variable => variable.Name))
+            {
+                if (roles != null)
+                {
+                    return Task.FromResult<IList<string>>(new[] { roles });
+                }
+            }
+            return Task.FromResult<IList<string>>(null);
         }
 
         public Task<bool> IsInRoleAsync(AppUserDto user, string roleName)

@@ -332,10 +332,19 @@ namespace ShopOfMusicalInstruments.Core.Controllers
             {
                 return GetErrorResult(result);
             }
+            await SignInAsync(user, true);
 
             return Ok();
         }
 
+        private async Task SignInAsync(AppUserDto user, bool isPersistent)
+        {
+            Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
+            var identity = await user.GenerateUserIdentityAsync(UserManager, CookieAuthenticationDefaults.AuthenticationType);
+            Authentication.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, identity
+
+            );
+        }
         //// POST api/Account/RegisterExternal
         //[OverrideAuthentication]
         //[HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]

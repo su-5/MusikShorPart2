@@ -85,6 +85,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="PaymentSystems">
+      <EntityTypeMapping TypeName="MusicDataBaseModel.PaymentSystem">
+        <MappingFragment StoreEntitySet="PaymentSystems">
+          <ScalarProperty Name="NamePaymentSystems" ColumnName="NamePaymentSystems" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Orders">
       <EntityTypeMapping TypeName="MusicDataBaseModel.Order">
         <MappingFragment StoreEntitySet="Orders">
@@ -97,14 +105,6 @@
           <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
           <ScalarProperty Name="Amount" ColumnName="Amount" />
           <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PaymentSystems">
-      <EntityTypeMapping TypeName="MusicDataBaseModel.PaymentSystem">
-        <MappingFragment StoreEntitySet="PaymentSystems">
-          <ScalarProperty Name="NamePaymentSystems" ColumnName="NamePaymentSystems" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

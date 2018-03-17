@@ -6,6 +6,7 @@
         productService.getAllCatalog().then(function (value) {
            $rootScope.loadingShow();
             $scope.result = angular.copy(value);
+            $rootScope.toaster('success','Данные загружены',15000);
         }, function (errorObject) {
             alert(errorObject);
         }).finally(function () {

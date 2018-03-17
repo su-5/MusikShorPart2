@@ -323,8 +323,8 @@
             <End Role="Brand" EntitySet="Brands" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
-          <EntitySet Name="Orders" EntityType="MusicDataBaseModel.Order" />
           <EntitySet Name="PaymentSystems" EntityType="MusicDataBaseModel.PaymentSystem" />
+          <EntitySet Name="Orders" EntityType="MusicDataBaseModel.Order" />
           <EntitySet Name="Roles" EntityType="MusicDataBaseModel.Role" />
           <EntitySet Name="Users" EntityType="MusicDataBaseModel.User" />
           <AssociationSet Name="UsersRoles" Association="MusicDataBaseModel.UsersRoles">
@@ -483,6 +483,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="PaymentSystem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NamePaymentSystems" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="Id" />
@@ -497,13 +504,6 @@
           <Property Name="BillingAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DateActiveOrders" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="PaymentSystem">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NamePaymentSystems" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -620,6 +620,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PaymentSystems">
+            <EntityTypeMapping TypeName="MusicDataBaseModel.PaymentSystem">
+              <MappingFragment StoreEntitySet="PaymentSystems">
+                <ScalarProperty Name="NamePaymentSystems" ColumnName="NamePaymentSystems" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="MusicDataBaseModel.Order">
               <MappingFragment StoreEntitySet="Orders">
@@ -632,14 +640,6 @@
                 <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PaymentSystems">
-            <EntityTypeMapping TypeName="MusicDataBaseModel.PaymentSystem">
-              <MappingFragment StoreEntitySet="PaymentSystems">
-                <ScalarProperty Name="NamePaymentSystems" ColumnName="NamePaymentSystems" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

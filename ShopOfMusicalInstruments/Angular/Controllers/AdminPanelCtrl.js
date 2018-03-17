@@ -706,7 +706,7 @@
                 },
                 size: 'lg',
                 controller: [
-                    '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
+                    '$rootScope', '$scope', '$uibModalInstance', "toaster", function ($rootScope, $scope, $uibModalInstance, toaster) {
 
                         $scope.product = {
                             Name: "",
@@ -778,7 +778,7 @@
                                 {
                                     field: 'NumberProduct',
                                     width: "10%",
-                                    displayName: 'Количество на складе',   
+                                    displayName: 'Количество на складе',
                                     cellTemplate: 'Angular/Templates/isCheckNotZero.html'
                                 },
                                 {
@@ -816,6 +816,7 @@
                             if (entity.NumberProduct === 0) {
                                 entity.Window = false;
                             }
+                            $rootScope.toaster('warning', 'Не возможно установить товар' +' ' + row.entity.Brand.Name + ' ' + row.entity.Name + ' ' + 'на витрину, т.к его нет на складе',7000);
                         }
 
                         //запрос на список продуктов
@@ -840,6 +841,7 @@
                         $scope.SaveEdit = function () {
                             productService.edit($scope.gridProducts.data).then(function () {
                                 getAllProducts();
+                                $rootScope.toaster('success', 'Данные успешно изменены', 2500);
                             },
                                 function (errorObject) {
 
@@ -851,6 +853,7 @@
                         $scope.deleteProduct = function (productId) {
                             productService.delete(productId).then(function () {
                                 getAllProducts();
+                                $rootScope.toaster('success', 'Данные успешно удалены', 2500);
                             },
                                 function (errorObject) {
 

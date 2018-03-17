@@ -25,6 +25,7 @@ namespace ShopOfMusicalInstruments.Core
                 "~/Scripts/angular-ui/ui-bootstrap-tpls.js",
                 "~/Scripts/angular-ui/ui-bootstrap",
                 "~/Scripts/angular-ui.js",
+                "~/Scripts/toaster.min.js",
                 "~/Scripts/tr/angular.integralui.min.js",
                 "~/Scripts/tr/angular.integralui.lists.min.js",
                 "~/Scripts/tr/angular.integralui.treeview.min.js",
@@ -38,6 +39,7 @@ namespace ShopOfMusicalInstruments.Core
                 "~/Content/css/themes/theme-flat-blue.css id='theme'",
                 "~/Content/css/samples.css",
                 "~/Content/font-awesome.css",
+                "~/Content/toaster.min.css",
                 "~/Content/ui-bootstrap-csp.css",
                 "~/Content/bootstrap.css"));
 
