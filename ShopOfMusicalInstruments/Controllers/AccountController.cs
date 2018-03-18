@@ -67,7 +67,7 @@ namespace ShopOfMusicalInstruments.Core.Controllers
         {
             Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
             return Ok();
-        }
+        } 
 
         //// GET api/Account/ManageInfo?returnUrl=%2F&generateState=true
         //[Route("ManageInfo")]
