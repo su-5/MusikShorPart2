@@ -398,6 +398,7 @@
     <Content Include="Content\image\7.jpg" />
     <Content Include="Content\image\8.jpg" />
     <Content Include="Content\image\images.png" />
+    <Content Include="Content\image\карзина.jpg" />
     <Content Include="Content\image\фон-для-сайта-1024x576.jpg" />
     <Content Include="Content\spinner.gif" />
     <Content Include="Content\toaster.css" />

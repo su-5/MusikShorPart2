@@ -815,8 +815,9 @@
                             var entity = row.entity;
                             if (entity.NumberProduct === 0) {
                                 entity.Window = false;
+                                $rootScope.toaster('warning', 'Не возможно установить товар' + ' ' + row.entity.Brand.Name + ' ' + row.entity.Name + ' ' + 'на витрину, т.к его нет на складе', 7000);
                             }
-                            $rootScope.toaster('warning', 'Не возможно установить товар' +' ' + row.entity.Brand.Name + ' ' + row.entity.Name + ' ' + 'на витрину, т.к его нет на складе',7000);
+                           
                         }
 
                         //запрос на список продуктов
