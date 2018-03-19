@@ -2,16 +2,16 @@
     "use strict";
 
     // controller class definintion
-    var catalogController = function ($scope, $rootScope, productService, $cookies) {
+    var catalogController = function ($scope, $rootScope, productService, $cookies, $uibModal) {
         productService.getAllCatalog().then(function (value) {
-           $rootScope.loadingShow();
+            $rootScope.loadingShow();
             $scope.result = angular.copy(value);
-            $rootScope.toaster('success','Данные загружены',15000);
+            $rootScope.toaster('success', 'Данные загружены', 15000);
         }, function (errorObject) {
             alert(errorObject);
         }).finally(function () {
-          $rootScope.loadingHide();
-            });
+            $rootScope.loadingHide();
+        });
 
         $scope.addProductToCart = function (produkt) {
             //0 считывает текущие куки productToCart
@@ -23,16 +23,36 @@
                 title: "erwewtwet",
                 date: "11111"
             };
-           
-         var x =   $cookies.putObject('productToCart', event);
 
-           
+            var x = $cookies.putObject('productToCart', event);
+
         }
+
+        $scope.FullDesc = function (value) {
+            debugger;
+          
+
+            $uibModal.open({
+                templateUrl: function () {
+                    return 'Angular/ModalWindows/ControlFullDescModalWindow.html';
+                },
+                size: 'md',
+                controller: [
+                    '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
+                        $scope.product = value;
+                        $scope.cancel = function () {
+                            $uibModalInstance.dismiss({ $value: 'cancel' });
+                        };
+                    }
+                ]
+            }).result.then();
+        }
+
     };
 
     // register your controller into a dependent module 
     angular
         .module("Web.Controllers")
-        .controller("catalogController", ["$scope", "$rootScope", "productService","$cookies", catalogController]);
+        .controller("catalogController", ["$scope", "$rootScope", "productService", "$cookies", "$uibModal", catalogController]);
 
 })();

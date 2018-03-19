@@ -4,9 +4,9 @@
             <th style="text-align: center">Бренд</th>
             <th style="text-align: center">Страна</th>
             <th style="text-align: center">Дата выпуска</th>
-            <th style="text-align: center">Кол-во продуктов</th>
             <th style="text-align: center">Кол-во струн</th>
             <th style="text-align: center">Цена</th>
+            <th style="text-align: center; width:15px;">Доп.Информация</th>
             <th style="text-align: center; width: 222px;">Корзина</th>
         </tr>
     </thead>
@@ -15,9 +15,9 @@
             <td>{{value.Brand.Name}}</td>
             <td>{{value.Country.Name}}</td>
             <td>{{value.DateManufacture | date:'MM/dd/yyyy'}}</td>
-            <td>{{value.NumberProduct}}</td>
             <td>{{value.NumberString.Number}}</td>
             <td>{{value.Price}}</td>
+            <td style="text-align: center;"><button class="btn btn-primary" ng-click="FullDesc(value)">Подробнее</button></td>
             <td>
                 <div class="pull-right">
                     <button type="button" class="btn btn-success" ng-click="addProductToCart(value)">Добавить в корзину</button>

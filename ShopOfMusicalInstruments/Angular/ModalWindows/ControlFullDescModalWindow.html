@@ -1,0 +1,28 @@
+﻿<div>
+    <div class="modal-header">
+        <h3 style="margin-top: -8px;" class="text-center">
+            Описание продукта
+        </h3>
+    </div>
+    <div align="center" class="ng-buttons-th">
+        <div class="modal-body" align="right" style="width: 55%;">
+            <div><label>Бренд &nbsp;&nbsp;&nbsp;<input style="width: 150px;" type="text" readonly="readonly" ng-model="product.Brand.Name" /></label></div>
+            <div><label>Описание &nbsp;&nbsp;&nbsp;<input style="width: 150px;" type="text" readonly="readonly" ng-model="product.Brand.Description" /></label></div>
+            <div><label>Страна &nbsp;&nbsp;&nbsp;<input style="width: 150px;" type="text" readonly="readonly" ng-model="product.Country.Name" /></label></div>
+            <div><label>Описание &nbsp;&nbsp;&nbsp;<input style="width: 150px;" type="text" readonly="readonly" ng-model="product.Country.Description" /></label></div>
+            <div><label>Дата выпуска &nbsp;&nbsp;&nbsp;<input style="width: 150px;" type="text" readonly="readonly" ng-model="product.DateManufacture |date:'MM/dd/yyyy'" /></label></div>
+            <div><label>Кол-во струн &nbsp;&nbsp;&nbsp;<input style="width: 150px;" type="text" readonly="readonly" ng-model="product.NumberString.Number" /></label></div>
+            <div><label>Наименование &nbsp;&nbsp;&nbsp;<input style="width: 150px;" type="text" readonly="readonly" ng-model="product.Name" /></label></div>
+            <div><label>Цена &nbsp;&nbsp;&nbsp;<input style="width: 150px;" type="text" readonly="readonly" ng-model="product.Price" /></label></div>
+            <div><label>Категория &nbsp;&nbsp;&nbsp;<input style="width: 150px;" type="text" readonly="readonly" ng-model="product.Subcategory.Category.Name" /></label></div>
+            <div><label>Подкатегория &nbsp;&nbsp;&nbsp;<input style="width: 150px;" type="text" readonly="readonly" ng-model="product.Subcategory.Name" /></label></div>
+            <div><label>Описание &nbsp;&nbsp;&nbsp;<input style="width: 150px;" type="text" readonly="readonly" ng-model="product.Subcategory.Description" /></label></div>
+            <div><label>Кол-во на складе &nbsp;&nbsp;&nbsp;<input style="width: 150px;" type="text" readonly="readonly" ng-model="product.NumberProduct" /></label></div>
+           
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success" ng-click="addProductToCart(value.Id)">Добавить в корзину</button>
+        <button class="btn btn-warning" ng-click="cancel()">Отмена</button>
+    </div>
+</div>
