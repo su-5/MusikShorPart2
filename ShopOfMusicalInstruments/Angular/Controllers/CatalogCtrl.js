@@ -2,36 +2,64 @@
     "use strict";
 
     // controller class definintion
-    var catalogController = function ($scope, $rootScope, productService, $cookies, $uibModal) {
-        productService.getAllCatalog().then(function (value) {
-            $rootScope.loadingShow();
-            $scope.result = angular.copy(value);
-            $rootScope.toaster('success', 'Данные загружены', 15000);
-        }, function (errorObject) {
-            alert(errorObject);
-        }).finally(function () {
-            $rootScope.loadingHide();
-        });
+    var catalogController = function($scope, $rootScope, productService, $cookies, $uibModal) {
+        $rootScope.loadingShow();
+            productService.getAllCatalog().then(function(value) {            
+                $rootScope.Produkts = angular.copy(value);
+                $rootScope.toaster('success', 'Данные загружены', 2000);
+                $rootScope.ProduktsFilter = false;
+            }, function(errorObject) {
+                alert(errorObject);
+            }).finally(function() {
+                $rootScope.loadingHide();
+            });
+       
 
-        $scope.addProductToCart = function (produkt) {
-            //0 считывает текущие куки productToCart
-            var productsId = $cookies.getObject('productToCart');
-            //1 сравление на дубоикаты id-шников
-            //2 сфотмировать json obj из 2-х и болеее добавляемых позиций (id-щников)
-            //3 записать сфотмированый json obj в куки.
-            var event = {
-                title: "erwewtwet",
-                date: "11111"
-            };
-
-            var x = $cookies.putObject('productToCart', event);
-
+        $scope.addProductToCart = function (productId) {
+            //формируем новый json объект
+            var newProductId = { id: productId };
+            //считываем куки из хранилища productToCart
+            var products = $cookies.getObject('productToCart');
+            //проверка на наличие данных в куках, если данных нет - возвращается undefined
+            if (products === undefined) {
+                //если нет данных в куках, то указываем, что products является массивом
+                products = [];
+            }
+            //вызываем функцию checkIsDouble, передаем 2 параметра: массив объектов и новый productId
+            if (checkIsDouble(products, productId)) {
+                return;
+            }
+            //проверяем что products не равен null
+            if (products !== null) {
+                //добавляем новый объект в массив products
+                products.push(newProductId);
+            }
+            //записываем массив в куки
+            $cookies.putObject('productToCart', products);
+            //вызываем функцию, которая считывает куки и выводит их кол-во id в корзину
+            $rootScope.lengthCartProducts();
         }
 
-        $scope.FullDesc = function (value) {
-            debugger;
-          
+        function checkIsDouble(products, productId) {
+            //узнаем длину массива, если массив пустой, возвращаем false  и работа ф-ции завершается
+            if (products.length === 0) {
+                return false;
+            } else {
+                //иначе, делаем цикл переборки элемнтов массива
+                for (var i = 0; i < products.length; i++) {
+                    //проверяем на дубли
+                    if (products[i].id === productId) {
+                        $rootScope.toaster("warning", "Этот товар уже в корзине", 2500);
+                        return true;                      
+                    }
+                }
+            }
 
+            return false;
+        }
+
+
+        $scope.FullDesc = function (value) {
             $uibModal.open({
                 templateUrl: function () {
                     return 'Angular/ModalWindows/ControlFullDescModalWindow.html';

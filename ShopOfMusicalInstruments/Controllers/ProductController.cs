@@ -21,7 +21,7 @@ namespace ShopOfMusicalInstruments.Core.Controllers
         [Route("GetAllDataBase")]
         public IHttpActionResult GetAllDataBase()
         {
-            var result = _bllFactory.ProductBll.GetAll();
+            List<ProductDTO> result = _bllFactory.ProductBll.GetAll();
             return Ok(result);
         }
 
@@ -30,6 +30,14 @@ namespace ShopOfMusicalInstruments.Core.Controllers
         public IHttpActionResult GetAllCatalog()
         {
             var result = _bllFactory.ProductBll.GetAll().Where(w => w.Window == true).OrderBy(r => r.Brand.Name).ToList();
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("GetProductById")]
+        public IHttpActionResult GetProductById(int categoryId, int subcategoryId, bool flag)
+        {
+            List<ProductDTO> result = _bllFactory.ProductBll.GetProductById(categoryId, subcategoryId, flag);
             return Ok(result);
         }
 

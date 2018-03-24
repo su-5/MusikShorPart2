@@ -29,6 +29,12 @@
                 controller: "registrationController"
             });
 
+            $stateProvider.state("mainPage/Cart", {
+                url: "/cart",
+                templateUrl: "Angular/Views/Cart.html",
+                controller: "cartController"
+            });
+
         
             $urlRouterProvider.otherwise("/catalog");
         }]);

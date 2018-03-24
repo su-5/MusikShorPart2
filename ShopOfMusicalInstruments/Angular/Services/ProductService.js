@@ -24,6 +24,18 @@
             return deferred.promise;
         };
 
+        this.getProductById = function(categoryId, subcategoryId, flag) {
+            var deferred = $q.defer();
+            $http.get('api/Product/GetProductById?' +
+                'categoryId=' + categoryId + '&subcategoryId=' + subcategoryId + '&flag=' + flag)
+                .then(function(response) {
+                    deferred.resolve(response.data);
+                }).catch(function onError(response) {
+                    deferred.reject(response.data);
+                });
+            return deferred.promise;
+        };
+
         this.add = function (product) {
             var newProduct = {
                 Name: product.Name, CountryId: product.CountryId, BrandId: product.BrandId, NumberStringId: product.NumberStrId,

@@ -9,5 +9,6 @@ namespace BLL.Core.BLL_Core.Interface
         void Add(ProductDTO product);
         void Edit(List<ProductDTO> data);
         void Delete(int id);
+        List<ProductDTO> GetProductById(int categoryId, int subcategoryId, bool flag);
     }
 }

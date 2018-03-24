@@ -11,7 +11,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="value in result">
+        <tr ng-repeat="value in $root.Produkts">
             <td>{{value.Brand.Name}}</td>
             <td>{{value.Country.Name}}</td>
             <td>{{value.DateManufacture | date:'MM/dd/yyyy'}}</td>
@@ -20,7 +20,7 @@
             <td style="text-align: center;"><button class="btn btn-primary" ng-click="FullDesc(value)">Подробнее</button></td>
             <td>
                 <div class="pull-right">
-                    <button type="button" class="btn btn-success" ng-click="addProductToCart(value)">Добавить в корзину</button>
+                    <button type="button" class="btn btn-success" ng-click="addProductToCart(value.Id)">Добавить в корзину</button>
                     <img src="../../Content/image/карзина.jpg" height="40" width="40" style="float: left; margin-top:-5px" />
                 </div>
             </td>

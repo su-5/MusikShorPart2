@@ -60,5 +60,11 @@ namespace BLL.Core.BLL_Core.Repository
             entity.DateDelete = DateTime.Now;
             _dalFactory.Product.UpdateVoid(entity, entity.Id);
         }
+
+        public List<ProductDTO> GetProductById(int categoryId, int subcategoryId, bool flag)
+        {
+            var result = flag ? GetAll().Where(x => x.SubcategoriesId == subcategoryId && x.Subcategory.CategoriesId == categoryId && x.Window != false).ToList() : GetAll().Where(x => x.Window != false).ToList();
+            return result;
+        }
     }
 }
