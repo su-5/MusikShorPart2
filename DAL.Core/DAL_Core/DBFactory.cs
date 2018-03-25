@@ -1,22 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Core.DAL_Core
 {
     public class DbFactory : Disposable, IDbFactory
     {
-        MusicDataBaseEntities dbContext;
+        MusicDataBaseEntities _dbContext;
         public MusicDataBaseEntities Init()
         {
-            return dbContext ?? (dbContext = new MusicDataBaseEntities ());
+            return _dbContext ?? (_dbContext = new MusicDataBaseEntities ());
         }
 
         protected override void DisposeCore()
         {
-            dbContext?.Dispose();
+            _dbContext?.Dispose();
         }
     }
 

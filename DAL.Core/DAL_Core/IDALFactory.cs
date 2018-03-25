@@ -10,5 +10,6 @@ namespace DAL.Core.DAL_Core
         INumberStringDAL NumberString { get; }
         ISubcategoryDAL Subcategory { get; }
         ICategoryDAL Category { get; }
+        IUserDAL User { get; }
     }
 }

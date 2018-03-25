@@ -336,6 +336,7 @@
     <Compile Include="Controllers\NumberStringsController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SubcategoriesController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -365,6 +366,7 @@
     <Content Include="Angular\ModalWindows\ControlNumberStringModalWindow.html" />
     <Content Include="Angular\ModalWindows\ControlProductModalWindow.html" />
     <Content Include="Angular\ModalWindows\ControlSubcategoryModalWindows.html" />
+    <Content Include="Angular\ModalWindows\ControlUserModalWindow.html" />
     <Content Include="Angular\Services\adminService.js" />
     <Content Include="Angular\Services\categoryService.js" />
     <Content Include="Angular\Services\numberstringService.js" />
@@ -373,6 +375,7 @@
     <Content Include="Angular\Services\productService.js" />
     <Content Include="Angular\Services\registerationService.js" />
     <Content Include="Angular\Services\subcategoryService.js" />
+    <Content Include="Angular\Services\userService.js" />
     <Content Include="Angular\Templates\isCheckNotZero.html" />
     <Content Include="Angular\Templates\WindowCheckBox.html" />
     <Content Include="Angular\Views\AdminPanel.html" />

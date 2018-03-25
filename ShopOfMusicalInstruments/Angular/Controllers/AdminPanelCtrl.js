@@ -2,7 +2,7 @@
     "use strict";
 
     // controller class definintion
-    var adminController = function ($scope, $rootScope, $uibModal, adminService, countryService, numberstringService, subcategoryService, productService, categoryService) {
+    var adminController = function ($scope, $rootScope, $uibModal, adminService, countryService, numberstringService, subcategoryService, productService, categoryService, userService) {
 
         //Modal Window для брендов 
         $scope.openList = function () {
@@ -817,7 +817,7 @@
                                 entity.Window = false;
                                 $rootScope.toaster('warning', 'Не возможно установить товар' + ' ' + row.entity.Brand.Name + ' ' + row.entity.Name + ' ' + 'на витрину, т.к его нет на складе', 7000);
                             }
-                           
+
                         }
 
                         //запрос на список продуктов
@@ -1017,12 +1017,173 @@
             }).result.then(postClose, postClose);
         };
 
+        //Modal Window для пользователей
+
+        $scope.openUser = function () {
+            $scope.asideState = {
+                open: true
+            };
+
+            function postClose() {
+                $scope.asideState.open = false;
+            }
+
+            $uibModal.open({
+                templateUrl: function () {
+                    return "Angular/ModalWindows/ControlUserModalWindow.html";
+                },
+                size: 'lg',
+                controller: [
+                    '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
+
+                        $scope.user = {};
+                        $scope.gridUsers = {
+                            enableColumnResizing: true,
+                            showGridFooter: true,
+                            enableHorizontalScrollbar: 0,
+                            enableVerticalScrollbar: 1,
+                            enableColumnMenus: false,
+                            showColumnFooter: false,
+                            enableFiltering: false,
+                            gridColumnFooterHeight: 20,
+                            enableRowSelection: true,
+                            enableRowHeaderSelection: false,
+                            noUnselect: false,
+                            multiSelect: false,
+                            rowHeight: 22,
+                            columnDefs: [
+
+                                {
+                                    field: 'UserName',
+                                    width: "24%",
+                                    displayName: "Имя",
+                                    cellTemplate: '<p style="margin-left:15px;" >{{row.entity.UserName}}</p>'
+                                },
+                                {
+                                    field: 'LastName',
+                                    width: "24%",
+                                    displayName: "Фамилия",
+                                    cellTemplate: '<p style="margin-left:15px;" >{{row.entity.LastName}}</p>'
+                                },
+                                {
+                                    field: 'MiddleName',
+                                    width: "24%",
+                                    displayName: "Отчество",
+                                    cellTemplate: '<p style="margin-left:15px;" >{{row.entity.MiddleName}}</p>'
+                                },
+                                {
+                                    field: 'Email',
+                                    width: "24%",
+                                    displayName: "Email",
+                                    cellTemplate: '<p style="margin-left:15px;" >{{row.entity.Email}}</p>'
+                                },
+
+                                {
+                                    field: 'buttons_edit_del',
+                                    displayName: "",
+                                    visible: true,
+                                    cellTemplate: "<div class=\"ui-grid-cell-contents\" align=\"center\">" +
+                                        "<button type='button' class='btn btn-danger btn-xs' style='margin-left: 2px; margin-right: 2px; height: 22px; width: 29px;padding: 0px 5px;font-size: 12px;' ng-click='grid.appScope.deleteUser(row.entity.Id)'tooltip-placement ='left' uib-tooltip='Удалить запись'><i style='font-size: 15px;' class='fa fa-trash'></i></button>" +
+                                        "</div>",
+                                    enableCellEdit: false,
+                                    enableFiltering: true,
+                                    enableSorting: false,
+                                    showSortMenu: false,
+                                    enableColumnMenu: false
+                                }
+                            ],
+                            onRegisterApi: function (gridApi) {
+                                $scope.gridApi = gridApi;
+                                $scope.gridApi.selection.on.rowSelectionChanged($scope,
+                                    function (row) {
+                                    });
+                            }
+                        };
+
+                        //запрос на список пользователей
+                        function getAllUsers() {
+                            $rootScope.loadingShow();
+                            userService.getAll().then(function (value) {
+                                $scope.listuser = angular.copy(value);
+                                $scope.gridUsers.data = $scope.listuser;
+                            },
+                                function (errorObject) {
+
+                                }).finally(function () {
+                                    $rootScope.loadingHide();
+                                });
+                        }
+
+                        $scope.cancel = function () {
+                            $uibModalInstance.dismiss({ $value: 'cancel' });
+                        };
+
+                        //удаление пользователей
+                        $scope.deleteUser = function (userId) {
+                            userService.delete(userId).then(function () {
+                                getAllUsers();
+                            },
+                                function (errorObject) {
+
+                                }).finally(function () {
+                                });
+                        }
+
+                        $scope.cancel = function () {
+                            $uibModalInstance.dismiss({ $value: 'cancel' });
+                        };
+
+
+
+                        //открытие блока для добавления пользователей
+                        $scope.openWindowAdd = function (openModel) {
+                            $scope.openWindow = openModel;
+                        };
+
+                        //закрытие блока для добавления пользователей
+                        $scope.closeAddWindow = function (flag) {
+                            $scope.openWindow = flag;
+                        }
+
+                        //добавление пользователей
+                        $scope.addUser = function (user, formUser) {
+                            if (!formUser.$valid) {
+                                return;
+                            }
+
+                            userService.add(user).then(function (value) {
+                                getAllUsers();
+                                $scope.openWindow = false;
+                            },
+                                function (errorObject) {
+
+                                }).finally(function () {
+
+                                });
+                        };
+
+                        //Редактирование пользователей
+                        $scope.SaveEdit = function () {
+                            userService.edit($scope.gridUsers.data).then(function () {
+                                getAllUsers();
+                            },
+                                function (errorObject) {
+
+                                }).finally(function () {
+                                });
+                        };
+                        getAllUsers();
+                    }
+                ]
+            }).result.then(postClose, postClose);
+        };
+
     }
     // register your controller into a dependent module 
     angular
         .module("Web.Controllers")
         .controller("adminController",
-        ["$scope", "$rootScope", "$uibModal", "adminService", "countryService", 'numberstringService', "subcategoryService", "productService", "categoryService", adminController]);
+        ["$scope", "$rootScope", "$uibModal", "adminService", "countryService", "numberstringService", "subcategoryService", "productService", "categoryService", "userService", adminController]);
 
 })();
 
