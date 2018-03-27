@@ -12,6 +12,7 @@ namespace BLL.Core.BLL_Core.Repository
         private INumberStringBLL _numberString;
         private ISubcategoryBLL _subcategory;
         private ICategoryBLL _category;
+        private IUserBLL _user;
         public BLLFactory()
         {
             _dalFactory = new DalFactory(new DbFactory());
@@ -23,5 +24,6 @@ namespace BLL.Core.BLL_Core.Repository
         public INumberStringBLL NumberStringBll => _numberString ?? (_numberString = new NumberStringBLL(_dalFactory));
         public ISubcategoryBLL SubcategoryBll => _subcategory ?? (_subcategory = new SubcategoryBLL(_dalFactory));
         public ICategoryBLL CategoryBll => _category ?? (_category = new CategoryBLL(_dalFactory));
+        public IUserBLL UserBll => _user ?? (_user = new UserBLL(_dalFactory));
     }
 }

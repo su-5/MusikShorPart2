@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using DAL.Core.ModelDTO;
-
-namespace BLL.Core.BLL_Core.Interface
+﻿namespace BLL.Core.BLL_Core.Interface
 {
     public interface IBLLFactory
     {
@@ -11,5 +8,6 @@ namespace BLL.Core.BLL_Core.Interface
         INumberStringBLL NumberStringBll { get; }
         ISubcategoryBLL SubcategoryBll { get; }
         ICategoryBLL CategoryBll { get; }
+        IUserBLL UserBll { get; }
     }
 }

@@ -9,8 +9,9 @@ using DAL.Core.ModelDTO;
 
 namespace BLL.Core.BLL_Core.Repository
 {
-    public class UserBLL : IUserBLL
+    public class UserBLL:IUserBLL 
     {
+
         private readonly DalFactory _dalFactory;
 
         public UserBLL(DalFactory dalFactory)
@@ -20,14 +21,14 @@ namespace BLL.Core.BLL_Core.Repository
 
         public List<AppUserDto> GetAll()
         {
-            List<User> userList = _dalFactory.User.GetAll().OrderBy(x => x.UserName).ToList();
+            List<User> userList = _dalFactory.User.GetAll().ToList();
             var result = Mapper.Map<List<User>, List<AppUserDto>>(userList);
             return result;
         }
 
         public void Add(AppUserDto user)
         {
-           User result = Mapper.Map<AppUserDto, User>(user);
+            User result = Mapper.Map<AppUserDto, User>(user);
             _dalFactory.User.Add(result);
         }
 

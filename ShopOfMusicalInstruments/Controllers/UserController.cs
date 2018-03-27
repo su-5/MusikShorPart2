@@ -23,21 +23,21 @@ namespace ShopOfMusicalInstruments.Core.Controllers
         [HttpGet]
         public IHttpActionResult GetAll()
         {
-           // var result = _bllFactory.UserBll.GetAll().OrderBy(x => x.UserName).ToList();
-            return Ok();
+            var result = _bllFactory.UserBll.GetAll().ToList();
+            return Ok(result);
         }
 
         [HttpPost]
         public IHttpActionResult Add(AppUserDto user)
         {
-            //_bllFactory.UserBll.Add(user);
+            _bllFactory.UserBll.Add(user);
             return Ok();
         }
 
         [HttpPut]
         public IHttpActionResult Edit(List<AppUserDto> data)
         {
-          //  _bllFactory.UserBll.Edit(data);
+           _bllFactory.UserBll.Edit(data);
             return Ok();
         }
 
@@ -45,7 +45,7 @@ namespace ShopOfMusicalInstruments.Core.Controllers
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
-           // _bllFactory.UserBll.Delete(id);
+            _bllFactory.UserBll.Delete(id);
             return Ok();
         }
 
