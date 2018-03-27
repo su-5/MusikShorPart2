@@ -591,114 +591,99 @@
 
         //Добавление нового продукта
         function openWindowAddProducts() {
-            $scope.asideState = {
-                open: true
-            };
-
-            function postClose() {
-                $scope.asideState.open = false;
-            }
 
             //Модальное окно добавление нового продукта
             $uibModal.open({
-                templateUrl: function () {
+                templateUrl: function() {
                     return "Angular/ModalWindows/ControlAddNewProductModalWindow.html";
                 },
                 size: 'md',
                 scope: $scope,
                 controller: [
-                    '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
+                    '$rootScope', '$scope', '$uibModalInstance', function($rootScope, $scope, $uibModalInstance) {
                         $rootScope.loadingShow();
 
-                        adminService.getAll().then(function (value) {
-                            $scope.allBrands = angular.copy(value);
-                        },
-                            function (errorObject) {
+                        adminService.getAll().then(function(value) {
+                                $scope.allBrands = angular.copy(value);
+                            },
+                            function(errorObject) {
 
-                            }).finally(function () {
-                                $rootScope.loadingHide();
-                            });
+                            }).finally(function() {
+                            $rootScope.loadingHide();
+                        });
 
-                        countryService.getAll().then(function (value) {
-                            $scope.allCountries = angular.copy(value);
-                        },
-                            function (errorObject) {
+                        countryService.getAll().then(function(value) {
+                                $scope.allCountries = angular.copy(value);
+                            },
+                            function(errorObject) {
 
-                            }).finally(function () {
-                                $rootScope.loadingHide();
-                            });
+                            }).finally(function() {
+                            $rootScope.loadingHide();
+                        });
 
-                        numberstringService.getAll().then(function (value) {
-                            $scope.allNumberStrings = angular.copy(value);
-                        },
-                            function (errorObject) {
+                        numberstringService.getAll().then(function(value) {
+                                $scope.allNumberStrings = angular.copy(value);
+                            },
+                            function(errorObject) {
 
-                            }).finally(function () {
-                                $rootScope.loadingHide();
-                            });
+                            }).finally(function() {
+                            $rootScope.loadingHide();
+                        });
 
-                        categoryService.getAll().then(function (value) {
-                            $scope.allCategories = angular.copy(value);
-                        },
-                            function (errorObject) {
+                        categoryService.getAll().then(function(value) {
+                                $scope.allCategories = angular.copy(value);
+                            },
+                            function(errorObject) {
 
-                            }).finally(function () {
-                                $rootScope.loadingHide();
-                            });
+                            }).finally(function() {
+                            $rootScope.loadingHide();
+                        });
 
                         $scope.$watch('Product.CategoryId',
-                            function (newValue, oldValue) {
+                            function(newValue, oldValue) {
                                 if (newValue !== undefined) {
-                                    subcategoryService.getSubcategoryOnCategories(newValue).then(function (value) {
-                                        $scope.allSubcategories = angular.copy(value);
-                                    },
-                                        function (errorObject) {
+                                    subcategoryService.getSubcategoryOnCategories(newValue).then(function(value) {
+                                            $scope.allSubcategories = angular.copy(value);
+                                        },
+                                        function(errorObject) {
 
-                                        }).finally(function () {
-                                            $rootScope.loadingHide();
-                                        });
+                                        }).finally(function() {
+                                        $rootScope.loadingHide();
+                                    });
                                 }
                             });
 
-                        $scope.AddNewProduct = function (product, addProductForm) {
+                        $scope.AddNewProduct = function(product, addProductForm) {
                             if (!addProductForm.$valid) {
                                 return;
                             }
-                            productService.add(product).then(function (value) {
-                                $scope.cancel();
-                                openProduct();
-                            },
-                                function (errorObject) {
+                            productService.add(product).then(function(value) {
+                                    $scope.cancel();
+                                    openProduct();
+                                },
+                                function(errorObject) {
 
-                                }).finally(function () {
-                                    $rootScope.loadingHide();
-                                });
+                                }).finally(function() {
+                                $rootScope.loadingHide();
+                            });
 
                         }
 
-                        $scope.cancel = function () {
+                        $scope.cancel = function() {
                             $uibModalInstance.dismiss({ $value: 'cancel' });
                         };
 
-                        $scope.cancelWindow = function () {
+                        $scope.cancelWindow = function() {
                             $scope.cancel();
                             openProduct();
                         }
                     }
                 ]
-            }).function.then(postClose, postClose);
+            });
         };
 
         //Modal Window для продуктов
         function openProduct() {
-
-            $scope.asideState = {
-                open: true
-            };
-
-            function postClose() {
-                $scope.asideState.open = false;
-            }
 
             $uibModal.open({
                 templateUrl: function () {
@@ -706,7 +691,7 @@
                 },
                 size: 'lg',
                 controller: [
-                    '$rootScope', '$scope', '$uibModalInstance', "toaster", function ($rootScope, $scope, $uibModalInstance, toaster) {
+                    '$rootScope', '$scope', '$uibModalInstance', function ($rootScope, $scope, $uibModalInstance) {
 
                         $scope.product = {
                             Name: "",
@@ -824,7 +809,7 @@
                         function getAllProducts() {
                             $rootScope.loadingShow();
                             productService.getAll().then(function (value) {
-                                $scope.listproduct = angular.copy(value);
+                                $scope.listproduct = value;//angular.copy(value);
                                 $scope.gridProducts.data = $scope.listproduct;
                             },
                                 function (errorObject) {
@@ -840,6 +825,7 @@
 
                         //Редактирование продуктов
                         $scope.SaveEdit = function () {
+                            debugger;
                             productService.edit($scope.gridProducts.data).then(function () {
                                 getAllProducts();
                                 $rootScope.toaster('success', 'Данные успешно изменены', 2500);
@@ -871,7 +857,7 @@
                         getAllProducts();
                     }
                 ]
-            }).result.then(postClose, postClose);
+            });
         }
 
         //Modal Window для категорий

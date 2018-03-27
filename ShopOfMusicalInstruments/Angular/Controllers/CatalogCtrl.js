@@ -2,20 +2,24 @@
     "use strict";
 
     // controller class definintion
-    var catalogController = function($scope, $rootScope, productService, $cookies, $uibModal) {
+    var catalogController = function ($scope, $rootScope, productService, $cookies, $uibModal) {
         $rootScope.loadingShow();
-            productService.getAllCatalog().then(function(value) {            
-                $rootScope.Produkts = angular.copy(value);
-                $rootScope.toaster('success', 'Данные загружены', 2000);
-                $rootScope.ProduktsFilter = false;
-            }, function(errorObject) {
-                alert(errorObject);
-            }).finally(function() {
-                $rootScope.loadingHide();
-            });
-       
+        productService.getAllCatalog().then(function (value) {
+            $rootScope.Produkts = value;// angular.copy(value);
+            $rootScope.toaster('success', 'Данные загружены', 2000);
+            $rootScope.ProduktsFilter = false;
+        }, function (errorObject) {
+            alert(errorObject);
+        }).finally(function () {
+            $rootScope.loadingHide();
+        });
+
 
         $scope.addProductToCart = function (productId) {
+            addProductToCart(productId);
+        }
+
+        function addProductToCart(productId) {
             //формируем новый json объект
             var newProductId = { id: productId };
             //считываем куки из хранилища productToCart
@@ -50,7 +54,7 @@
                     //проверяем на дубли
                     if (products[i].id === productId) {
                         $rootScope.toaster("warning", "Этот товар уже в корзине", 2500);
-                        return true;                      
+                        return true;
                     }
                 }
             }
@@ -71,6 +75,10 @@
                         $scope.cancel = function () {
                             $uibModalInstance.dismiss({ $value: 'cancel' });
                         };
+
+                        $scope.addProductToCart = function (productId) {
+                            addProductToCart(productId);
+                        }
                     }
                 ]
             }).result.then();

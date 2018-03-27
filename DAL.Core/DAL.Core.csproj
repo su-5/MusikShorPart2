@@ -89,12 +89,14 @@
     <Compile Include="GenericRepositoryModel\Interfaces\INumberStringDAL.cs" />
     <Compile Include="GenericRepositoryModel\Interfaces\IProductDAL.cs" />
     <Compile Include="GenericRepositoryModel\Interfaces\ISubcategoryDAL.cs" />
+    <Compile Include="GenericRepositoryModel\Interfaces\IUserDAL.cs" />
     <Compile Include="GenericRepositoryModel\Repository\BrandDAL.cs" />
     <Compile Include="GenericRepositoryModel\Repository\CategoryDAL.cs" />
     <Compile Include="GenericRepositoryModel\Repository\CountryDAL.cs" />
     <Compile Include="GenericRepositoryModel\Repository\NumberStringDAL.cs" />
     <Compile Include="GenericRepositoryModel\Repository\ProductDAL.cs" />
     <Compile Include="GenericRepositoryModel\Repository\SubcategoryDAL.cs" />
+    <Compile Include="GenericRepositoryModel\Repository\UserDAL.cs" />
     <Compile Include="GenericRepository\GenericRepository.cs" />
     <Compile Include="GenericRepository\IGenericRepository.cs" />
     <Compile Include="ModelDB.Context.cs">
@@ -118,6 +120,7 @@
     <Compile Include="ModelDTO\CountryDTO.cs" />
     <Compile Include="ModelDTO\NumberStringDTO.cs" />
     <Compile Include="ModelDTO\ProductDTO.cs" />
+    <Compile Include="ModelDTO\ProductsListIdDto.cs" />
     <Compile Include="ModelDTO\SubcategoryDTO.cs" />
     <Compile Include="NumberString.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>

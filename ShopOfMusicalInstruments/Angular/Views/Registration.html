@@ -19,26 +19,4 @@
         <input type="submit" class="btn-block btn-sm btn-info form-control" value="Отправить" ng-click="registration(user,formreg)" />
     </form>
 </div>
-<script type="text/javascript">
-    $(function () {
-        $('#submit').click(function (e) {
-            e.preventDefault();
-            var data = {
-                Email: $('#email').val(),
-                Password: $('#password').val()
-            };
- 
-            $.ajax({
-                type: 'POST',
-                url: '/api/Account/Register',
-                contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify(data)
-            }).success(function (data) {
-                alert("Регистрация пройдена");
-            }).fail(function (data) {
-                alert("В процесе регистрации возникла ошибка");
-            });
-        });
-    })
-</script>
 

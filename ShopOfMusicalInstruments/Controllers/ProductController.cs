@@ -49,7 +49,7 @@ namespace ShopOfMusicalInstruments.Core.Controllers
         }
 
         [HttpPut]
-        public IHttpActionResult Edit(List<ProductDTO> data)
+        public IHttpActionResult Edit([FromBody]List<ProductDTO> data)
         {
             _bllFactory.ProductBll.Edit(data);
             return Ok();
