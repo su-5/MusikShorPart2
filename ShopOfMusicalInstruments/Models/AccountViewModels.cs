@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace ShopOfMusicalInstruments.Models
+namespace ShopOfMusicalInstruments.Core.Models
 {
     // Модели, возвращаемые действиями AccountController.
 

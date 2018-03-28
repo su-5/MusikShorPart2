@@ -148,6 +148,7 @@
     <Compile Include="BLL_Core\Interface\INumberStringBLL.cs" />
     <Compile Include="BLL_Core\Interface\IProductBLL.cs" />
     <Compile Include="BLL_Core\Interface\ISubcategoryBLL.cs" />
+    <Compile Include="BLL_Core\Interface\IUserBLL.cs" />
     <Compile Include="BLL_Core\Mapping\BrandMapper.cs" />
     <Compile Include="BLL_Core\Mapping\CategoryMapper.cs" />
     <Compile Include="BLL_Core\Mapping\CountryMapper.cs" />
@@ -162,6 +163,7 @@
     <Compile Include="BLL_Core\Repository\NumberStringBLL.cs" />
     <Compile Include="BLL_Core\Repository\ProductBLL.cs" />
     <Compile Include="BLL_Core\Repository\SubcategoryBLL.cs" />
+    <Compile Include="BLL_Core\Repository\UserBLL.cs" />
     <Compile Include="Exception\ServiceModule.cs" />
     <Compile Include="Exception\ValidatorException.cs" />
     <Compile Include="Identity\IdentityConfig.cs" />

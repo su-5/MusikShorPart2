@@ -3,7 +3,7 @@
 
     // controller class definintion
     var adminController = function ($scope, $rootScope, $uibModal, adminService, countryService, numberstringService, subcategoryService, productService, categoryService, userService) {
-
+        $rootScope.siteFilter = false;
         //Modal Window для брендов 
         $scope.openList = function () {
             $scope.asideState = {

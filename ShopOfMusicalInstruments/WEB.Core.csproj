@@ -379,6 +379,7 @@
     <Content Include="Angular\Services\subcategoryService.js" />
     <Content Include="Angular\Services\userService.js" />
     <Content Include="Angular\Templates\isCheckNotZero.html" />
+    <Content Include="Angular\Templates\NumberProductCart.html" />
     <Content Include="Angular\Templates\WindowCheckBox.html" />
     <Content Include="Angular\Views\AdminPanel.html" />
     <Content Include="Angular\Views\Cart.html" />

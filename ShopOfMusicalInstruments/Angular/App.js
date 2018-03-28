@@ -49,6 +49,7 @@
             //вызываем функцию, которая считывает куки и выводит их кол-во id в корзину
             $rootScope.lengthCartProducts();
             $rootScope.ProduktsFilter = false;
+            $rootScope.siteFilter = true;
         }
     ]);
 
