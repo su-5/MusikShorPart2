@@ -2,10 +2,18 @@
     "use strict";
 
     // controller class definintion
-    var cartController = function ($scope, $rootScope, $cookies, cartService) {
+    var cartController = function ($scope, $rootScope, $cookies, cartService, $window, $state) {
         var productsCookie = $cookies.getObject("productToCart");
         $rootScope.loadingShow();
         $rootScope.siteFilter = false;
+
+        angular.element($window).bind('resize', function () {
+
+            $scope.mh = $window.innerHeight - 110 + 'px';
+            // manuall $digest required as resize event
+            // is outside of angular
+            $scope.$digest();
+        });
 
         $scope.gridCart = {
             enableColumnResizing: true,
@@ -30,7 +38,7 @@
                 },
                 {
                     field: 'Name',
-                    width: "24%",
+                    width: "22%",
                     displayName: "Название инструмента",
                     cellTemplate: '<p style="margin-left:15px;">{{row.entity.Name}}</p>'
                 },
@@ -55,7 +63,7 @@
                 },
                 {
                     field: 'NumberProduct',
-                    width: "11%",
+                    width: "13%",
                     displayName: 'Количество (шт)',
                     cellTemplate: 'Angular/Templates/NumberProductCart.html'
                 },
@@ -92,29 +100,60 @@
             var total = 0;
             angular.forEach($scope.NumberProduct,
                 function (value) {
-                    total += value.NumberProduct * item.Price;
+                    total += value.NumberProduct * value.Price;
                 });
             return total;
         };
 
-        cartService.getAllToCart(productsCookie).then(function (value) {
-            $scope.gridCart.data = value;
-        },
-            function (errorObject) {
-                $rootScope.toaster('error', errorObject.Message, 9000);
-                for (var i = 0; i < errorObject.ModelState.error.length; i++) {
-                    $rootScope.toaster('error', errorObject.ModelState.error[i], 9000);
-                }
+        $scope.incWork = function (value,inc) {
+            debugger;
+            if (value) {
+                $scope.inc = inc + 1;
+            } else {
+                $scope.inc = inc - 1; 
+            }
+        }
 
+        $scope.deleteRowInCart = function (id) {
+            var index = 0;
+            for (var i = 0; i < productsCookie.length; i++) {
+                if (productsCookie[i].id === id) {
+                    index = i;
+                    break;
+                } 
+            }
 
-            }).finally(function () {
+            productsCookie.splice(index, 1);
+            $cookies.putObject('productToCart', productsCookie);
+            getProductForCookies(productsCookie);
+        }
+
+        function getProductForCookies(cookies) {
+            if (cookies === undefined) {
+                $state.go("mainPage/Catalog");
+            }
+            if (cookies.length === 0) {
+                $state.go("mainPage/Catalog");
+            }
+           
+            cartService.getAllToCart(cookies).then(function (value) {
+                    $scope.gridCart.data = value;
+                },
+                function (errorObject) {
+                    $rootScope.toaster('error', errorObject.Message, 9000);
+                    for (var i = 0; i < errorObject.ModelState.error.length; i++) {
+                        $rootScope.toaster('error', errorObject.ModelState.error[i], 9000);
+                    }
+                }).finally(function () {
                 $rootScope.loadingHide();
-            });
+            }); 
+        }
 
 
+        getProductForCookies(productsCookie);
 
     };
     angular
         .module("Web.Controllers")
-        .controller("cartController", ["$scope", "$rootScope", "$cookies", "cartService", cartController]);
+        .controller("cartController", ["$scope", "$rootScope", "$cookies", "cartService", "$window","$state", cartController]);
 })();

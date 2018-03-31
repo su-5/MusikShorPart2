@@ -4,6 +4,7 @@
     // controller class definintion
     var catalogController = function ($scope, $rootScope, productService, $cookies, $uibModal) {
         $rootScope.loadingShow();
+        $rootScope.lengthCartProducts();
         $rootScope.siteFilter = true;
         productService.getAllCatalog().then(function (value) {
             $rootScope.Produkts = value;// angular.copy(value);

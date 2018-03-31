@@ -1,8 +1,12 @@
 ﻿<h3 style="padding:0; text-align: center">Корзина</h3>
 
-<div ui-grid="gridCart" ui-grid-cellnav ui-grid-auto-resize ui-grid-resize-columns ui-grid-selection ng-style="{'height':309 + 'px'}">
+<div ui-grid="gridCart" ui-grid-cellnav ui-grid-auto-resize ui-grid-resize-columns ui-grid-selection ng-style="{'height': mh}">
 </div>
-<div style="float:right">
+<div align="right" style="padding-right: 15px;">
+    <div><label>Товаров выбрано - 0</label></div> 
+    <div><label>Итого к оплате : 0</label></div>   
+</div>
+<div style="float: right;margin-right: 12px;">
     <button type="button" class="btn btn-success" ng-click="OrderForm(order, orderform)">Перейти к покупке</button>
     <button type="button" class="btn btn-danger" ng-click="">Вернуться в каталог</button>
 </div>
