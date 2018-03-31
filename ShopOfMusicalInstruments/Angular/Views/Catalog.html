@@ -1,34 +1,32 @@
 ﻿<div>
     <table style="height: 404px;" class="table table-striped table-bordered table-hover bg-info">
         <thead>
-            <tr>
-                <th style="text-align: center">Бренд</th>
-                <th style="text-align: center">Страна</th>
-                <th style="text-align: center">Дата выпуска</th>
-                <th style="text-align: center">Кол-во струн</th>
-                <th style="text-align: center">Цена</th>
-                <th style="text-align: center; width:15px;">Доп.Информация</th>
-                <th style="text-align: center; width: 222px;">Корзина</th>
-            </tr>
+        <tr>
+            <th style="text-align: center">Бренд</th>
+            <th style="text-align: center">Страна</th>
+            <th style="text-align: center">Дата выпуска</th>
+            <th style="text-align: center">Кол-во струн</th>
+            <th style="text-align: center">Цена</th>
+            <th style="text-align: center; width:15px;">Доп.Информация</th>
+            <th style="text-align: center; width: 222px;">Корзина</th>
+        </tr>
         </thead>
-        <tbody>
-            <tr ng-repeat="value in $root.Produkts">
-                <td>{{value.Brand.Name}}</td>
-                <td>{{value.Country.Name}}</td>
-                <td>{{value.DateManufacture | date:'MM/dd/yyyy'}}</td>
-                <td>{{value.NumberString.Number}}</td>
-                <td>{{value.Price}}</td>
-                <td style="text-align: center;"><button class="btn btn-primary" ng-click="FullDesc(value)">Подробнее</button></td>
-                <td>
-                    <div class="pull-right">
-                        <button type="button" class="btn btn-success" ng-click="addProductToCart(value.Id)">Добавить в корзину</button>
-                        <img src="../../Content/image/карзина.jpg" height="40" width="40" style="float: left; margin-top:-5px" />
-                    </div>
-                </td>
-            </tr>
-        </tbody>
+            <tbody>
+                <tr ng-repeat="value in $root.Produkts">
+                    <td>{{value.Brand.Name}}</td>
+                    <td>{{value.Country.Name}}</td>
+                    <td>{{value.DateManufacture | date:'MM/dd/yyyy'}}</td>
+                    <td>{{value.NumberString.Number}}</td>
+                    <td>{{value.Price}}</td>
+                    <td style="text-align: center;"><button class="btn btn-primary" ng-click="FullDesc(value)">Подробнее</button></td>
+                    <td>
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-success" ng-click="addProductToCart(value.Id)">Добавить в корзину</button>
+                            <img src="../../Content/image/карзина.jpg" height="40" width="40" style="float: left; margin-top:-5px" />
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
     </table>
 </div>
-<div>
-    <a ui-sref="mainPage/AdminPanel" class="btn btn-success">Перейти в админку</a><br /><br />
-</div>
+

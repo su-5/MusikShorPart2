@@ -1,8 +1,17 @@
 ﻿<div align="center" class="btn-group" style="width: 100%">
     <div align="right" style="width: 50%">
         <div class="pull-left" align="left"><label>{{row.entity.NumberProduct}}</label></div>
-         <label class="btn btn-danger btn-sm btn-cart">-</label>
-        <label class="btn btn-primary btn-sm btn-cart"><i>+</i></label>
+        <button class="btn btn-primary btn-sm btn-cart" ng-click="inc = inc + 1" ng-init="inc=0">
+            +
+        </button>
+        <span>
+            {{inc}}
+        </span>
+        <button class="btn btn-danger btn-sm btn-cart" ng-click="dec = dec - 1" ng-init="dec=0">
+            -
+        </button>
+        <span>
+            {{dec}}
+        </span>
     </div>
-
 </div>

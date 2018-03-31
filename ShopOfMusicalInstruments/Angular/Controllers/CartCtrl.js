@@ -64,13 +64,7 @@
                     displayName: 'Цена',
                     cellTemplate: '<p style="margin-left:15px;">{{row.entity.Price}}</p>'
                 },
-                //{
-                //    field: 'buttons_edit_del',
-                //    displayName: "Количество",
-                //    width: "12%",
-                //    visible: true,
-                //    cellTemplate: "",
-                //},
+
                 {
                     field: 'selectProduct',
                     width: "15%",
