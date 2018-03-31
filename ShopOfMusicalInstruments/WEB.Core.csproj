@@ -386,6 +386,7 @@
     <Content Include="Angular\Views\Cart.html" />
     <Content Include="Angular\Views\Catalog.html" />
     <Content Include="Angular\Views\Login.html" />
+    <Content Include="Angular\Views\OrderForm.html" />
     <Content Include="Angular\Views\Registration.html" />
     <Content Include="Angular\Views\topMenu.html" />
     <Content Include="App_Data\MusicDataBase.mdf" />

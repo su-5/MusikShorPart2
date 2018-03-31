@@ -25,12 +25,13 @@
         </div>
         <top-menu></top-menu>
         @RenderBody()
-
-        <div class="footer">
-            &copy;
-            <script>document.write(new Date().getFullYear())</script> &nbsp;|&nbsp; Проект Ткаченко Дмитрия Александровича.
+        <div class="navbar-fixed-bottom">
+            <div align="center">
+                &copy;
+                <script>document.write(new Date().getFullYear())</script> &nbsp;|&nbsp; Проект Ткаченко Дмитрия Александровича.
+            </div>
+            @RenderSection("scripts", required: false)
         </div>
-        @RenderSection("scripts", required: false)
     </div>
 </body>
 </html>

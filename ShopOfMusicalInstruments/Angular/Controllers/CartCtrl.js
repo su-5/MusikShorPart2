@@ -88,15 +88,24 @@
 
         };
 
+        $scope.total = function () {
+            var total = 0;
+            angular.forEach($scope.NumberProduct,
+                function (value) {
+                    total += value.NumberProduct * item.Price;
+                });
+            return total;
+        };
+
         cartService.getAllToCart(productsCookie).then(function (value) {
             $scope.gridCart.data = value;
         },
             function (errorObject) {
                 $rootScope.toaster('error', errorObject.Message, 9000);
                 for (var i = 0; i < errorObject.ModelState.error.length; i++) {
-                    $rootScope.toaster('error', errorObject.ModelState.error[i], 9000);   
+                    $rootScope.toaster('error', errorObject.ModelState.error[i], 9000);
                 }
-               
+
 
             }).finally(function () {
                 $rootScope.loadingHide();

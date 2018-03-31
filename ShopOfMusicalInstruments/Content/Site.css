@@ -16,20 +16,6 @@
 }
 
 
-.footer {
-    position: absolute;
-    background-color: skyblue; 
-    color: #E6E4E4;
-    height: 60px; 
-    text-align: center;
-    padding: 20px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-}
-
-
 div.body-content {
     background: lightblue;
 }
