@@ -223,8 +223,10 @@ a {
 }
 
 .btn-cart {
-    height: 24px;
-    padding-top: 2px!important;
+    height: 27px !important;
+    line-height: 1.5 !important;
+    border-radius: 15px !important;
+    margin-top: 1px !important;
 }
 
 

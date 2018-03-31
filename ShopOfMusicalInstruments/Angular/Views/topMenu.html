@@ -19,7 +19,7 @@
             <div class="container wrapper pull-left" style="width: 84%;">
                 <p class="catalog" style="padding-top: 10px"><a href="" ui-sref="mainPage/Catalog">Каталог товаров</a></p>
             </div>
-            <div align="right" style="font-size: 22px;" class="pull-left">
+            <div ng-if="$root.lengthCart != 0" align="right" style="font-size: 22px;" class="pull-left">
                 <a href="" ui-sref="mainPage/Cart" style="color: #101010;"><i class="fa fa-shopping-cart"></i><span> Корзина: </span><i id="jshop_quantity_products"> {{$root.lengthCart}}</i></a>
             </div>
         </div>

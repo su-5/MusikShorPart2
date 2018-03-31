@@ -639,17 +639,10 @@
                             $rootScope.loadingHide();
                         });
 
-                        $scope.$watch('Product.CategoryId',
+                        $scope.$watch('inc',
                             function(newValue, oldValue) {
                                 if (newValue !== undefined) {
-                                    subcategoryService.getSubcategoryOnCategories(newValue).then(function(value) {
-                                            $scope.allSubcategories = angular.copy(value);
-                                        },
-                                        function(errorObject) {
-
-                                        }).finally(function() {
-                                        $rootScope.loadingHide();
-                                    });
+                                   
                                 }
                             });
 

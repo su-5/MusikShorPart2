@@ -141,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL_Core\AutoMapperConfiguration.cs" />
+    <Compile Include="BLL_Core\Ex\ValidationException.cs" />
     <Compile Include="BLL_Core\Interface\IBLLFactory.cs" />
     <Compile Include="BLL_Core\Interface\IBrandBLL.cs" />
     <Compile Include="BLL_Core\Interface\ICategoryBLL.cs" />

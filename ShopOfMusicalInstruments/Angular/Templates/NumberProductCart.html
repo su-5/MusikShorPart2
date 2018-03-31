@@ -1,17 +1,11 @@
 ﻿<div align="center" class="btn-group" style="width: 100%">
     <div align="right" style="width: 50%">
-        <div class="pull-left" align="left"><label>{{row.entity.NumberProduct}}</label></div>
-        <button class="btn btn-primary btn-sm btn-cart" ng-click="inc = inc + 1" ng-init="inc=0">
+        <button ng-disabled="(appScope.inc == row.entity.NumberProduct)" class="btn btn-primary btn-sm btn-cart" ng-click="appScope.inc = appScope.inc + 1" ng-init="appScope.inc=1">
             +
         </button>
-        <span>
-            {{inc}}
-        </span>
-        <button class="btn btn-danger btn-sm btn-cart" ng-click="dec = dec - 1" ng-init="dec=0">
+        <label>{{appScope.inc}}</label>
+        <button ng-disabled="(appScope.inc == 1)" class="btn btn-danger btn-sm btn-cart" ng-click="appScope.inc = appScope.inc - 1">
             -
         </button>
-        <span>
-            {{dec}}
-        </span>
     </div>
 </div>

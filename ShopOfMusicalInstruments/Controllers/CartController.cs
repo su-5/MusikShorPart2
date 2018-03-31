@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
+using BLL.Core.BLL_Core.Ex;
 using BLL.Core.BLL_Core.Interface;
 using DAL.Core.ModelDTO;
 
@@ -20,8 +21,17 @@ namespace ShopOfMusicalInstruments.Core.Controllers
         [HttpPost]
         public IHttpActionResult GetAllToCart(List<dynamic> data)
         {
-            List<ProductDTO> result = _bllFactory.ProductBll.GetAllToCart(data);
-            return Ok(result);
+            try
+            {
+                List<ProductDTO> result = _bllFactory.ProductBll.GetAllToCart(data);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("error",ex.Message);
+                return BadRequest(ModelState);
+            }  
+            
         }
     }
 
