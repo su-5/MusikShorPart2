@@ -35,6 +35,11 @@
                 controller: "cartController"
             });
 
+            $stateProvider.state("mainPage/OrderForm", {
+                url: "/orderForm",
+                templateUrl: "Angular/Views/OrderForm.html",
+                controller: "orderFormController"
+            });
         
             $urlRouterProvider.otherwise("/catalog");
         }]);

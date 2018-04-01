@@ -357,6 +357,7 @@
     <Content Include="Angular\Controllers\CartCtrl.js" />
     <Content Include="Angular\Controllers\CatalogCtrl.js" />
     <Content Include="Angular\Controllers\LoginCtrl.js" />
+    <Content Include="Angular\Controllers\OrderFormCtrl.js" />
     <Content Include="Angular\Controllers\RegistrationCtrl.js" />
     <Content Include="Angular\Controllers\topMenu.js" />
     <Content Include="Angular\ModalWindows\ControlAddNewProductModalWindow.html" />

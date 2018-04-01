@@ -106,7 +106,6 @@
         };
 
         $scope.incWork = function (value,inc) {
-            debugger;
             if (value) {
                 $scope.inc = inc + 1;
             } else {
