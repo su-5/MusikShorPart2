@@ -14,6 +14,18 @@
                 });
             return deferred.promise;
         };
+
+        this.login = function (dataUser) {
+            var model = dataUser;
+            var deferred = $q.defer();
+            $http.post("api/Account/LogIn", model)
+                .then(function (response) {
+                    deferred.resolve(response.data);
+                }).catch(function onError(response) {
+                    deferred.reject(response.data);
+                });
+            return deferred.promise;
+        };
     };
 
     angular

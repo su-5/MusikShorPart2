@@ -1,23 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Routing;
 using BLL.Core.Identity;
+using DAL.Core;
 using DAL.Core.ModelDTO;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.OAuth;
 using ShopOfMusicalInstruments.Core.Models;
-using ShopOfMusicalInstruments.Core.Providers;
 using ShopOfMusicalInstruments.Models;
-using ShopOfMusicalInstruments.Results;
 
 namespace ShopOfMusicalInstruments.Core.Controllers 
 {
@@ -27,6 +27,7 @@ namespace ShopOfMusicalInstruments.Core.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private CustomUserManager _userManager;
+        private string _userId;
 
         public AccountController()
         {
@@ -62,13 +63,7 @@ namespace ShopOfMusicalInstruments.Core.Controllers
             };
         }
 
-        // POST api/Account/Logout
-        [Route("Logout")]
-        public IHttpActionResult Logout()
-        {
-            Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
-            return Ok();
-        } 
+       
 
         //// GET api/Account/ManageInfo?returnUrl=%2F&generateState=true
         //[Route("ManageInfo")]
@@ -319,13 +314,14 @@ namespace ShopOfMusicalInstruments.Core.Controllers
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
+
             model.ConfirmPassword = model.Password;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var user = new AppUserDto() { UserName = model.Name, Email = model.Email,LastName = model.LastName,MiddleName = model.MiddleName};
+            var user = new User() { UserName = model.Name, Email = model.Email,LastName = model.LastName,MiddleName = model.MiddleName};
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
@@ -335,16 +331,66 @@ namespace ShopOfMusicalInstruments.Core.Controllers
             }
             await SignInAsync(user, true);
 
+
             return Ok();
         }
 
-        private async Task SignInAsync(AppUserDto user, bool isPersistent)
+
+        //[Route("setCookie")]
+        //[HttpGet]
+        //public HttpResponseMessage SetCookie()
+        //{
+        //    HttpResponseMessage resp = new HttpResponseMessage();
+        //    var cookie = new CookieHeaderValue("register", "12345");
+        //    cookie.Expires = DateTimeOffset.Now.AddDays(1);
+        //    cookie.Domain = Request.RequestUri.Host;
+        //    cookie.Path = "/";
+
+        //    resp.Headers.AddCookies(new CookieHeaderValue[] { cookie });
+        //    return resp;
+        //} 
+
+        private async Task SignInAsync(User user, bool isPersistent)
         {
             Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
             var identity = await user.GenerateUserIdentityAsync(UserManager, CookieAuthenticationDefaults.AuthenticationType);
             Authentication.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, identity
 
             );
+        }
+
+        [AllowAnonymous]
+        [Route("LogIn")]
+        [HttpPost]
+        public async Task<IHttpActionResult> LogIn(LoginViewModel model)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = await UserManager.FindAsync(model.Email, model.Password);
+            if (user == null)
+            { // user auth failed
+                ModelState.AddModelError("errorLogin", "Invalid email or password");
+                return BadRequest(ModelState);
+            }
+
+            //if (user.Locking == false)
+            //{ // user auth failed
+            //    ModelState.AddModelError("errorLogin", "Данный ресурс для вас заблокирован по решению органов государственной власти!!!");
+            //    return BadRequest(ModelState);
+            //}
+            await SignInAsync(user, model.RememberMe);
+            return Ok();
+        }
+
+        [Route("Logout")]
+        public IHttpActionResult Logout()
+        {
+            Authentication.SignOut();
+            return Ok();
         }
         //// POST api/Account/RegisterExternal
         //[OverrideAuthentication]

@@ -2,14 +2,11 @@
 
 <div ui-grid="gridCart" ui-grid-cellnav ui-grid-auto-resize ui-grid-resize-columns ui-grid-selection ng-style="{'height': mh}">
 </div>
-<div align="right" style="padding-right: 15px;">
-    <div><label>Товаров выбрано</label></div>
 
-    <div><label>Итого к оплате</label></div>
-    <p class="text-primary">{{total()}}</p>
-</div>
-<div style="float: right;margin-right: 12px;">
-    <button type="button" class="btn btn-success" ng-click="orderForm(order, orderform)">Перейти к покупке</button>
-    <button type="button" class="btn btn-danger" ng-click="">Вернуться в каталог</button>
+<div style="float: right; margin-right: 12px;">
+    <div><label>Товаров выбрано - <strong class="text-primary"> {{totalProduct}} (шт)</strong></label></div>
+    <div><label>Итого к оплате - <strong class="text-primary"> {{totalBYN | currency:"":2}} (BYN)</strong></label></div>
+    <button type="button" class="btn btn-success" ng-click="orderForm()">Перейти к покупке</button>
+    <button type="button" class="btn btn-danger" ng-click="returnToCatalog()">Вернуться в каталог</button>
 </div>
 

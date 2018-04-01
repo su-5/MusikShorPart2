@@ -3,7 +3,7 @@
 
     // controller class definintion
     var cartController = function ($scope, $rootScope, $cookies, cartService, $window, $state) {
-        var productsCookie = $cookies.getObject("productToCart");
+        var productsCookie =  $cookies.getObject('productToCart');
         $rootScope.loadingShow();
         $rootScope.siteFilter = false;
 
@@ -38,7 +38,7 @@
                 },
                 {
                     field: 'Name',
-                    width: "22%",
+                    width: "18%",
                     displayName: "Название инструмента",
                     cellTemplate: '<p style="margin-left:15px;">{{row.entity.Name}}</p>'
                 },
@@ -69,16 +69,16 @@
                 },
                 {
                     field: 'Price',
-                    width: "5%",
-                    displayName: 'Цена',
-                    cellTemplate: '<p style="margin-left:15px;">{{row.entity.Price}}</p>'
+                    width: "9%",
+                    displayName: 'Цена за 1(шт)',
+                    cellTemplate: '<div align="center">{{row.entity.Price}}</div>'
                 },
 
                 {
-                    field: 'selectProduct',
+                    field: 'SelectProductForCart',
                     width: "6%",
                     displayName: 'В заказе',
-                    cellTemplate: 'Angular/Templates/WindowCheckBox.html'
+                    cellTemplate: 'Angular/Templates/SelectProductForCart.html'
                 },
                 {
                     field: 'deleteCart',
@@ -96,21 +96,31 @@
 
         };
 
-        $scope.total = function () {
-            var total = 0;
-            angular.forEach($scope.NumberProduct,
+
+        $scope.totalBYNProduct = function () {
+            $scope.totalBYN = 0;
+            angular.forEach($scope.gridCart.data,
                 function (value) {
-                    total += value.NumberProduct * value.Price;
+                    if (value.SelectProductForCart) {
+                        $scope.totalBYN += value.SelectNumber * value.Price;
+                    }
+
                 });
-            return total;
         };
 
-        $scope.incWork = function (value,inc) {
+        $scope.selectProductForCartCheckBox = function () {
+            $scope.countingProducts();
+            $scope.totalBYNProduct();// общая сумма
+        }
+
+        $scope.incWork = function (value, row) {
             if (value) {
-                $scope.inc = inc + 1;
+                row.entity.SelectNumber = row.entity.SelectNumber + 1;
             } else {
-                $scope.inc = inc - 1; 
+                row.entity.SelectNumber = row.entity.SelectNumber - 1;
             }
+            $scope.totalBYNProduct();// общая сумма
+            $scope.countingProducts();
         }
 
         $scope.deleteRowInCart = function (id) {
@@ -119,7 +129,7 @@
                 if (productsCookie[i].id === id) {
                     index = i;
                     break;
-                } 
+                }
             }
 
             productsCookie.splice(index, 1);
@@ -134,25 +144,48 @@
             if (cookies.length === 0) {
                 $state.go("mainPage/Catalog");
             }
-           
+
             cartService.getAllToCart(cookies).then(function (value) {
-                    $scope.gridCart.data = value;
-                },
+                $scope.gridCart.data = value;
+                $scope.countingProducts();// кол-во товара
+                $scope.totalBYNProduct();// общая сумма
+            },
                 function (errorObject) {
                     $rootScope.toaster('error', errorObject.Message, 9000);
                     for (var i = 0; i < errorObject.ModelState.error.length; i++) {
                         $rootScope.toaster('error', errorObject.ModelState.error[i], 9000);
                     }
                 }).finally(function () {
-                $rootScope.loadingHide();
-            }); 
+                    $rootScope.loadingHide();
+                });
         }
 
+        $scope.countingProducts = function () {
+            $scope.totalProduct = 0;
+            for (var i = 0; i < $scope.gridCart.data.length; i++) {
+                if ($scope.gridCart.data[i].SelectProductForCart) {
+                    $scope.totalProduct += $scope.gridCart.data[i].SelectNumber;
+                }
+            }
+        }
+
+        $scope.returnToCatalog = function() {
+            $state.go("mainPage/Catalog");
+        }
+
+        $scope.orderForm = function() {
+            if ($rootScope.authentication === "value") {
+                $state.go("mainPage/OrderForm"); 
+            } else {
+                $rootScope.toaster('info', 'Вы не зарегистрированы.  Только зарегистрированые пользователи могут совершать покупки.',0);
+                $state.go("mainPage/Registration"); 
+            }
+        }
 
         getProductForCookies(productsCookie);
 
     };
     angular
         .module("Web.Controllers")
-        .controller("cartController", ["$scope", "$rootScope", "$cookies", "cartService", "$window","$state", cartController]);
+        .controller("cartController", ["$scope", "$rootScope", "$cookies", "cartService", "$window", "$state", cartController]);
 })();

@@ -23,7 +23,7 @@ namespace ShopOfMusicalInstruments.Core.Controllers
         {
             try
             {
-                List<ProductDTO> result = _bllFactory.ProductBll.GetAllToCart(data);
+                List<CartDto> result = _bllFactory.ProductBll.GetAllToCart(data);
                 return Ok(result);
             }
             catch (Exception ex)

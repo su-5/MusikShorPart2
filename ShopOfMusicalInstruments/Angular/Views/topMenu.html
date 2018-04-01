@@ -7,9 +7,12 @@
             <a href="#">Магазин музыкальных инструментов</a>
         </h1>
     </div>
-    <div>
+    <div ng-if="$root.authentication != 'value'">
         <a class="Login" href="" ui-sref="mainPage/Login">Войти</a>
         <a class="Login" href="" ui-sref="mainPage/Registration">Регистрация</a>
+    </div>
+    <div ng-if="$root.authentication == 'value'">
+        <a class="Login" href="">Здраствуйте {{$root.authenticationUserName}}</a>
     </div>
 </div>
 <div ng-if="$root.siteFilter">

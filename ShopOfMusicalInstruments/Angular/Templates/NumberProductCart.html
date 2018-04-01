@@ -1,10 +1,10 @@
 ﻿<div align="center" class="btn-group" style="width: 100%">
     <div align="right" style="width: 50%">
-        <button ng-disabled="( row.entity.SelectNumber == row.entity.NumberProduct)" class="btn btn-primary btn-sm btn-cart" ng-click="row.entity.SelectNumber = row.entity.SelectNumber + 1">
+        <button ng-disabled="( row.entity.SelectNumber == row.entity.NumberProduct)" class="btn btn-primary btn-sm btn-cart" ng-click="grid.appScope.incWork(true,row)">
             +
         </button>
         <label>{{row.entity.SelectNumber}}</label>
-        <button ng-disabled="(row.entity.SelectNumber == 1)" class="btn btn-danger btn-sm btn-cart" ng-click="row.entity.SelectNumber = row.entity.SelectNumber - 1">
+        <button ng-disabled="(row.entity.SelectNumber == 1)" class="btn btn-danger btn-sm btn-cart" ng-click="grid.appScope.incWork(false,row)">
             -
         </button>
     </div>

@@ -22,7 +22,8 @@
                 toaster.pop(type, null, message, timeout, null, clickHandler);
             };
 
-            $rootScope.lengthCartProducts = function() {
+            $rootScope.lengthCartProducts = function () {
+                var r = $rootScope.test;
                 var cookies = $cookies.getObject('productToCart');
                 if (cookies === undefined) {
                     $rootScope.lengthCart = 0;
@@ -46,6 +47,8 @@
                 });
             }
 
+            $rootScope.authenticationUserName = angular.element('#userName').val();
+            $rootScope.authentication = angular.element('#authentication').val();
             //вызываем функцию, которая считывает куки и выводит их кол-во id в корзину
             $rootScope.lengthCartProducts();
             $rootScope.ProduktsFilter = false;

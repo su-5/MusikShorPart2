@@ -108,6 +108,9 @@
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="Remotion.Linq, Version=2.1.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>..\packages\Remotion.Linq.2.1.1\lib\net45\Remotion.Linq.dll</HintPath>
     </Reference>
@@ -382,6 +385,7 @@
     <Content Include="Angular\Templates\DeleteCart.html" />
     <Content Include="Angular\Templates\isCheckNotZero.html" />
     <Content Include="Angular\Templates\NumberProductCart.html" />
+    <Content Include="Angular\Templates\SelectProductForCart.html" />
     <Content Include="Angular\Templates\WindowCheckBox.html" />
     <Content Include="Angular\Views\AdminPanel.html" />
     <Content Include="Angular\Views\Cart.html" />
