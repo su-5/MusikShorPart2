@@ -9,7 +9,7 @@ namespace BLL.Core.Identity
 {
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
 
-    public class CustomUserManager : UserManager<AppUserDto>
+    public class CustomUserManager : UserManager<User>
     {
         public CustomUserManager(UserIdentityStore store)
             : base(store)
@@ -20,7 +20,7 @@ namespace BLL.Core.Identity
         {
             var manager = new CustomUserManager(new UserIdentityStore(context.Get<MusicDataBaseEntities>()));
             // Настройка логики проверки имен пользователей
-            manager.UserValidator = new UserValidator<AppUserDto>(manager)
+            manager.UserValidator = new UserValidator<User>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
@@ -37,7 +37,7 @@ namespace BLL.Core.Identity
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = new DataProtectorTokenProvider<AppUserDto>(dataProtectionProvider.Create("ASP.NET Identity"));
+                manager.UserTokenProvider = new DataProtectorTokenProvider<User>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
         }
@@ -48,7 +48,7 @@ namespace BLL.Core.Identity
             return await validateAsync;
         }
 
-        public async Task<bool> ChangeEmail(AppUserDto user, string email)
+        public async Task<bool> ChangeEmail(User user, string email)
         {
             if (await base.FindByEmailAsync(email) != null)
             {

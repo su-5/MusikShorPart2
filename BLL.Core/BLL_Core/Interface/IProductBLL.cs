@@ -10,6 +10,6 @@ namespace BLL.Core.BLL_Core.Interface
         void Edit(List<ProductDTO> data);
         void Delete(int id);
         List<ProductDTO> GetProductById(int categoryId, int subcategoryId, bool flag);
-        List<ProductDTO> GetAllToCart(List<dynamic> productsListId);
+        List<CartDto> GetAllToCart(List<dynamic> productsListId);
     }
 }

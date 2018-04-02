@@ -151,6 +151,7 @@
     <Compile Include="BLL_Core\Interface\ISubcategoryBLL.cs" />
     <Compile Include="BLL_Core\Interface\IUserBLL.cs" />
     <Compile Include="BLL_Core\Mapping\BrandMapper.cs" />
+    <Compile Include="BLL_Core\Mapping\CartMapper.cs" />
     <Compile Include="BLL_Core\Mapping\CategoryMapper.cs" />
     <Compile Include="BLL_Core\Mapping\CountryMapper.cs" />
     <Compile Include="BLL_Core\Mapping\NumberStringMapper.cs" />

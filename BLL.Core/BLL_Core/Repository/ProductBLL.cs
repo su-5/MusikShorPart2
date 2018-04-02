@@ -67,10 +67,10 @@ namespace BLL.Core.BLL_Core.Repository
             return result;
         }
 
-        public List<ProductDTO> GetAllToCart(List<dynamic> productsList)
+        public List<CartDto> GetAllToCart(List<dynamic> productsList)
         {
             var result = new List<Product>();
-            List<ProductDTO> resultList = null;
+            List<CartDto> resultList = null;
             if (productsList != null)
             {
                 foreach (var productId in productsList)
@@ -78,7 +78,7 @@ namespace BLL.Core.BLL_Core.Repository
                     string id = productId.id.Value.ToString();
                     result.Add(_dalFactory.Product.GetById(Convert.ToInt32(id)));
                 }
-                 resultList = Mapper.Map<List<Product>, List<ProductDTO>>(result);
+                 resultList = Mapper.Map<List<Product>, List<CartDto>>(result);
             }
            
             return resultList;

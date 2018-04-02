@@ -1,12 +1,11 @@
 ﻿<div class="row">
     <div class="col-md-offset-2 col-md-8">
         <h3>Оформление заказа:</h3>
-    </div>
-    <div class="col-md-2"></div>
+    </div>    
 </div>
 <div class="row">
     <div class="col-md-offset-2 col-md-8">
-        <form novalidate class="form-horizontal" id="orderform" name="orderform">
+        <form  class="form-horizontal" id="orderform" name="orderform">
             <div class="form-group" ng-class="{'has-success': order.name}">
                 <label for="order_name" class="control-label col-lg-3">Имя:</label>
                 <div class="col-lg-9">
@@ -16,13 +15,13 @@
             <div class="form-group" ng-class="{'has-error': orderform.order_email.$invalid, 'has-success': !orderform.order_email.$invalid && order.email}">
                 <label for="order_email" class="control-label col-lg-3">Эл. почта:</label>
                 <div class="col-lg-9">
-                    <input type="email" class="form-control" id="order_email" name="order_email" ng-model="order.email">
+                    <input type="email" class="form-control" id="order_email" name="order_email" ng-model="order.email" required>
                 </div>
             </div>
             <div class="form-group" ng-class="{'has-error': orderform.order_phone.$invalid, 'has-success': !orderform.order_phone.$invalid}">
                 <label for="order_phone" class="control-label col-lg-3">Телефон:</label>
                 <div class="col-lg-9">
-                    <input type="text" class="form-control" id="order_phone" name="order_phone" ng-model="order.phone" required>
+                    <input type="tel"  pattern=" ^((8|\+7)[\- ]?)?(\(?\d{3,4}\)?[\- ]?)?[\d\- ]{5,10}$" class="form-control" id="order_phone" name="order_phone" ng-model="order.phone" required>
                 </div>
             </div>
             <div class="form-group" ng-class="{'has-success': order.address}">
@@ -37,12 +36,13 @@
                     <textarea type="text" class="form-control" id="order_comments" name="order_comments" ng-model="order.comments"></textarea>
                 </div>
             </div>
+            <div align="right">
+                <button type="submit" ng-click="send()" class="btn btn-success">Отправить</button>
+            </div>
+           
         </form>
     </div>
-    <div class="col-md-2"></div>
 </div>
-<div class="row">  
-        <button ng-click="send()" class="btn btn-success">Отправить</button>
-</div>
+
 
 

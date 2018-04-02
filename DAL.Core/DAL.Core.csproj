@@ -116,6 +116,7 @@
     </Compile>
     <Compile Include="ModelDTO\AppUserDto.cs" />
     <Compile Include="ModelDTO\BrandDTO.cs" />
+    <Compile Include="ModelDTO\CartDTO.cs" />
     <Compile Include="ModelDTO\CategoryDTO.cs" />
     <Compile Include="ModelDTO\CountryDTO.cs" />
     <Compile Include="ModelDTO\NumberStringDTO.cs" />

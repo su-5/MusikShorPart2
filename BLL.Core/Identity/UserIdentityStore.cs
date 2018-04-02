@@ -10,8 +10,8 @@ using Microsoft.AspNet.Identity;
 
 namespace BLL.Core.Identity
 {
-    public class UserIdentityStore : IUserStore<AppUserDto>, IUserEmailStore<AppUserDto>,
-       IUserPasswordStore<AppUserDto>, IUserRoleStore<AppUserDto>
+    public class UserIdentityStore : IUserStore<User>, IUserEmailStore<User>,
+       IUserPasswordStore<User>, IUserRoleStore<User>
     {
         MusicDataBaseEntities _db = new MusicDataBaseEntities();
 
@@ -25,11 +25,11 @@ namespace BLL.Core.Identity
         }
 
 
-        public Task CreateAsync(AppUserDto user)
+        public Task CreateAsync(User user)
         {
             return Task.Factory.StartNew(() =>
             {
-                User userDb = Mapper.Map<AppUserDto,User>(user);
+                User userDb = user;
                 userDb.Roles = new Collection<Role>();
                 foreach (Role c in _db.Roles.Where(co => ("user" == co.Name)).ToList())
                 {
@@ -41,84 +41,84 @@ namespace BLL.Core.Identity
 
         }
 
-        public Task UpdateAsync(AppUserDto user)
+        public Task UpdateAsync(User user)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task DeleteAsync(AppUserDto user)
+        public Task DeleteAsync(User user)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<AppUserDto> FindByIdAsync(string userId)
+        public Task<User> FindByIdAsync(string userId)
         {
             Task<User> userIsResult = Task<User>.Factory.StartNew(() => _db.Users.FirstOrDefault(x => x.Id.Equals(userId)));
-            var result = Mapper.Map<Task<User>, Task<AppUserDto>>(userIsResult);
+            var result = userIsResult;
             return result;
         }
 
-        public Task<AppUserDto> FindByNameAsync(string userName)
+        public Task<User> FindByNameAsync(string userName)
         {
             return FindByEmailAsync(userName);
         }
 
-        public Task SetEmailAsync(AppUserDto user, string email)
+        public Task SetEmailAsync(User user, string email)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<string> GetEmailAsync(AppUserDto user)
+        public Task<string> GetEmailAsync(User user)
         {
             return Task.FromResult(user.Email);
         }
 
-        public Task<bool> GetEmailConfirmedAsync(AppUserDto user)
+        public Task<bool> GetEmailConfirmedAsync(User user)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task SetEmailConfirmedAsync(AppUserDto user, bool confirmed)
+        public Task SetEmailConfirmedAsync(User user, bool confirmed)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<AppUserDto> FindByEmailAsync(string email)
+        public Task<User> FindByEmailAsync(string email)
         {
             Task<User> userIsCheckResult = Task<User>.Factory.StartNew(() => _db.Users.FirstOrDefault(x => x.Email.Equals(email)));
-            var result = Mapper.Map<Task<User>,Task<AppUserDto>> (userIsCheckResult);
+            var result = Mapper.Map<Task<User>,Task<User>> (userIsCheckResult);
             return result;
         }
 
-        public Task SetPasswordHashAsync(AppUserDto user, string passwordHash)
+        public Task SetPasswordHashAsync(User user, string passwordHash)
         {
             user.PasswordHash = passwordHash;
             return Task.FromResult<Object>(null);
         }
 
-        public Task<string> GetPasswordHashAsync(AppUserDto user)
+        public Task<string> GetPasswordHashAsync(User user)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<bool> HasPasswordAsync(AppUserDto user)
+        public Task<bool> HasPasswordAsync(User user)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task AddToRoleAsync(AppUserDto user, string roleName)
+        public Task AddToRoleAsync(User user, string roleName)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task RemoveFromRoleAsync(AppUserDto user, string roleName)
+        public Task RemoveFromRoleAsync(User user, string roleName)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<IList<string>> GetRolesAsync(AppUserDto user)
+        public Task<IList<string>> GetRolesAsync(User user)
         {
-            User userDb = Mapper.Map<AppUserDto, User>(user);
+            User userDb = user;
             if (userDb == null)
             {
                 throw new ArgumentNullException("user");
@@ -133,7 +133,7 @@ namespace BLL.Core.Identity
             return Task.FromResult<IList<string>>(null);
         }
 
-        public Task<bool> IsInRoleAsync(AppUserDto user, string roleName)
+        public Task<bool> IsInRoleAsync(User user, string roleName)
         {
             throw new System.NotImplementedException();
         }
