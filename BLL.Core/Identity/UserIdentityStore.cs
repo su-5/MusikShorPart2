@@ -98,7 +98,9 @@ namespace BLL.Core.Identity
 
         public Task<string> GetPasswordHashAsync(User user)
         {
-            throw new System.NotImplementedException();
+            if (user == null)
+                throw new NotImplementedException();
+            return Task.FromResult(user.PasswordHash);
         }
 
         public Task<bool> HasPasswordAsync(User user)

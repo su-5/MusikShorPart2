@@ -75,6 +75,18 @@
                 });
             return deferred.promise;
         };
+
+        this.exitSystem = function () {
+            var deferred = $q.defer();
+            $http.post('api/Account/Logout')
+                .then(function (response) {
+                    deferred.resolve(response.data);
+                }).catch(function onError(response) {
+                    deferred.reject(response.data);
+                });
+            return deferred.promise;
+        };
+
     };
 
     angular

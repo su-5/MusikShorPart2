@@ -8,8 +8,8 @@
 
     var app = angular.module("Web", ["Web.Services", "Web.Directives", "Web.Externals", "Web.Controllers", "ui.bootstrap"]);
 
-    app.run(["$rootScope", "$location", "$http", "$state", "$stateParams", "$sce", "loadingService", "toaster", "$cookies", "productService",
-        function($rootScope, $location, $http, $state, $stateParams, $sce, loadingService, toaster, $cookies, productService) {
+    app.run(["$rootScope", "$location", "$http", "$state", "$stateParams", "$sce", "loadingService", "toaster", "$cookies", "productService","$window",
+        function ($rootScope, $location, $http, $state, $stateParams, $sce, loadingService, toaster, $cookies, productService, $window) {
             $rootScope.loadingShow = function() {
                 $rootScope.loadingIsShow = loadingService.show(); // loading
             };
@@ -47,10 +47,30 @@
                 });
             }
 
-            $rootScope.authenticationUserName = angular.element('#userName').val();
-            $rootScope.authentication = angular.element('#authentication').val();
+            $rootScope.exitSystem = function() {
+                productService.exitSystem().then(function (value) {
+                    $window.location.reload();
+                    $state.go("mainPage/Catalog");
+                }, function (errorObject) {
+                    //    alert(errorObject);
+                }).finally(function () {
+                    $rootScope.loadingHide();
+                });
+            }
+
+            $rootScope.authenticationUser = function() {
+                $rootScope.authenticationUserName = angular.element('#userName').val();
+                $rootScope.authentication = angular.element('#authentication').val();
+                if ($rootScope.authentication === 'value') {
+                    $rootScope.auchUser = true;
+                } else {
+                    $rootScope.auchUser = false;
+                }
+            }
+           
             //вызываем функцию, которая считывает куки и выводит их кол-во id в корзину
             $rootScope.lengthCartProducts();
+            $rootScope.authenticationUser();
             $rootScope.ProduktsFilter = false;
             $rootScope.siteFilter = true;
         }

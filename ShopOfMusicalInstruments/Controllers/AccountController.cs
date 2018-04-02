@@ -21,7 +21,7 @@ using ShopOfMusicalInstruments.Models;
 using ShopOfMusicalInstruments.Results;
 namespace ShopOfMusicalInstruments.Core.Controllers 
 {
-    [Authorize]
+
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
@@ -385,6 +385,7 @@ namespace ShopOfMusicalInstruments.Core.Controllers
             await SignInAsync(user, model.RememberMe);
             return Ok();
         }
+
 
         [Route("Logout")]
         public IHttpActionResult Logout()

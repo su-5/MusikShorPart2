@@ -7,12 +7,19 @@
             <a href="#">Магазин музыкальных инструментов</a>
         </h1>
     </div>
-    <div ng-if="$root.authentication != 'value'">
+    <div ng-if="!$root.auchUser">
         <a class="Login" href="" ui-sref="mainPage/Login">Войти</a>
         <a class="Login" href="" ui-sref="mainPage/Registration">Регистрация</a>
     </div>
-    <div ng-if="$root.authentication == 'value'">
-        <a class="Login" href="">Здраствуйте {{$root.authenticationUserName}}</a>
+    <div ng-if="$root.auchUser">
+        <div style="width: 104%;margin-top: 7px;">
+            <div align="right" class="pull-left" style="margin-left: 133px;">
+                <a class="Login" href="">Здраствуйте, {{$root.authenticationUserName}}</a>
+            </div>
+            <div align="right" class="pull-left">
+                <button class="btn btn-xs btn-danger" ng-click="$root.exitSystem()" tooltip-placement="left-top" uib-tooltip="Выйти из профиля"><i class="fa fa-times"></i></button>
+            </div>
+        </div>
     </div>
 </div>
 <div ng-if="$root.siteFilter">
