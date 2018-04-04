@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Хранилище MusicDataBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AddressDelivery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityId" Type="int" Nullable="false" />
+    <Property Name="Street" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="House" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Flat" Type="nvarchar" MaxLength="10" />
+  </EntityType>
   <EntityType Name="Brand">
     <Key>
       <PropertyRef Name="Id" />
@@ -18,6 +28,14 @@
     <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="CreateDate" Type="datetime" Nullable="false" />
     <Property Name="DeleteDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="RegionId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Country">
     <Key>
@@ -41,22 +59,42 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IdUser" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="Amount" Type="int" Nullable="false" />
-    <Property Name="OrderNumber" Type="int" Nullable="false" />
-    <Property Name="Currency" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="IdPaymentMethod" Type="int" Nullable="false" />
-    <Property Name="BillingAddress" Type="nvarchar(max)" />
-    <Property Name="DateActiveOrders" Type="nvarchar(max)" />
-    <Property Name="Date" Type="nvarchar(max)" />
+    <Property Name="TypeOrdersId" Type="int" Nullable="false" />
+    <Property Name="AddressDeliveryId" Type="int" />
+    <Property Name="DateShapingOrders" Type="datetime" Nullable="false" />
+    <Property Name="DatePurchase" Type="datetime" />
+    <Property Name="DateCancel" Type="datetime" />
+    <Property Name="OrderSum" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+    <Property Name="PaymentRequisitesId" Type="int" />
+    <Property Name="NumberOrder" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrdersProduct">
+    <Key>
+      <PropertyRef Name="OrdersId" />
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="OrdersId" Type="int" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PaymentRequisites">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PaymentSystemsId" Type="int" Nullable="false" />
+    <Property Name="NumberAccount" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="NumberCard" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateAction" Type="datetime" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <EntityType Name="PaymentSystems">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="NamePaymentSystems" Type="nvarchar(max)" />
+    <Property Name="NamePaymentSystems" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Picture">
     <Key>
@@ -89,6 +127,14 @@
     <Property Name="SubcategoriesId" Type="int" Nullable="false" />
     <Property Name="Window" Type="bit" />
   </EntityType>
+  <EntityType Name="Region">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CountryId" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="Roles">
     <Key>
       <PropertyRef Name="Id" />
@@ -105,6 +151,13 @@
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CategoriesId" Type="int" Nullable="false" />
     <Property Name="DeleteDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Type_Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -126,6 +179,30 @@
     <Property Name="RolesId" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="UsersId" Type="nvarchar" MaxLength="128" Nullable="false" />
   </EntityType>
+  <Association Name="FK_AddressDelivery_CityId">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="AddressDelivery" Type="Self.AddressDelivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AddressDelivery">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_City_RegionId">
+    <End Role="Region" Type="Self.Region" Multiplicity="1" />
+    <End Role="City" Type="Self.City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="RegionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_dbo_Product_dbo_Brand_BrandId">
     <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
     <End Role="Product" Type="Self.Product" Multiplicity="*" />
@@ -226,19 +303,133 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Orders_AddressDeliveryId">
+    <End Role="AddressDelivery" Type="Self.AddressDelivery" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AddressDelivery">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="AddressDeliveryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_PaymentRequisitesId">
+    <End Role="PaymentRequisites" Type="Self.PaymentRequisites" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentRequisites">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="PaymentRequisitesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_TypeOrdersId">
+    <End Role="Type_Order" Type="Self.Type_Order" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type_Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="TypeOrdersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_UserId">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrdersProduct_OrdersId">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="OrdersProduct" Type="Self.OrdersProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrdersProduct">
+        <PropertyRef Name="OrdersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrdersProduct_ProductId">
+    <End Role="Product" Type="Self.Product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="OrdersProduct" Type="Self.OrdersProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrdersProduct">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentRequisites_PaymentSystemsId">
+    <End Role="PaymentSystems" Type="Self.PaymentSystems" Multiplicity="1" />
+    <End Role="PaymentRequisites" Type="Self.PaymentRequisites" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentSystems">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PaymentRequisites">
+        <PropertyRef Name="PaymentSystemsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Region_CountryId">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="Region" Type="Self.Region" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Region">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="Хранилище MusicDataBaseModelContainer">
+    <EntitySet Name="AddressDelivery" EntityType="Self.AddressDelivery" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NumberString" EntityType="Self.NumberString" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrdersProduct" EntityType="Self.OrdersProduct" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentRequisites" EntityType="Self.PaymentRequisites" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PaymentSystems" EntityType="Self.PaymentSystems" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Subcategories" EntityType="Self.Subcategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Type_Order" EntityType="Self.Type_Order" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UsersRoles" EntityType="Self.UsersRoles" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AddressDelivery_CityId" Association="Self.FK_AddressDelivery_CityId">
+      <End Role="City" EntitySet="City" />
+      <End Role="AddressDelivery" EntitySet="AddressDelivery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_City_RegionId" Association="Self.FK_City_RegionId">
+      <End Role="Region" EntitySet="Region" />
+      <End Role="City" EntitySet="City" />
+    </AssociationSet>
     <AssociationSet Name="FK_dbo_Product_dbo_Brand_BrandId" Association="Self.FK_dbo_Product_dbo_Brand_BrandId">
       <End Role="Brand" EntitySet="Brand" />
       <End Role="Product" EntitySet="Product" />
@@ -270,6 +461,38 @@
     <AssociationSet Name="FK_dbo_UsersRoles_dbo_Users_UsersId" Association="Self.FK_dbo_UsersRoles_dbo_Users_UsersId">
       <End Role="Users" EntitySet="Users" />
       <End Role="UsersRoles" EntitySet="UsersRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_AddressDeliveryId" Association="Self.FK_Orders_AddressDeliveryId">
+      <End Role="AddressDelivery" EntitySet="AddressDelivery" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_PaymentRequisitesId" Association="Self.FK_Orders_PaymentRequisitesId">
+      <End Role="PaymentRequisites" EntitySet="PaymentRequisites" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_TypeOrdersId" Association="Self.FK_Orders_TypeOrdersId">
+      <End Role="Type_Order" EntitySet="Type_Order" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_UserId" Association="Self.FK_Orders_UserId">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrdersProduct_OrdersId" Association="Self.FK_OrdersProduct_OrdersId">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="OrdersProduct" EntitySet="OrdersProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrdersProduct_ProductId" Association="Self.FK_OrdersProduct_ProductId">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="OrdersProduct" EntitySet="OrdersProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentRequisites_PaymentSystemsId" Association="Self.FK_PaymentRequisites_PaymentSystemsId">
+      <End Role="PaymentSystems" EntitySet="PaymentSystems" />
+      <End Role="PaymentRequisites" EntitySet="PaymentRequisites" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Region_CountryId" Association="Self.FK_Region_CountryId">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Region" EntitySet="Region" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

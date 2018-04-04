@@ -14,15 +14,29 @@ namespace DAL.Core
     
     public partial class Order
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Order()
+        {
+            this.Products = new HashSet<Product>();
+        }
+    
         public int Id { get; set; }
-        public string IdUser { get; set; }
+        public string UserId { get; set; }
         public int Amount { get; set; }
-        public int OrderNumber { get; set; }
-        public string Currency { get; set; }
-        public string Status { get; set; }
-        public int IdPaymentMethod { get; set; }
-        public string BillingAddress { get; set; }
-        public string DateActiveOrders { get; set; }
-        public string Date { get; set; }
+        public int TypeOrdersId { get; set; }
+        public Nullable<int> AddressDeliveryId { get; set; }
+        public System.DateTime DateShapingOrders { get; set; }
+        public Nullable<System.DateTime> DatePurchase { get; set; }
+        public Nullable<System.DateTime> DateCancel { get; set; }
+        public decimal OrderSum { get; set; }
+        public Nullable<int> PaymentRequisitesId { get; set; }
+        public int NumberOrder { get; set; }
+    
+        public virtual AddressDelivery AddressDelivery { get; set; }
+        public virtual PaymentRequisite PaymentRequisite { get; set; }
+        public virtual Type_Order Type_Order { get; set; }
+        public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

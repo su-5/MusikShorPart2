@@ -41,7 +41,6 @@
                     $rootScope.Produkts = value;
                     $rootScope.ProduktsFilter = flag;
                 }, function(errorObject) {
-                    //    alert(errorObject);
                 }).finally(function() {
                     $rootScope.loadingHide();
                 });
@@ -52,7 +51,7 @@
                     $window.location.reload();
                     $state.go("mainPage/Catalog");
                 }, function (errorObject) {
-                    //    alert(errorObject);
+
                 }).finally(function () {
                     $rootScope.loadingHide();
                 });

@@ -3,7 +3,7 @@
 
     // controller class definintion
     var cartController = function ($scope, $rootScope, $cookies, cartService, $window, $state) {
-        var productsCookie =  $cookies.getObject('productToCart');
+        var productsCookie = $cookies.getObject('productToCart');
         $rootScope.loadingShow();
         $rootScope.siteFilter = false;
 
@@ -169,18 +169,35 @@
             }
         }
 
-        $scope.returnToCatalog = function() {
+        $scope.returnToCatalog = function () {
             $state.go("mainPage/Catalog");
         }
 
-        $scope.orderForm = function() {
+        $scope.orderForm = function () {
             if ($rootScope.authentication === "value") {
-                $state.go("mainPage/OrderForm"); 
+                preOrder();
+                $state.go("mainPage/OrderForm");
             } else {
-                $rootScope.toaster('info', 'Вы не зарегистрированы.  Только зарегистрированые пользователи могут совершать покупки.',0);
-                $state.go("mainPage/Registration"); 
+                $rootScope.toaster('info', 'Вы не зарегистрированы.  Только зарегистрированые пользователи могут совершать покупки.', 0);
+                $state.go("mainPage/Registration");
             }
         }
+
+        function preOrder() {
+            var preOrder = {
+                Amount: $scope.totalProduct, // кол-во выбраных товаров
+                OrderSum: $scope.totalBYN,
+                TypeOrdersId: 1, // Ожидание оплаты
+                DateShapingOrders: new Date(),
+
+
+
+        };
+            if (row.entity.NumberProduct === row.entity.SelectNumber) {
+
+            }
+        };
+
 
         getProductForCookies(productsCookie);
 

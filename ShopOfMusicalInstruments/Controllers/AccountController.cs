@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -8,17 +7,13 @@ using System.Web;
 using System.Web.Http;
 using BLL.Core.Identity;
 using DAL.Core;
-using DAL.Core.ModelDTO;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.OAuth;
 using ShopOfMusicalInstruments.Core.Models;
-using ShopOfMusicalInstruments.Core.Providers;
 using ShopOfMusicalInstruments.Models;
-using ShopOfMusicalInstruments.Results;
+
 namespace ShopOfMusicalInstruments.Core.Controllers 
 {
 
@@ -27,7 +22,6 @@ namespace ShopOfMusicalInstruments.Core.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private CustomUserManager _userManager;
-        private string _userId;
 
         public AccountController()
         {
@@ -477,29 +471,11 @@ namespace ShopOfMusicalInstruments.Core.Controllers
         {
             public string LoginProvider { get; set; }
             public string ProviderKey { get; set; }
-            public string UserName { get; set; }
-
-            public IList<Claim> GetClaims()
-            {
-                IList<Claim> claims = new List<Claim>();
-                claims.Add(new Claim(ClaimTypes.NameIdentifier, ProviderKey, null, LoginProvider));
-
-                if (UserName != null)
-                {
-                    claims.Add(new Claim(ClaimTypes.Name, UserName, null, LoginProvider));
-                }
-
-                return claims;
-            }
+            private string UserName { get; set; }
 
             public static ExternalLoginData FromIdentity(ClaimsIdentity identity)
             {
-                if (identity == null)
-                {
-                    return null;
-                }
-
-                Claim providerKeyClaim = identity.FindFirst(ClaimTypes.NameIdentifier);
+                Claim providerKeyClaim = identity?.FindFirst(ClaimTypes.NameIdentifier);
 
                 if (providerKeyClaim == null || String.IsNullOrEmpty(providerKeyClaim.Issuer)
                     || String.IsNullOrEmpty(providerKeyClaim.Value))

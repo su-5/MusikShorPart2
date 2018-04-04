@@ -591,6 +591,13 @@
 
         //Добавление нового продукта
         function openWindowAddProducts() {
+            $scope.asideState = {
+                open: true
+            };
+
+            function postClose() {
+                $scope.asideState.open = false;
+            }
 
             //Модальное окно добавление нового продукта
             $uibModal.open({
@@ -637,14 +644,20 @@
 
                             }).finally(function() {
                             $rootScope.loadingHide();
-                        });
-
-                        $scope.$watch('inc',
-                            function(newValue, oldValue) {
-                                if (newValue !== undefined) {
-                                   
-                                }
                             });
+
+                        $scope.$watch('Product.CategoryId', function (newValue, oldValue) {
+                            if (newValue !== undefined) {
+                                subcategoryService.getSubcategoryOnCategories(newValue).then(function (value) {
+                                        $scope.allSubcategories = angular.copy(value);
+                                    },
+                                    function (errorObject) {
+
+                                    }).finally(function () {
+                                    $rootScope.loadingHide();
+                                });
+                            }
+                        });
 
                         $scope.AddNewProduct = function(product, addProductForm) {
                             if (!addProductForm.$valid) {
@@ -672,11 +685,19 @@
                         }
                     }
                 ]
-            });
+            }).result.then(postClose, postClose);
         };
 
         //Modal Window для продуктов
         function openProduct() {
+
+            $scope.asideState = {
+                open: true
+            };
+
+            function postClose() {
+                $scope.asideState.open = false;
+            }
 
             $uibModal.open({
                 templateUrl: function () {
@@ -850,7 +871,7 @@
                         getAllProducts();
                     }
                 ]
-            });
+            }).result.then(postClose, postClose);
         }
 
         //Modal Window для категорий

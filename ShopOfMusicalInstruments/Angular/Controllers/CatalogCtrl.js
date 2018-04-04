@@ -11,7 +11,7 @@
             $rootScope.toaster('success', 'Данные загружены', 2000);
             $rootScope.ProduktsFilter = false;
         }, function (errorObject) {
-            alert(errorObject);
+
         }).finally(function () {
             $rootScope.loadingHide();
         });

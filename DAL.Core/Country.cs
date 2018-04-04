@@ -18,6 +18,7 @@ namespace DAL.Core
         public Country()
         {
             this.Products = new HashSet<Product>();
+            this.Regions = new HashSet<Region>();
         }
     
         public int Id { get; set; }
@@ -27,5 +28,7 @@ namespace DAL.Core
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Region> Regions { get; set; }
     }
 }

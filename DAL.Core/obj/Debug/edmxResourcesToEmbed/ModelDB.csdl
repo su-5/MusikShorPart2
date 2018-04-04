@@ -42,10 +42,51 @@
       <End Role="Brand" EntitySet="Brands" />
       <End Role="Product" EntitySet="Products" />
     </AssociationSet>
+    <EntitySet Name="AddressDeliveries" EntityType="MusicDataBaseModel.AddressDelivery" />
+    <EntitySet Name="Cities" EntityType="MusicDataBaseModel.City" />
+    <EntitySet Name="PaymentRequisites" EntityType="MusicDataBaseModel.PaymentRequisite" />
     <EntitySet Name="PaymentSystems" EntityType="MusicDataBaseModel.PaymentSystem" />
-    <EntitySet Name="Orders" EntityType="MusicDataBaseModel.Order" />
-    <EntitySet Name="Roles" EntityType="MusicDataBaseModel.Role" />
+    <EntitySet Name="Regions" EntityType="MusicDataBaseModel.Region" />
+    <EntitySet Name="Type_Order" EntityType="MusicDataBaseModel.Type_Order" />
     <EntitySet Name="Users" EntityType="MusicDataBaseModel.User" />
+    <AssociationSet Name="FK_AddressDelivery_CityId" Association="MusicDataBaseModel.FK_AddressDelivery_CityId">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="AddressDelivery" EntitySet="AddressDeliveries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_City_RegionId" Association="MusicDataBaseModel.FK_City_RegionId">
+      <End Role="Region" EntitySet="Regions" />
+      <End Role="City" EntitySet="Cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Region_CountryId" Association="MusicDataBaseModel.FK_Region_CountryId">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="Region" EntitySet="Regions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentRequisites_PaymentSystemsId" Association="MusicDataBaseModel.FK_PaymentRequisites_PaymentSystemsId">
+      <End Role="PaymentSystem" EntitySet="PaymentSystems" />
+      <End Role="PaymentRequisite" EntitySet="PaymentRequisites" />
+    </AssociationSet>
+    <EntitySet Name="Orders" EntityType="MusicDataBaseModel.Order" />
+    <AssociationSet Name="FK_Orders_AddressDeliveryId" Association="MusicDataBaseModel.FK_Orders_AddressDeliveryId">
+      <End Role="AddressDelivery" EntitySet="AddressDeliveries" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_PaymentRequisitesId" Association="MusicDataBaseModel.FK_Orders_PaymentRequisitesId">
+      <End Role="PaymentRequisite" EntitySet="PaymentRequisites" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_TypeOrdersId" Association="MusicDataBaseModel.FK_Orders_TypeOrdersId">
+      <End Role="Type_Order" EntitySet="Type_Order" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_UserId" Association="MusicDataBaseModel.FK_Orders_UserId">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="OrdersProduct" Association="MusicDataBaseModel.OrdersProduct">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <EntitySet Name="Roles" EntityType="MusicDataBaseModel.Role" />
     <AssociationSet Name="UsersRoles" Association="MusicDataBaseModel.UsersRoles">
       <End Role="Role" EntitySet="Roles" />
       <End Role="User" EntitySet="Users" />
@@ -60,6 +101,7 @@
     <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Products" Relationship="MusicDataBaseModel.FK_dbo_Product_dbo_Country_CountryId" FromRole="Country" ToRole="Product" />
     <Property Name="DeleteDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Regions" Relationship="MusicDataBaseModel.FK_Region_CountryId" FromRole="Country" ToRole="Region" />
   </EntityType>
   <EntityType Name="NumberString">
     <Key>
@@ -106,6 +148,7 @@
     <NavigationProperty Name="Subcategory" Relationship="MusicDataBaseModel.FK_dbo_Product_dbo_Subcategories_SubcategoriesId" FromRole="Product" ToRole="Subcategory" />
     <NavigationProperty Name="Brand" Relationship="MusicDataBaseModel.FK_dbo_Product_dbo_Brand_BrandId" FromRole="Product" ToRole="Brand" />
     <Property Name="Window" Type="Boolean" />
+    <NavigationProperty Name="Orders" Relationship="MusicDataBaseModel.OrdersProduct" FromRole="Product" ToRole="Order" />
   </EntityType>
   <EntityType Name="Subcategory">
     <Key>
@@ -202,35 +245,66 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="AddressDelivery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityId" Type="Int32" Nullable="false" />
+    <Property Name="Street" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="House" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Flat" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="City" Relationship="MusicDataBaseModel.FK_AddressDelivery_CityId" FromRole="AddressDelivery" ToRole="City" />
+    <NavigationProperty Name="Orders" Relationship="MusicDataBaseModel.FK_Orders_AddressDeliveryId" FromRole="AddressDelivery" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="RegionId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AddressDeliveries" Relationship="MusicDataBaseModel.FK_AddressDelivery_CityId" FromRole="City" ToRole="AddressDelivery" />
+    <NavigationProperty Name="Region" Relationship="MusicDataBaseModel.FK_City_RegionId" FromRole="City" ToRole="Region" />
+  </EntityType>
+  <EntityType Name="PaymentRequisite">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaymentSystemsId" Type="Int32" Nullable="false" />
+    <Property Name="NumberAccount" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NumberCard" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateAction" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PaymentSystem" Relationship="MusicDataBaseModel.FK_PaymentRequisites_PaymentSystemsId" FromRole="PaymentRequisite" ToRole="PaymentSystem" />
+    <NavigationProperty Name="Orders" Relationship="MusicDataBaseModel.FK_Orders_PaymentRequisitesId" FromRole="PaymentRequisite" ToRole="Order" />
+  </EntityType>
   <EntityType Name="PaymentSystem">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="NamePaymentSystems" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NamePaymentSystems" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PaymentRequisites" Relationship="MusicDataBaseModel.FK_PaymentRequisites_PaymentSystemsId" FromRole="PaymentSystem" ToRole="PaymentRequisite" />
   </EntityType>
-  <EntityType Name="Order">
+  <EntityType Name="Region">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IdUser" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="Amount" Type="Int32" Nullable="false" />
-    <Property Name="OrderNumber" Type="Int32" Nullable="false" />
-    <Property Name="Currency" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Status" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="IdPaymentMethod" Type="Int32" Nullable="false" />
-    <Property Name="BillingAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="DateActiveOrders" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CountryId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cities" Relationship="MusicDataBaseModel.FK_City_RegionId" FromRole="Region" ToRole="City" />
+    <NavigationProperty Name="Country" Relationship="MusicDataBaseModel.FK_Region_CountryId" FromRole="Region" ToRole="Country" />
   </EntityType>
-  <EntityType Name="Role">
+  <EntityType Name="Type_Order">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Users" Relationship="MusicDataBaseModel.UsersRoles" FromRole="Role" ToRole="User" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Orders" Relationship="MusicDataBaseModel.FK_Orders_TypeOrdersId" FromRole="Type_Order" ToRole="Order" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -243,7 +317,137 @@
     <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Cookie" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Orders" Relationship="MusicDataBaseModel.FK_Orders_UserId" FromRole="User" ToRole="Order" />
     <NavigationProperty Name="Roles" Relationship="MusicDataBaseModel.UsersRoles" FromRole="User" ToRole="Role" />
+  </EntityType>
+  <Association Name="FK_AddressDelivery_CityId">
+    <End Type="MusicDataBaseModel.City" Role="City" Multiplicity="1" />
+    <End Type="MusicDataBaseModel.AddressDelivery" Role="AddressDelivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AddressDelivery">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_City_RegionId">
+    <End Type="MusicDataBaseModel.Region" Role="Region" Multiplicity="1" />
+    <End Type="MusicDataBaseModel.City" Role="City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="RegionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Region_CountryId">
+    <End Type="MusicDataBaseModel.Country" Role="Country" Multiplicity="1" />
+    <End Type="MusicDataBaseModel.Region" Role="Region" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Region">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentRequisites_PaymentSystemsId">
+    <End Type="MusicDataBaseModel.PaymentSystem" Role="PaymentSystem" Multiplicity="1" />
+    <End Type="MusicDataBaseModel.PaymentRequisite" Role="PaymentRequisite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentSystem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PaymentRequisite">
+        <PropertyRef Name="PaymentSystemsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="Int32" Nullable="false" />
+    <Property Name="TypeOrdersId" Type="Int32" Nullable="false" />
+    <Property Name="AddressDeliveryId" Type="Int32" />
+    <Property Name="DateShapingOrders" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DatePurchase" Type="DateTime" Precision="3" />
+    <Property Name="DateCancel" Type="DateTime" Precision="3" />
+    <Property Name="OrderSum" Type="Decimal" Nullable="false" Precision="7" Scale="2" />
+    <Property Name="PaymentRequisitesId" Type="Int32" />
+    <NavigationProperty Name="AddressDelivery" Relationship="MusicDataBaseModel.FK_Orders_AddressDeliveryId" FromRole="Order" ToRole="AddressDelivery" />
+    <NavigationProperty Name="PaymentRequisite" Relationship="MusicDataBaseModel.FK_Orders_PaymentRequisitesId" FromRole="Order" ToRole="PaymentRequisite" />
+    <NavigationProperty Name="Type_Order" Relationship="MusicDataBaseModel.FK_Orders_TypeOrdersId" FromRole="Order" ToRole="Type_Order" />
+    <NavigationProperty Name="User" Relationship="MusicDataBaseModel.FK_Orders_UserId" FromRole="Order" ToRole="User" />
+    <NavigationProperty Name="Products" Relationship="MusicDataBaseModel.OrdersProduct" FromRole="Order" ToRole="Product" />
+    <Property Name="NumberOrder" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Orders_AddressDeliveryId">
+    <End Type="MusicDataBaseModel.AddressDelivery" Role="AddressDelivery" Multiplicity="1" />
+    <End Type="MusicDataBaseModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AddressDelivery">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="AddressDeliveryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_PaymentRequisitesId">
+    <End Type="MusicDataBaseModel.PaymentRequisite" Role="PaymentRequisite" Multiplicity="1" />
+    <End Type="MusicDataBaseModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentRequisite">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="PaymentRequisitesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_TypeOrdersId">
+    <End Type="MusicDataBaseModel.Type_Order" Role="Type_Order" Multiplicity="1" />
+    <End Type="MusicDataBaseModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type_Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="TypeOrdersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_UserId">
+    <End Type="MusicDataBaseModel.User" Role="User" Multiplicity="1" />
+    <End Type="MusicDataBaseModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrdersProduct">
+    <End Type="MusicDataBaseModel.Order" Role="Order" Multiplicity="*" />
+    <End Type="MusicDataBaseModel.Product" Role="Product" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="MusicDataBaseModel.UsersRoles" FromRole="Role" ToRole="User" />
   </EntityType>
   <Association Name="UsersRoles">
     <End Type="MusicDataBaseModel.Role" Role="Role" Multiplicity="*" />

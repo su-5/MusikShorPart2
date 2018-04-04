@@ -85,6 +85,38 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="AddressDeliveries">
+      <EntityTypeMapping TypeName="MusicDataBaseModel.AddressDelivery">
+        <MappingFragment StoreEntitySet="AddressDelivery">
+          <ScalarProperty Name="Flat" ColumnName="Flat" />
+          <ScalarProperty Name="House" ColumnName="House" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="MusicDataBaseModel.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentRequisites">
+      <EntityTypeMapping TypeName="MusicDataBaseModel.PaymentRequisite">
+        <MappingFragment StoreEntitySet="PaymentRequisites">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="DateAction" ColumnName="DateAction" />
+          <ScalarProperty Name="NumberCard" ColumnName="NumberCard" />
+          <ScalarProperty Name="NumberAccount" ColumnName="NumberAccount" />
+          <ScalarProperty Name="PaymentSystemsId" ColumnName="PaymentSystemsId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="PaymentSystems">
       <EntityTypeMapping TypeName="MusicDataBaseModel.PaymentSystem">
         <MappingFragment StoreEntitySet="PaymentSystems">
@@ -93,25 +125,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Orders">
-      <EntityTypeMapping TypeName="MusicDataBaseModel.Order">
-        <MappingFragment StoreEntitySet="Orders">
-          <ScalarProperty Name="Date" ColumnName="Date" />
-          <ScalarProperty Name="DateActiveOrders" ColumnName="DateActiveOrders" />
-          <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-          <ScalarProperty Name="IdPaymentMethod" ColumnName="IdPaymentMethod" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="Currency" ColumnName="Currency" />
-          <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
-          <ScalarProperty Name="Amount" ColumnName="Amount" />
-          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+    <EntitySetMapping Name="Regions">
+      <EntityTypeMapping TypeName="MusicDataBaseModel.Region">
+        <MappingFragment StoreEntitySet="Region">
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Roles">
-      <EntityTypeMapping TypeName="MusicDataBaseModel.Role">
-        <MappingFragment StoreEntitySet="Roles">
+    <EntitySetMapping Name="Type_Order">
+      <EntityTypeMapping TypeName="MusicDataBaseModel.Type_Order">
+        <MappingFragment StoreEntitySet="Type_Order">
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
@@ -126,6 +151,39 @@
           <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="MusicDataBaseModel.Order">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="NumberOrder" ColumnName="NumberOrder" />
+          <ScalarProperty Name="PaymentRequisitesId" ColumnName="PaymentRequisitesId" />
+          <ScalarProperty Name="OrderSum" ColumnName="OrderSum" />
+          <ScalarProperty Name="DateCancel" ColumnName="DateCancel" />
+          <ScalarProperty Name="DatePurchase" ColumnName="DatePurchase" />
+          <ScalarProperty Name="DateShapingOrders" ColumnName="DateShapingOrders" />
+          <ScalarProperty Name="AddressDeliveryId" ColumnName="AddressDeliveryId" />
+          <ScalarProperty Name="TypeOrdersId" ColumnName="TypeOrdersId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="OrdersProduct" TypeName="MusicDataBaseModel.OrdersProduct" StoreEntitySet="OrdersProduct">
+      <EndProperty Name="Product">
+        <ScalarProperty Name="Id" ColumnName="ProductId" />
+      </EndProperty>
+      <EndProperty Name="Order">
+        <ScalarProperty Name="Id" ColumnName="OrdersId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="MusicDataBaseModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

@@ -14,6 +14,12 @@ namespace DAL.Core
     
     public partial class Product
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Product()
+        {
+            this.Orders = new HashSet<Order>();
+        }
+    
         public int Id { get; set; }
         public int CountryId { get; set; }
         public Nullable<int> PictureId { get; set; }
@@ -29,10 +35,12 @@ namespace DAL.Core
         public int SubcategoriesId { get; set; }
         public Nullable<bool> Window { get; set; }
     
+        public virtual Brand Brand { get; set; }
         public virtual Country Country { get; set; }
         public virtual NumberString NumberString { get; set; }
         public virtual Picture Picture { get; set; }
         public virtual Subcategory Subcategory { get; set; }
-        public virtual Brand Brand { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1139f64ef8724416a70f8b7cb743a76d" Name="Diagram1" ZoomLevel="57">
+        <EntityTypeShape EntityType="MusicDataBaseModel.AddressDelivery" Width="1.5" PointX="8.875" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicDataBaseModel.Brand" Width="1.5" PointX="2.875" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicDataBaseModel.Category" Width="1.5" PointX="2.875" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicDataBaseModel.City" Width="1.5" PointX="6.875" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicDataBaseModel.Country" Width="1.5" PointX="4.875" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicDataBaseModel.NumberString" Width="1.5" PointX="0.875" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicDataBaseModel.Order" Width="1.5" PointX="6.875" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicDataBaseModel.PaymentRequisite" Width="1.5" PointX="8.875" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicDataBaseModel.PaymentSystem" Width="1.5" PointX="8.875" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicDataBaseModel.Picture" Width="1.5" PointX="2.875" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicDataBaseModel.Product" Width="1.5" PointX="5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicDataBaseModel.Region" Width="1.5" PointX="4.875" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicDataBaseModel.Role" Width="1.5" PointX="10.875" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicDataBaseModel.Subcategory" Width="1.5" PointX="0.875" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicDataBaseModel.Type_Order" Width="1.5" PointX="6.875" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicDataBaseModel.User" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="MusicDataBaseModel.FK_AddressDelivery_CityId" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicDataBaseModel.FK_Orders_AddressDeliveryId" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="MusicDataBaseModel.FK_dbo_Product_dbo_Brand_BrandId" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicDataBaseModel.FK_dbo_Subcategories_dbo_Categories_CategoriesId" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicDataBaseModel.FK_City_RegionId" ManuallyRouted="true" >
+          <ConnectorPoint PointX="6.375" PointY="13.167038149250519" />
+          <ConnectorPoint PointX="7.6476780729747285" PointY="13.167038149250519" />
+          <ConnectorPoint PointX="7.6476780729747285" PointY="11.980286458333334" />
+        </AssociationConnector>
+        <AssociationConnector Association="MusicDataBaseModel.FK_dbo_Product_dbo_Country_CountryId" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicDataBaseModel.FK_Region_CountryId" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicDataBaseModel.FK_dbo_Product_dbo_NumberString_NumberStringId" ManuallyRouted="true" >
+          <ConnectorPoint PointX="2.375" PointY="4.7689925130208328" />
+          <ConnectorPoint PointX="2.625" PointY="4.7689925130208328" />
+          <ConnectorPoint PointX="2.625" PointY="3.5" />
+          <ConnectorPoint PointX="5.7452014656005277" PointY="3.5" />
+          <ConnectorPoint PointX="5.7452014656005277" PointY="3.75" />
+        </AssociationConnector>
+        <AssociationConnector Association="MusicDataBaseModel.FK_Orders_PaymentRequisitesId" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicDataBaseModel.FK_Orders_TypeOrdersId" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="MusicDataBaseModel.FK_Orders_UserId" ManuallyRouted="true" >
+          <ConnectorPoint PointX="11.384604139338025" PointY="3.75" />
+          <ConnectorPoint PointX="11.384604139338025" PointY="3.375" />
+          <ConnectorPoint PointX="7.4344668440848878" PointY="3.375" />
+          <ConnectorPoint PointX="7.4344668440848878" PointY="3.75" />
+        </AssociationConnector>
+        <AssociationConnector Association="MusicDataBaseModel.FK_PaymentRequisites_PaymentSystemsId" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicDataBaseModel.FK_dbo_Product_dbo_Picture_PictureId" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicDataBaseModel.FK_dbo_Product_dbo_Subcategories_SubcategoriesId" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicDataBaseModel.OrdersProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicDataBaseModel.UsersRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
