@@ -156,3 +156,4 @@ C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\BLL.Core\bin\Debug\Nito.AsyncEx.x
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\BLL.Core\bin\Debug\Nito.AsyncEx.Concurrent.xml
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\BLL.Core\bin\Debug\Nito.AsyncEx.Enlightenment.xml
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\BLL.Core\bin\Debug\System.Collections.Immutable.xml
+C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\BLL.Core\obj\Debug\BLL.Core.csproj.CopyComplete

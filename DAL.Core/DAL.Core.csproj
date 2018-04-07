@@ -129,7 +129,7 @@
     <Compile Include="ModelDTO\CategoryDTO.cs" />
     <Compile Include="ModelDTO\CountryDTO.cs" />
     <Compile Include="ModelDTO\NumberStringDTO.cs" />
-    <Compile Include="ModelDTO\OderDTO.cs" />
+    <Compile Include="ModelDTO\OrderDTO.cs" />
     <Compile Include="ModelDTO\ProductDTO.cs" />
     <Compile Include="ModelDTO\ProductsListIdDto.cs" />
     <Compile Include="ModelDTO\SubcategoryDTO.cs" />

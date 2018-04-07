@@ -59,3 +59,4 @@ C:\Users\Дмитрий\Source\Repos\MusikShorPart2\DAL.Core\obj\Debug\DAL.Core.
 C:\Users\Дмитрий\Source\Repos\MusikShorPart2\DAL.Core\obj\Debug\DAL.Core.pdb
 C:\Users\Дмитрий\Source\Repos\MusikShorPart2\DAL.Core\obj\Debug\DAL.Core.csprojResolveAssemblyReference.cache
 C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\DAL.Core\obj\Debug\DAL.Core.csproj.CopyComplete
+C:\Users\Andrei-PC\Source\Repos\MusikShorPart2\DAL.Core\obj\Debug\DAL.Core.csprojResolveAssemblyReference.cache

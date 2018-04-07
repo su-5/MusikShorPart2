@@ -31,6 +31,7 @@
         <div class="navbar-fixed-bottom">
             <input id="userName" type="hidden" runat="server" value="@User.Identity.Name" />
             <input id="authentication" type="hidden" runat="server" value="@Request.IsAuthenticated"/>
+            <input id="user" type="hidden" runat="server" value="@HttpContext.Current.User.Identity.Name"/>
             <div align="center">
                 &copy;
                 <script>document.write(new Date().getFullYear())</script> &nbsp;|&nbsp; Проект Ткаченко Дмитрия Александровича.

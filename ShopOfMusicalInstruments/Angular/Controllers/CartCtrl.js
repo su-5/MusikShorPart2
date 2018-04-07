@@ -2,7 +2,7 @@
     "use strict";
 
     // controller class definintion
-    var cartController = function ($scope, $rootScope, $cookies, cartService, $window, $state) {
+    var cartController = function ($scope, $rootScope, $cookies, cartService, $window, $state, orderService) {
         var productsCookie = $cookies.getObject('productToCart');
         $rootScope.loadingShow();
         $rootScope.siteFilter = false;
@@ -176,6 +176,7 @@
         }
 
         $scope.orderForm = function () {
+            $rootScope.loadingShow();
             if ($rootScope.authentication === "value") {
                 preOrder();
                 $state.go("mainPage/OrderForm");
@@ -186,12 +187,38 @@
         }
 
         function preOrder() {
+            var masProdukt = [];
+            // формируем масив выбраных товаров
+            for (var i = 0; i < $scope.gridCart.data.length; i++) {
+                if ($scope.gridCart.data[i].SelectProductForCart) {
+                    masProdukt.push({
+                        ProductId: $scope.gridCart.data[i].Id,
+                        AmountProduct: $scope.gridCart.data[i].SelectNumber
+                    });
+                }
+            }
+
+            // формируем обьект preOrder для отправки на сервер
             var preOrder = {
                 Amount: $scope.totalProduct, // кол-во выбраных товаров
-                OrderSum: $scope.totalBYN,
+                OrderSum: $scope.totalBYN,// иговая сумма
                 TypeOrdersId: 1, // Ожидание оплаты
-                DateShapingOrders: new Date()
+                DateShapingOrders: new Date(),
+                OrderListProducts : masProdukt
             }
+
+            //передача данных preOrder на сервер
+            orderService.savePreOrder(preOrder).then(function (value) {
+                },
+                function (errorObject) {
+                    $rootScope.toaster('error', errorObject.Message, 9000);
+                    for (var i = 0; i < errorObject.ModelState.error.length; i++) {
+                        $rootScope.toaster('error', errorObject.ModelState.error[i], 9000);
+                    }
+                }).finally(function () {
+                $rootScope.loadingHide();
+            });
+            
         }
 
 
@@ -200,5 +227,5 @@
     };
     angular
         .module("Web.Controllers")
-        .controller("cartController", ["$scope", "$rootScope", "$cookies", "cartService", "$window", "$state", cartController]);
+        .controller("cartController", ["$scope", "$rootScope", "$cookies", "cartService", "$window", "$state","orderService", cartController]);
 })();
