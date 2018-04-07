@@ -17,6 +17,7 @@ namespace BLL.Core.BLL_Core
                 x.AddProfile<ProductMapper>();
                 x.AddProfile<UserMapper>();
                 x.AddProfile<CartMapper>();
+                x.AddProfile<OrderMapper>();
             });
         }
     }

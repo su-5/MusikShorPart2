@@ -9,5 +9,6 @@
         ISubcategoryBLL SubcategoryBll { get; }
         ICategoryBLL CategoryBll { get; }
         IUserBLL UserBll { get; }
+        IOrderBLL OrderBll { get; }
     }
 }
