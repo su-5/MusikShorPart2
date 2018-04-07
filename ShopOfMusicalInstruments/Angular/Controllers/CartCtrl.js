@@ -124,6 +124,7 @@
         }
 
         $scope.deleteRowInCart = function (id) {
+            $rootScope.loadingShow();
             var index = 0;
             for (var i = 0; i < productsCookie.length; i++) {
                 if (productsCookie[i].id === id) {
@@ -138,6 +139,7 @@
         }
 
         function getProductForCookies(cookies) {
+            $rootScope.loadingShow();
             if (cookies === undefined) {
                 $state.go("mainPage/Catalog");
             }
