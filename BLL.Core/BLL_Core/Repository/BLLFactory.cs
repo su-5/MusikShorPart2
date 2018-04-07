@@ -13,6 +13,7 @@ namespace BLL.Core.BLL_Core.Repository
         private ISubcategoryBLL _subcategory;
         private ICategoryBLL _category;
         private IUserBLL _user;
+        private IOrderBLL _order;
         public BLLFactory()
         {
             _dalFactory = new DalFactory(new DbFactory());
@@ -25,5 +26,6 @@ namespace BLL.Core.BLL_Core.Repository
         public ISubcategoryBLL SubcategoryBll => _subcategory ?? (_subcategory = new SubcategoryBLL(_dalFactory));
         public ICategoryBLL CategoryBll => _category ?? (_category = new CategoryBLL(_dalFactory));
         public IUserBLL UserBll => _user ?? (_user = new UserBLL(_dalFactory));
+        public IOrderBLL OrderBll => _order ?? (_order = new OrderBLL(_dalFactory));
     }
 }

@@ -190,15 +190,9 @@
                 Amount: $scope.totalProduct, // кол-во выбраных товаров
                 OrderSum: $scope.totalBYN,
                 TypeOrdersId: 1, // Ожидание оплаты
-                DateShapingOrders: new Date(),
-
-
-
-        };
-            if (row.entity.NumberProduct === row.entity.SelectNumber) {
-
+                DateShapingOrders: new Date()
             }
-        };
+        }
 
 
         getProductForCookies(productsCookie);

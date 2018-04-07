@@ -147,6 +147,7 @@
     <Compile Include="BLL_Core\Interface\ICategoryBLL.cs" />
     <Compile Include="BLL_Core\Interface\ICountryBLL.cs" />
     <Compile Include="BLL_Core\Interface\INumberStringBLL.cs" />
+    <Compile Include="BLL_Core\Interface\IOrderBLL.cs" />
     <Compile Include="BLL_Core\Interface\IProductBLL.cs" />
     <Compile Include="BLL_Core\Interface\ISubcategoryBLL.cs" />
     <Compile Include="BLL_Core\Interface\IUserBLL.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="BLL_Core\Mapping\CategoryMapper.cs" />
     <Compile Include="BLL_Core\Mapping\CountryMapper.cs" />
     <Compile Include="BLL_Core\Mapping\NumberStringMapper.cs" />
+    <Compile Include="BLL_Core\Mapping\OrderMapper.cs" />
     <Compile Include="BLL_Core\Mapping\ProductMapper.cs" />
     <Compile Include="BLL_Core\Mapping\SubcategoryMapper.cs" />
     <Compile Include="BLL_Core\Mapping\UserMapper.cs" />
@@ -163,11 +165,10 @@
     <Compile Include="BLL_Core\Repository\CategoryBLL.cs" />
     <Compile Include="BLL_Core\Repository\CountryBLL.cs" />
     <Compile Include="BLL_Core\Repository\NumberStringBLL.cs" />
+    <Compile Include="BLL_Core\Repository\OrderBLL.cs" />
     <Compile Include="BLL_Core\Repository\ProductBLL.cs" />
     <Compile Include="BLL_Core\Repository\SubcategoryBLL.cs" />
     <Compile Include="BLL_Core\Repository\UserBLL.cs" />
-    <Compile Include="Exception\ServiceModule.cs" />
-    <Compile Include="Exception\ValidatorException.cs" />
     <Compile Include="Identity\IdentityConfig.cs" />
     <Compile Include="Identity\Startup.Auth.cs" />
     <Compile Include="Identity\UserIdentityStore.cs" />

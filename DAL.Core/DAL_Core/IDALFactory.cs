@@ -11,5 +11,6 @@ namespace DAL.Core.DAL_Core
         ISubcategoryDAL Subcategory { get; }
         ICategoryDAL Category { get; }
         IUserDAL User { get; }
+        IOrderDAL Order { get; }
     }
 }
