@@ -379,6 +379,7 @@
     <Content Include="Angular\Services\numberstringService.js" />
     <Content Include="Angular\Services\countryService.js" />
     <Content Include="Angular\Services\loadingService.js" />
+    <Content Include="Angular\Services\orderFormService.js" />
     <Content Include="Angular\Services\orderService.js" />
     <Content Include="Angular\Services\productService.js" />
     <Content Include="Angular\Services\registerationService.js" />
