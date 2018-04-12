@@ -18,6 +18,7 @@ namespace DAL.Core
         public Product()
         {
             this.OrdersProducts = new HashSet<OrdersProduct>();
+            this.UsersProducts = new HashSet<UsersProduct>();
         }
     
         public int Id { get; set; }
@@ -42,5 +43,7 @@ namespace DAL.Core
         public virtual Subcategory Subcategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrdersProduct> OrdersProducts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UsersProduct> UsersProducts { get; set; }
     }
 }

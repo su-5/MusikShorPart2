@@ -177,6 +177,15 @@
           <Property Name="PasswordHash" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Cookie" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="UsersProduct">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="DateCreate" Type="datetime" />
+        </EntityType>
         <EntityType Name="UsersRoles">
           <Key>
             <PropertyRef Name="RolesId" />
@@ -409,6 +418,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserProduct_ProductId">
+          <End Role="Product" Type="Self.Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UsersProduct" Type="Self.UsersProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersProduct">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersProduct_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UsersProduct" Type="Self.UsersProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersProduct">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище MusicDataBaseModelContainer">
           <EntitySet Name="AddressDelivery" EntityType="Self.AddressDelivery" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
@@ -427,6 +464,7 @@
           <EntitySet Name="Subcategories" EntityType="Self.Subcategories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Type_Order" EntityType="Self.Type_Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersProduct" EntityType="Self.UsersProduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsersRoles" EntityType="Self.UsersRoles" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AddressDelivery_CityId" Association="Self.FK_AddressDelivery_CityId">
             <End Role="City" EntitySet="City" />
@@ -499,6 +537,14 @@
           <AssociationSet Name="FK_Region_CountryId" Association="Self.FK_Region_CountryId">
             <End Role="Country" EntitySet="Country" />
             <End Role="Region" EntitySet="Region" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProduct_ProductId" Association="Self.FK_UserProduct_ProductId">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="UsersProduct" EntitySet="UsersProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersProduct_UserId" Association="Self.FK_UsersProduct_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersProduct" EntitySet="UsersProduct" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -626,6 +672,7 @@
           <NavigationProperty Name="Picture" Relationship="Self.FK_dbo_Product_dbo_Picture_PictureId" FromRole="Product" ToRole="Picture" />
           <NavigationProperty Name="Subcategory" Relationship="Self.FK_dbo_Product_dbo_Subcategories_SubcategoriesId" FromRole="Product" ToRole="Subcategories" />
           <NavigationProperty Name="OrdersProducts" Relationship="MusicDataBaseModel.FK_OrdersProduct_ProductId" FromRole="Product" ToRole="OrdersProduct" />
+          <NavigationProperty Name="UsersProducts" Relationship="MusicDataBaseModel.FK_UserProduct_ProductId" FromRole="Product" ToRole="UsersProduct" />
         </EntityType>
         <EntityType Name="Region">
           <Key>
@@ -678,6 +725,7 @@
           <Property Name="Cookie" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Roles" Relationship="Self.UsersRoles" FromRole="Users" ToRole="Roles" />
           <NavigationProperty Name="Orders" Relationship="MusicDataBaseModel.FK_Orders_UserId" FromRole="User" ToRole="Order" />
+          <NavigationProperty Name="UsersProducts" Relationship="MusicDataBaseModel.FK_UsersProduct_UserId" FromRole="User" ToRole="UsersProduct" />
         </EntityType>
         <Association Name="FK_AddressDelivery_CityId">
           <End Role="City" Type="Self.City" Multiplicity="1" />
@@ -889,6 +937,15 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="OrdersProduct" EntitySet="OrdersProducts" />
           </AssociationSet>
+          <EntitySet Name="UsersProducts" EntityType="MusicDataBaseModel.UsersProduct" />
+          <AssociationSet Name="FK_UserProduct_ProductId" Association="MusicDataBaseModel.FK_UserProduct_ProductId">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="UsersProduct" EntitySet="UsersProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersProduct_UserId" Association="MusicDataBaseModel.FK_UsersProduct_UserId">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UsersProduct" EntitySet="UsersProducts" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Order">
           <Key>
@@ -995,6 +1052,45 @@
             </Principal>
             <Dependent Role="OrdersProduct">
               <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UsersProduct">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="DateCreate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Product" Relationship="MusicDataBaseModel.FK_UserProduct_ProductId" FromRole="UsersProduct" ToRole="Product" />
+          <NavigationProperty Name="User" Relationship="MusicDataBaseModel.FK_UsersProduct_UserId" FromRole="UsersProduct" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_UserProduct_ProductId">
+          <End Type="MusicDataBaseModel.Product" Role="Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MusicDataBaseModel.UsersProduct" Role="UsersProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersProduct">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersProduct_UserId">
+          <End Type="MusicDataBaseModel.User" Role="User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MusicDataBaseModel.UsersProduct" Role="UsersProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersProduct">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1197,6 +1293,15 @@
                 <ScalarProperty Name="AmountProduct" ColumnName="AmountProduct" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="OrdersId" ColumnName="OrdersId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersProducts">
+            <EntityTypeMapping TypeName="MusicDataBaseModel.UsersProduct">
+              <MappingFragment StoreEntitySet="UsersProduct">
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

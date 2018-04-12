@@ -42,5 +42,6 @@ namespace DAL.Core
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrdersProduct> OrdersProducts { get; set; }
+        public virtual DbSet<UsersProduct> UsersProducts { get; set; }
     }
 }
