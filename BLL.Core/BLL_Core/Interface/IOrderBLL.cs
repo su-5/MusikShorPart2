@@ -4,7 +4,7 @@ namespace BLL.Core.BLL_Core.Interface
 {
     public interface IOrderBLL
     {       
-        void SavePreOrder(OrderDto data);
+        int SavePreOrder(OrderDto data);
         void Order(OrderDto data);
     }
 }

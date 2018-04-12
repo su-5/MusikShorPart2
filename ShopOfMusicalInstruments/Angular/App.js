@@ -23,7 +23,6 @@
             };
 
             $rootScope.lengthCartProducts = function () {
-                var r = $rootScope.test;
                 var cookies = $cookies.getObject('productToCart');
                 if (cookies === undefined) {
                     $rootScope.lengthCart = 0;
@@ -48,6 +47,7 @@
 
             $rootScope.exitSystem = function() {
                 productService.exitSystem().then(function (value) {
+                    resetCart();
                     $window.location.reload();
                     $state.go("mainPage/Catalog");
                 }, function (errorObject) {
@@ -55,6 +55,10 @@
                 }).finally(function () {
                     $rootScope.loadingHide();
                 });
+            }
+
+            function resetCart() {
+                $cookies.remove('productToCart');
             }
 
             $rootScope.authenticationUser = function() {

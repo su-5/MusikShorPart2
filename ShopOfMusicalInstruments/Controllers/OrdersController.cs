@@ -22,8 +22,8 @@ namespace ShopOfMusicalInstruments.Core.Controllers
         {
             try
             {
-                _bllFactory.OrderBll.SavePreOrder(data);
-                return Ok(true);
+              var orderNumber = _bllFactory.OrderBll.SavePreOrder(data);
+                return Ok(orderNumber);
             }
             catch (Exception ex)
             {

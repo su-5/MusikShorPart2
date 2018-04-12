@@ -13,6 +13,7 @@ namespace DAL.Core.DAL_Core
         private ICategoryDAL _category;
         private IUserDAL _user;
         private IOrderDAL _order;
+        private IOrdersProductDAL _ordersProduct;
 
         private MusicDataBaseEntities _dbContext;
         private readonly IDbFactory _dbFactory;
@@ -31,6 +32,7 @@ namespace DAL.Core.DAL_Core
         public ICategoryDAL Category => _category ?? (_category = new CategoryDAL(_dbFactory));
         public IUserDAL User => _user ?? (_user = new UserDAL(_dbFactory));
         public IOrderDAL Order => _order ?? (_order = new OrderDAL(_dbFactory));
+        public IOrdersProductDAL OrdersProduct => _ordersProduct ?? (_ordersProduct = new OrdersProductDAL(_dbFactory));
     }
 
 }

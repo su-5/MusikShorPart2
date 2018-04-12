@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище MusicDataBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище MusicDataBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AddressDelivery">
           <Key>
             <PropertyRef Name="Id" />
@@ -82,6 +82,7 @@
           </Key>
           <Property Name="OrdersId" Type="int" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="AmountProduct" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PaymentRequisites">
           <Key>
@@ -500,8 +501,7 @@
             <End Role="Region" EntitySet="Region" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MusicDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -515,7 +515,7 @@
           <Property Name="House" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Flat" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="City" Relationship="Self.FK_AddressDelivery_CityId" FromRole="AddressDelivery" ToRole="City" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_AddressDeliveryId" FromRole="AddressDelivery" ToRole="Orders" />
+          <NavigationProperty Name="Orders" Relationship="MusicDataBaseModel.FK_Orders_AddressDeliveryId" FromRole="AddressDelivery" ToRole="Order" />
         </EntityType>
         <EntityType Name="Brand">
           <Key>
@@ -568,27 +568,6 @@
           <Property Name="DeleteDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Products" Relationship="Self.FK_dbo_Product_dbo_NumberString_NumberStringId" FromRole="NumberString" ToRole="Product" />
         </EntityType>
-        <EntityType Name="Order">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Amount" Type="Int32" Nullable="false" />
-          <Property Name="TypeOrdersId" Type="Int32" Nullable="false" />
-          <Property Name="AddressDeliveryId" Type="Int32" />
-          <Property Name="DateShapingOrders" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DatePurchase" Type="DateTime" Precision="3" />
-          <Property Name="DateCancel" Type="DateTime" Precision="3" />
-          <Property Name="OrderSum" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
-          <Property Name="PaymentRequisitesId" Type="Int32" />
-          <Property Name="NumberOrder" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="AddressDelivery" Relationship="Self.FK_Orders_AddressDeliveryId" FromRole="Orders" ToRole="AddressDelivery" />
-          <NavigationProperty Name="PaymentRequisite" Relationship="Self.FK_Orders_PaymentRequisitesId" FromRole="Orders" ToRole="PaymentRequisites" />
-          <NavigationProperty Name="Type_Order" Relationship="Self.FK_Orders_TypeOrdersId" FromRole="Orders" ToRole="Type_Order" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Orders_UserId" FromRole="Orders" ToRole="Users" />
-          <NavigationProperty Name="Products" Relationship="Self.OrdersProduct" FromRole="Orders" ToRole="Product" />
-        </EntityType>
         <EntityType Name="PaymentRequisite">
           <Key>
             <PropertyRef Name="Id" />
@@ -599,8 +578,8 @@
           <Property Name="NumberCard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DateAction" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_PaymentRequisitesId" FromRole="PaymentRequisites" ToRole="Orders" />
           <NavigationProperty Name="PaymentSystem" Relationship="Self.FK_PaymentRequisites_PaymentSystemsId" FromRole="PaymentRequisites" ToRole="PaymentSystems" />
+          <NavigationProperty Name="Orders" Relationship="MusicDataBaseModel.FK_Orders_PaymentRequisitesId" FromRole="PaymentRequisite" ToRole="Order" />
         </EntityType>
         <EntityType Name="PaymentSystem">
           <Key>
@@ -646,7 +625,7 @@
           <NavigationProperty Name="NumberString" Relationship="Self.FK_dbo_Product_dbo_NumberString_NumberStringId" FromRole="Product" ToRole="NumberString" />
           <NavigationProperty Name="Picture" Relationship="Self.FK_dbo_Product_dbo_Picture_PictureId" FromRole="Product" ToRole="Picture" />
           <NavigationProperty Name="Subcategory" Relationship="Self.FK_dbo_Product_dbo_Subcategories_SubcategoriesId" FromRole="Product" ToRole="Subcategories" />
-          <NavigationProperty Name="Orders" Relationship="Self.OrdersProduct" FromRole="Product" ToRole="Orders" />
+          <NavigationProperty Name="OrdersProducts" Relationship="MusicDataBaseModel.FK_OrdersProduct_ProductId" FromRole="Product" ToRole="OrdersProduct" />
         </EntityType>
         <EntityType Name="Region">
           <Key>
@@ -684,7 +663,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_TypeOrdersId" FromRole="Type_Order" ToRole="Orders" />
+          <NavigationProperty Name="Orders" Relationship="MusicDataBaseModel.FK_Orders_TypeOrdersId" FromRole="Type_Order" ToRole="Order" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -697,8 +676,8 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Cookie" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_UserId" FromRole="Users" ToRole="Orders" />
           <NavigationProperty Name="Roles" Relationship="Self.UsersRoles" FromRole="Users" ToRole="Roles" />
+          <NavigationProperty Name="Orders" Relationship="MusicDataBaseModel.FK_Orders_UserId" FromRole="User" ToRole="Order" />
         </EntityType>
         <Association Name="FK_AddressDelivery_CityId">
           <End Role="City" Type="Self.City" Multiplicity="1" />
@@ -709,18 +688,6 @@
             </Principal>
             <Dependent Role="AddressDelivery">
               <PropertyRef Name="CityId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Orders_AddressDeliveryId">
-          <End Role="AddressDelivery" Type="Self.AddressDelivery" Multiplicity="0..1" />
-          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AddressDelivery">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Orders">
-              <PropertyRef Name="AddressDeliveryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -796,42 +763,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Orders_PaymentRequisitesId">
-          <End Role="PaymentRequisites" Type="Self.PaymentRequisite" Multiplicity="0..1" />
-          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PaymentRequisites">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Orders">
-              <PropertyRef Name="PaymentRequisitesId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Orders_TypeOrdersId">
-          <End Role="Type_Order" Type="Self.Type_Order" Multiplicity="1" />
-          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Type_Order">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Orders">
-              <PropertyRef Name="TypeOrdersId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Orders_UserId">
-          <End Role="Users" Type="Self.User" Multiplicity="1" />
-          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Orders">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PaymentRequisites_PaymentSystemsId">
           <End Role="PaymentSystems" Type="Self.PaymentSystem" Multiplicity="1" />
           <End Role="PaymentRequisites" Type="Self.PaymentRequisite" Multiplicity="*" />
@@ -868,10 +799,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="OrdersProduct">
-          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-        </Association>
         <Association Name="UsersRoles">
           <End Role="Roles" Type="Self.Role" Multiplicity="*" />
           <End Role="Users" Type="Self.User" Multiplicity="*" />
@@ -883,7 +810,6 @@
           <EntitySet Name="Cities" EntityType="Self.City" />
           <EntitySet Name="Countries" EntityType="Self.Country" />
           <EntitySet Name="NumberStrings" EntityType="Self.NumberString" />
-          <EntitySet Name="Orders" EntityType="Self.Order" />
           <EntitySet Name="PaymentRequisites" EntityType="Self.PaymentRequisite" />
           <EntitySet Name="PaymentSystems" EntityType="Self.PaymentSystem" />
           <EntitySet Name="Pictures" EntityType="Self.Picture" />
@@ -896,10 +822,6 @@
           <AssociationSet Name="FK_AddressDelivery_CityId" Association="Self.FK_AddressDelivery_CityId">
             <End Role="City" EntitySet="Cities" />
             <End Role="AddressDelivery" EntitySet="AddressDeliveries" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Orders_AddressDeliveryId" Association="Self.FK_Orders_AddressDeliveryId">
-            <End Role="AddressDelivery" EntitySet="AddressDeliveries" />
-            <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_Product_dbo_Brand_BrandId" Association="Self.FK_dbo_Product_dbo_Brand_BrandId">
             <End Role="Brand" EntitySet="Brands" />
@@ -925,18 +847,6 @@
             <End Role="NumberString" EntitySet="NumberStrings" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
-          <AssociationSet Name="FK_Orders_PaymentRequisitesId" Association="Self.FK_Orders_PaymentRequisitesId">
-            <End Role="PaymentRequisites" EntitySet="PaymentRequisites" />
-            <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Orders_TypeOrdersId" Association="Self.FK_Orders_TypeOrdersId">
-            <End Role="Type_Order" EntitySet="Type_Order" />
-            <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Orders_UserId" Association="Self.FK_Orders_UserId">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
           <AssociationSet Name="FK_PaymentRequisites_PaymentSystemsId" Association="Self.FK_PaymentRequisites_PaymentSystemsId">
             <End Role="PaymentSystems" EntitySet="PaymentSystems" />
             <End Role="PaymentRequisites" EntitySet="PaymentRequisites" />
@@ -949,15 +859,145 @@
             <End Role="Subcategories" EntitySet="Subcategories" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
-          <AssociationSet Name="OrdersProduct" Association="Self.OrdersProduct">
-            <End Role="Orders" EntitySet="Orders" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
           <AssociationSet Name="UsersRoles" Association="Self.UsersRoles">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="Orders" EntityType="MusicDataBaseModel.Order" />
+          <EntitySet Name="OrdersProducts" EntityType="MusicDataBaseModel.OrdersProduct" />
+          <AssociationSet Name="FK_Orders_AddressDeliveryId" Association="MusicDataBaseModel.FK_Orders_AddressDeliveryId">
+            <End Role="AddressDelivery" EntitySet="AddressDeliveries" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_PaymentRequisitesId" Association="MusicDataBaseModel.FK_Orders_PaymentRequisitesId">
+            <End Role="PaymentRequisite" EntitySet="PaymentRequisites" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_TypeOrdersId" Association="MusicDataBaseModel.FK_Orders_TypeOrdersId">
+            <End Role="Type_Order" EntitySet="Type_Order" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_UserId" Association="MusicDataBaseModel.FK_Orders_UserId">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdersProduct_OrdersId" Association="MusicDataBaseModel.FK_OrdersProduct_OrdersId">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrdersProduct" EntitySet="OrdersProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdersProduct_ProductId" Association="MusicDataBaseModel.FK_OrdersProduct_ProductId">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="OrdersProduct" EntitySet="OrdersProducts" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
+          <Property Name="TypeOrdersId" Type="Int32" Nullable="false" />
+          <Property Name="AddressDeliveryId" Type="Int32" />
+          <Property Name="DateShapingOrders" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DatePurchase" Type="DateTime" Precision="3" />
+          <Property Name="DateCancel" Type="DateTime" Precision="3" />
+          <Property Name="OrderSum" Type="Decimal" Nullable="false" Precision="7" Scale="2" />
+          <Property Name="PaymentRequisitesId" Type="Int32" />
+          <Property Name="NumberOrder" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AddressDelivery" Relationship="MusicDataBaseModel.FK_Orders_AddressDeliveryId" FromRole="Order" ToRole="AddressDelivery" />
+          <NavigationProperty Name="PaymentRequisite" Relationship="MusicDataBaseModel.FK_Orders_PaymentRequisitesId" FromRole="Order" ToRole="PaymentRequisite" />
+          <NavigationProperty Name="Type_Order" Relationship="MusicDataBaseModel.FK_Orders_TypeOrdersId" FromRole="Order" ToRole="Type_Order" />
+          <NavigationProperty Name="User" Relationship="MusicDataBaseModel.FK_Orders_UserId" FromRole="Order" ToRole="User" />
+          <NavigationProperty Name="OrdersProducts" Relationship="MusicDataBaseModel.FK_OrdersProduct_OrdersId" FromRole="Order" ToRole="OrdersProduct" />
+        </EntityType>
+        <EntityType Name="OrdersProduct">
+          <Key>
+            <PropertyRef Name="OrdersId" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="OrdersId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="AmountProduct" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="MusicDataBaseModel.FK_OrdersProduct_OrdersId" FromRole="OrdersProduct" ToRole="Order" />
+          <NavigationProperty Name="Product" Relationship="MusicDataBaseModel.FK_OrdersProduct_ProductId" FromRole="OrdersProduct" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_Orders_AddressDeliveryId">
+          <End Type="MusicDataBaseModel.AddressDelivery" Role="AddressDelivery" Multiplicity="0..1" />
+          <End Type="MusicDataBaseModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AddressDelivery">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="AddressDeliveryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_PaymentRequisitesId">
+          <End Type="MusicDataBaseModel.PaymentRequisite" Role="PaymentRequisite" Multiplicity="0..1" />
+          <End Type="MusicDataBaseModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentRequisite">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="PaymentRequisitesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_TypeOrdersId">
+          <End Type="MusicDataBaseModel.Type_Order" Role="Type_Order" Multiplicity="1" />
+          <End Type="MusicDataBaseModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="TypeOrdersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_UserId">
+          <End Type="MusicDataBaseModel.User" Role="User" Multiplicity="1" />
+          <End Type="MusicDataBaseModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdersProduct_OrdersId">
+          <End Type="MusicDataBaseModel.Order" Role="Order" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MusicDataBaseModel.OrdersProduct" Role="OrdersProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrdersProduct">
+              <PropertyRef Name="OrdersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdersProduct_ProductId">
+          <End Type="MusicDataBaseModel.Product" Role="Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MusicDataBaseModel.OrdersProduct" Role="OrdersProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrdersProduct">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1021,23 +1061,6 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="MusicDataBaseModel.Order">
-              <MappingFragment StoreEntitySet="Orders">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="TypeOrdersId" ColumnName="TypeOrdersId" />
-                <ScalarProperty Name="AddressDeliveryId" ColumnName="AddressDeliveryId" />
-                <ScalarProperty Name="DateShapingOrders" ColumnName="DateShapingOrders" />
-                <ScalarProperty Name="DatePurchase" ColumnName="DatePurchase" />
-                <ScalarProperty Name="DateCancel" ColumnName="DateCancel" />
-                <ScalarProperty Name="OrderSum" ColumnName="OrderSum" />
-                <ScalarProperty Name="PaymentRequisitesId" ColumnName="PaymentRequisitesId" />
-                <ScalarProperty Name="NumberOrder" ColumnName="NumberOrder" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1143,14 +1166,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="OrdersProduct" TypeName="MusicDataBaseModel.OrdersProduct" StoreEntitySet="OrdersProduct">
-            <EndProperty Name="Orders">
-              <ScalarProperty Name="Id" ColumnName="OrdersId" />
-            </EndProperty>
-            <EndProperty Name="Product">
-              <ScalarProperty Name="Id" ColumnName="ProductId" />
-            </EndProperty>
-          </AssociationSetMapping>
           <AssociationSetMapping Name="UsersRoles" TypeName="MusicDataBaseModel.UsersRoles" StoreEntitySet="UsersRoles">
             <EndProperty Name="Roles">
               <ScalarProperty Name="Id" ColumnName="RolesId" />
@@ -1159,6 +1174,32 @@
               <ScalarProperty Name="Id" ColumnName="UsersId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="MusicDataBaseModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="NumberOrder" ColumnName="NumberOrder" />
+                <ScalarProperty Name="PaymentRequisitesId" ColumnName="PaymentRequisitesId" />
+                <ScalarProperty Name="OrderSum" ColumnName="OrderSum" />
+                <ScalarProperty Name="DateCancel" ColumnName="DateCancel" />
+                <ScalarProperty Name="DatePurchase" ColumnName="DatePurchase" />
+                <ScalarProperty Name="DateShapingOrders" ColumnName="DateShapingOrders" />
+                <ScalarProperty Name="AddressDeliveryId" ColumnName="AddressDeliveryId" />
+                <ScalarProperty Name="TypeOrdersId" ColumnName="TypeOrdersId" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrdersProducts">
+            <EntityTypeMapping TypeName="MusicDataBaseModel.OrdersProduct">
+              <MappingFragment StoreEntitySet="OrdersProduct">
+                <ScalarProperty Name="AmountProduct" ColumnName="AmountProduct" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="OrdersId" ColumnName="OrdersId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

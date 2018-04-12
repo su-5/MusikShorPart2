@@ -10,11 +10,16 @@ namespace ShopOfMusicalInstruments.Core.Controllers
     [RoutePrefix("api/Product")]
     public class ProductController : ApiController  
     {
-        private IBLLFactory _bllFactory;
+        private readonly IBLLFactory _bllFactory;
 
         public ProductController(IBLLFactory bllFactory)
         {
-            _bllFactory = bllFactory ?? throw new ArgumentNullException(nameof(bllFactory));
+            if (bllFactory == null)
+            {
+                throw new ArgumentNullException(nameof(bllFactory));
+            }
+
+            _bllFactory = bllFactory;
         }
 
         [HttpGet]
@@ -29,7 +34,7 @@ namespace ShopOfMusicalInstruments.Core.Controllers
         [Route("GetAllCatalog")]
         public IHttpActionResult GetAllCatalog()
         {
-            var result = _bllFactory.ProductBll.GetAll().Where(w => w.Window == true).OrderBy(r => r.Brand.Name).ToList();
+           var result = _bllFactory.ProductBll.GetAll().Where(w => w.Window == true).OrderBy(r => r.Brand.Name).ToList();
             return Ok(result);
         }
 

@@ -201,14 +201,20 @@
             // формируем обьект preOrder для отправки на сервер
             var preOrder = {
                 Amount: $scope.totalProduct, // кол-во выбраных товаров
-                OrderSum: $scope.totalBYN,// иговая сумма
+                OrderSum: $scope.totalBYN, // иговая сумма
                 TypeOrdersId: 1, // Ожидание оплаты
                 DateShapingOrders: new Date(),
-                OrderListProducts : masProdukt
-            }
+                OrderListProducts: masProdukt,
+                UserEmail: $rootScope.authenticationUserName
+        }
 
             //передача данных preOrder на сервер
             orderService.savePreOrder(preOrder).then(function (value) {
+                if (value !== 0) {
+               
+                        $rootScope.toaster('info', "Ваш заказ № " + value + " успешно сформирован со статусом неоплачен", 9000);
+
+                    }
                 },
                 function (errorObject) {
                     $rootScope.toaster('error', errorObject.Message, 9000);

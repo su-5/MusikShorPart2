@@ -12,5 +12,6 @@ namespace DAL.Core.DAL_Core
         ICategoryDAL Category { get; }
         IUserDAL User { get; }
         IOrderDAL Order { get; }
+        IOrdersProductDAL OrdersProduct { get; }
     }
 }

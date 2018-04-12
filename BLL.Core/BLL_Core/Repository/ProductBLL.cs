@@ -21,7 +21,7 @@ namespace BLL.Core.BLL_Core.Repository
 
         public List<ProductDTO> GetAll()
         {
-            List<Product> productList = _dalFactory.Product.GetAll().Where(w => w.DateDelete == null).OrderBy(x => x.Name).ToList();
+            List<Product> productList = _dalFactory.Product.GetAll().Where(w => w.DateDelete == null && w.NumberProduct != 0).OrderBy(x => x.Name).ToList();
             var result = Mapper.Map<List<Product>, List<ProductDTO>>(productList);
             return result;
         }

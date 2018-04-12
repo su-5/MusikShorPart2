@@ -31,7 +31,6 @@ namespace DAL.Core
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<NumberString> NumberStrings { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<PaymentRequisite> PaymentRequisites { get; set; }
         public virtual DbSet<PaymentSystem> PaymentSystems { get; set; }
         public virtual DbSet<Picture> Pictures { get; set; }
@@ -41,5 +40,7 @@ namespace DAL.Core
         public virtual DbSet<Subcategory> Subcategories { get; set; }
         public virtual DbSet<Type_Order> Type_Order { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrdersProduct> OrdersProducts { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace DAL.Core.ModelDTO
     {
 
         public int Id { get; set; }
-        public string UserId { get; set; }
+        public string UserEmail { get; set; }
         public int Amount { get; set; }
         public int TypeOrdersId { get; set; }
         public int AddressDeliveryId { get; set; }
@@ -24,5 +24,6 @@ namespace DAL.Core.ModelDTO
     {
         public int ProductId { get; set; }
         public int AmountProduct { get; set; }
+        public int OrdersId { get; set; }
     }
 }

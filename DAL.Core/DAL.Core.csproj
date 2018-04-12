@@ -49,10 +49,10 @@
       <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -60,7 +60,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -95,6 +94,7 @@
     <Compile Include="GenericRepositoryModel\Interfaces\ICountryDAL.cs" />
     <Compile Include="GenericRepositoryModel\Interfaces\INumberStringDAL.cs" />
     <Compile Include="GenericRepositoryModel\Interfaces\IOrderDAL.cs" />
+    <Compile Include="GenericRepositoryModel\Interfaces\IOrdersProductDAL.cs" />
     <Compile Include="GenericRepositoryModel\Interfaces\IProductDAL.cs" />
     <Compile Include="GenericRepositoryModel\Interfaces\ISubcategoryDAL.cs" />
     <Compile Include="GenericRepositoryModel\Interfaces\IUserDAL.cs" />
@@ -103,6 +103,7 @@
     <Compile Include="GenericRepositoryModel\Repository\CountryDAL.cs" />
     <Compile Include="GenericRepositoryModel\Repository\NumberStringDAL.cs" />
     <Compile Include="GenericRepositoryModel\Repository\OrderDAL.cs" />
+    <Compile Include="GenericRepositoryModel\Repository\OrdersProductDAL.cs" />
     <Compile Include="GenericRepositoryModel\Repository\ProductDAL.cs" />
     <Compile Include="GenericRepositoryModel\Repository\SubcategoryDAL.cs" />
     <Compile Include="GenericRepositoryModel\Repository\UserDAL.cs" />
@@ -137,6 +138,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Order.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrdersProduct.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="PaymentRequisite.cs">

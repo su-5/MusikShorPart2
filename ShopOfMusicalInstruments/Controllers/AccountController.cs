@@ -315,7 +315,7 @@ namespace ShopOfMusicalInstruments.Core.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new User() { UserName = model.Name, Email = model.Email,LastName = model.LastName,MiddleName = model.MiddleName};
+            var user = new User() { UserName = model.Email, Email = model.Name,LastName = model.LastName,MiddleName = model.MiddleName};
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 

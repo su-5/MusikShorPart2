@@ -2,8 +2,7 @@
     "use strict";
 
     function orderFormService($cookies, $http, $rootScope, $q) {
-        this.send = function (process) {
-            var data = process;
+        this.send = function (data) {
             var deferred = $q.defer();
             $http.post("api/Orders/order", data)
                 .then(function (response) {

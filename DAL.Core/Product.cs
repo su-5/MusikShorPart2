@@ -17,7 +17,7 @@ namespace DAL.Core
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.Orders = new HashSet<Order>();
+            this.OrdersProducts = new HashSet<OrdersProduct>();
         }
     
         public int Id { get; set; }
@@ -41,6 +41,6 @@ namespace DAL.Core
         public virtual Picture Picture { get; set; }
         public virtual Subcategory Subcategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<OrdersProduct> OrdersProducts { get; set; }
     }
 }
