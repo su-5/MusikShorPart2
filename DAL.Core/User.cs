@@ -9,10 +9,13 @@
 
 namespace DAL.Core
 {
+    using Microsoft.AspNet.Identity;
     using System;
     using System.Collections.Generic;
-    
-    public partial class User
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+
+    public partial class User : IUser
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
@@ -36,5 +39,12 @@ namespace DAL.Core
         public virtual ICollection<Order> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UsersProduct> UsersProducts { get; set; }
-    }
+
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager,
+          string authenticationType)
+        {
+           var userIdentity = await manager.CreateIdentityAsync(this, authenticationType);
+           return userIdentity;
+       }
+}
 }
