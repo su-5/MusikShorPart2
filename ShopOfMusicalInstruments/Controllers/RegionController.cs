@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Http;
 using BLL.Core.BLL_Core.Interface;
+using DAL.Core.ModelDTO;
 
 namespace ShopOfMusicalInstruments.Core.Controllers
 {
@@ -12,6 +14,15 @@ namespace ShopOfMusicalInstruments.Core.Controllers
         public RegionController(IBLLFactory bllFactory)
         {
             _bllFactory = bllFactory ?? throw new ArgumentNullException(nameof(bllFactory));
+        }
+
+
+        [HttpGet]
+        [Route("GetRegionByCountry")]
+        public IHttpActionResult RegionByContry(int id)
+        {
+            List<RegionDTO> result = _bllFactory.RegionBll.GetRegionByCountry(id);
+            return Ok(result);
         }
     }
 }

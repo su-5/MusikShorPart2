@@ -1,0 +1,36 @@
+﻿<div>
+    <div class="modal-header">
+        <h3 style="padding-top: -8px; text-align: center">Добавление адреса</h3>
+    </div>
+    <div сlass="modal-body">
+        <form name="addressForm" class="form-inline">
+            <div align="center">
+                <div style="width: 50%">
+                    <div align="right">
+                        <label>Страна<select class="form-control form-order-label select-order-form" ng-model="Address.CountryId" required ng-options="obj.Id as obj.Name for obj in listCountry"><option value="">--Выберите страну--</option></select></label>
+                    </div>
+                    <div align="right">
+                        <label>Регион<select class="form-control form-order-label select-order-form" ng-disabled="!Address.CountryId" ng-model="Address.RegionId" required ng-options="obj.Id as obj.Name for obj in listRegion"><option value="">--Выберите регион--</option></select></label>
+                    </div>
+                    <div align="right">
+                        <label>Нас.пункт<select class="form-control form-order-label select-order-form" ng-disabled="!Address.RegionId" ng-model="Address.CityId" required ng-options="obj.Id as obj.Name for obj in listCity"><option value="">--Выберите нас.пункт--</option></select></label>
+                    </div>
+                    <div align="right">
+                        <label>Улица<input type="text" class="form-control form-order-label" /></label>
+                    </div>
+                    <div align="right">
+                        <label>Дом<input type="text" class="form-control form-order-label" /></label>
+                    </div>
+                    <div align="right">
+                        <label>Квартира<input type="text" class="form-control form-order-label" /></label>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-xs btn-primary" ng-click="AddAddressForm()">Добавить</button>
+        <button type="button" class="btn btn-xs btn-warning" ng-click="cancel()">Отмена</button>
+    </div>
+</div>
