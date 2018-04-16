@@ -226,3 +226,12 @@ a {
     vertical-align: middle;
 }
 
+.form-order-label {
+    height: 29px !important;
+    width: 206px !important;
+    margin-left: 18px !important;  
+}
+.select-order-form {
+    padding-top: 1px !important;
+}
+

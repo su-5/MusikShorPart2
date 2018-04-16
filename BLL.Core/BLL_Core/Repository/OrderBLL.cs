@@ -32,7 +32,7 @@ namespace BLL.Core.BLL_Core.Repository
                     result.AddressDeliveryId = null;
                     result.PaymentRequisitesId = null;
                     var orderId = _dalFactory.Order.AddWithReturn(result).Id;
-                    var prodicts = Mapper.Map<List<OrderListProduct>,List<OrdersProduct>>(data.OrderListProducts);
+                    var prodicts = Mapper.Map<List<OrderListProduct>, List<OrdersProduct>>(data.OrderListProducts);
                     foreach (var value in prodicts)
                     {
                         value.OrdersId = orderId;
@@ -62,7 +62,7 @@ namespace BLL.Core.BLL_Core.Repository
         {
             foreach (OrdersProduct val in prodгсList)
             {
-             var product = _dalFactory.Product.GetById(val.ProductId);
+                var product = _dalFactory.Product.GetById(val.ProductId);
                 product.NumberProduct = product.NumberProduct - val.AmountProduct;
                 _dalFactory.Product.UpdateVoid(product, product.Id);
             }
