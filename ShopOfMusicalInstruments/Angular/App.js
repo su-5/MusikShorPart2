@@ -1,4 +1,4 @@
-﻿(function() {
+﻿(function () {
     "use strict";
 
     angular.module("Web.Services", []);
@@ -8,17 +8,17 @@
 
     var app = angular.module("Web", ["Web.Services", "Web.Directives", "Web.Externals", "Web.Controllers", "ui.bootstrap"]);
 
-    app.run(["$rootScope", "$location", "$http", "$state", "$stateParams", "$sce", "loadingService", "toaster", "$cookies", "productService","$window",
-        function ($rootScope, $location, $http, $state, $stateParams, $sce, loadingService, toaster, $cookies, productService, $window) {
-            $rootScope.loadingShow = function() {
+    app.run(["$rootScope", "$location", "$http", "$state", "$stateParams", "$sce", "loadingService", "toaster", "$cookies", "productService", "$window","cartService",
+        function ($rootScope, $location, $http, $state, $stateParams, $sce, loadingService, toaster, $cookies, productService, $window, cartService) {
+            $rootScope.loadingShow = function () {
                 $rootScope.loadingIsShow = loadingService.show(); // loading
             };
 
-            $rootScope.loadingHide = function() {
+            $rootScope.loadingHide = function () {
                 $rootScope.loadingIsShow = loadingService.hide();
             };
 
-            $rootScope.toaster = function(type, message, timeout, clickHandler) {
+            $rootScope.toaster = function (type, message, timeout, clickHandler) {
                 toaster.pop(type, null, message, timeout, null, clickHandler);
             };
 
@@ -34,18 +34,18 @@
                 }
             }
 
-            $rootScope.filterData = function(categoryId, subCategoryId, flag) {
+            $rootScope.filterData = function (categoryId, subCategoryId, flag) {
                 $rootScope.loadingShow();
-                productService.getProductById(categoryId, subCategoryId, flag).then(function(value) {
+                productService.getProductById(categoryId, subCategoryId, flag).then(function (value) {
                     $rootScope.Produkts = value;
                     $rootScope.ProduktsFilter = flag;
-                }, function(errorObject) {
-                }).finally(function() {
+                }, function (errorObject) {
+                }).finally(function () {
                     $rootScope.loadingHide();
                 });
             }
 
-            $rootScope.exitSystem = function() {
+            $rootScope.exitSystem = function () {
                 productService.exitSystem().then(function (value) {
                     resetCart();
                     $window.location.reload();
@@ -61,7 +61,7 @@
                 $cookies.remove('productToCart');
             }
 
-            $rootScope.authenticationUser = function() {
+            $rootScope.authenticationUser = function () {
                 $rootScope.authenticationUserName = angular.element('#userName').val();
                 $rootScope.authentication = angular.element('#authentication').val();
                 if ($rootScope.authentication === 'value') {
@@ -70,7 +70,28 @@
                     $rootScope.auchUser = false;
                 }
             }
-           
+
+            //считываем текущие куки и записываем из в БД
+            $rootScope.cookiesRecordDb = function () {
+                var productsCookie = $cookies.getObject('productToCart');
+                cookiesRecordDb(productsCookie);
+            }
+
+            function cookiesRecordDb(cookies) {
+                $rootScope.loadingShow();             
+                cartService.cookiesRecordDb(cookies, $rootScope.authenticationUserName).then(function (value) {
+                  
+                },
+                    function (errorObject) {
+                        $rootScope.toaster('error', errorObject.Message, 9000);
+                        for (var i = 0; i < errorObject.ModelState.error.length; i++) {
+                            $rootScope.toaster('error', errorObject.ModelState.error[i], 9000);
+                        }
+                    }).finally(function () {
+                        $rootScope.loadingHide();
+                    });
+            }
+
             //вызываем функцию, которая считывает куки и выводит их кол-во id в корзину
             $rootScope.lengthCartProducts();
             $rootScope.authenticationUser();

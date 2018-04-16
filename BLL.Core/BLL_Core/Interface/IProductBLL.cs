@@ -11,5 +11,6 @@ namespace BLL.Core.BLL_Core.Interface
         void Delete(int id);
         List<ProductDTO> GetProductById(int categoryId, int subcategoryId, bool flag);
         List<CartDto> GetAllToCart(List<dynamic> productsListId);
+        void CookiesRecordDb(List<dynamic> data);
     }
 }

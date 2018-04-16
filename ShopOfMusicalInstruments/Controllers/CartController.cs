@@ -33,6 +33,24 @@ namespace ShopOfMusicalInstruments.Core.Controllers
             }  
             
         }
+
+
+        [Route("cookiesRecordDb")]
+        [HttpPost]
+        public IHttpActionResult CookiesRecordDb(List<dynamic> data)
+        {
+            try
+            {
+             _bllFactory.ProductBll.CookiesRecordDb(data);
+                return Ok(true);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("error", ex.Message);
+                return BadRequest(ModelState);
+            }
+
+        }
     }
 
 

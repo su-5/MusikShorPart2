@@ -83,5 +83,10 @@ namespace BLL.Core.BLL_Core.Repository
            
             return resultList;
         }
+
+        public void CookiesRecordDb(List<dynamic> data)
+        {
+            var produkts = GetAllToCart(data);
+        }
     }
 }
