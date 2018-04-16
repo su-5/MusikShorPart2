@@ -18,6 +18,8 @@ namespace BLL.Core.BLL_Core
                 x.AddProfile<UserMapper>();
                 x.AddProfile<CartMapper>();
                 x.AddProfile<OrderMapper>();
+                x.AddProfile<CityMapper>();
+                x.AddProfile<RegionMapper>();
             });
         }
     }

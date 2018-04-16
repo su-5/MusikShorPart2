@@ -32,18 +32,18 @@ namespace BLL.Core.BLL_Core.Repository
                     result.AddressDeliveryId = null;
                     result.PaymentRequisitesId = null;
                     var orderId = _dalFactory.Order.AddWithReturn(result).Id;
-                    var Prodicts = Mapper.Map<List<OrderListProduct>,List<OrdersProduct>>(data.OrderListProducts);
-                    foreach (var value in Prodicts)
+                    var prodicts = Mapper.Map<List<OrderListProduct>,List<OrdersProduct>>(data.OrderListProducts);
+                    foreach (var value in prodicts)
                     {
                         value.OrdersId = orderId;
                         _dalFactory.OrdersProduct.Add(value);
                     }
 
-                    CalculateProduct(Prodicts);
+                    CalculateProduct(prodicts);
                     transaction.Commit();
                     return result.NumberOrder;
                 }
-                catch (Exception ex) // блок сработает в случае ошибки выполнения кода выше который в блоке try!!!
+                catch (Exception) // блок сработает в случае ошибки выполнения кода выше который в блоке try!!!
                 {
                     transaction.Rollback();
                 }
