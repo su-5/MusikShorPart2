@@ -215,5 +215,14 @@ a {
     margin-top: 1px !important;
 }
 
-
+.Block_order {
+    color: #fff;
+    background: #9697a1;
+    border-radius: 1rem;
+    border: 1px solid #9697a1;
+    cursor: pointer;
+    display: inline-block;
+    padding: .25rem .5rem;
+    vertical-align: middle;
+}
 

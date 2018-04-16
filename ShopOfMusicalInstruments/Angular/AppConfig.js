@@ -40,6 +40,12 @@
                 templateUrl: "Angular/Views/OrderForm.html",
                 controller: "orderFormController"
             });
+
+            $stateProvider.state("mainPage/UserRoom", {
+                url: "/userRoom",
+                templateUrl: "Angular/Views/UserRoom.html",
+                controller: "userRoomController"
+            });
         
             $urlRouterProvider.otherwise("/catalog");
         }]);

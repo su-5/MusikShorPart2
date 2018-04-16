@@ -57,7 +57,7 @@ namespace BLL.Core.BLL_Core.Repository
             var result = Mapper.Map<OrderDto, Order>(data);
             _dalFactory.Order.Add(result);
         }
-        // персчет продуктов исходя из заказа
+        // пересчет продуктов исходя из заказа
         public void CalculateProduct(List<OrdersProduct> prodгсList)
         {
             foreach (OrdersProduct val in prodгсList)

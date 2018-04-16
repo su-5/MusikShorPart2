@@ -212,7 +212,7 @@
             orderService.savePreOrder(preOrder).then(function (value) {
                 if (value !== 0) {
                
-                        $rootScope.toaster('info', "Ваш заказ № " + value + " успешно сформирован со статусом неоплачен", 9000);
+                        $rootScope.toaster('info', "Ваш заказ № " + value + " успешно сформирован со статусом неоплачен", 3000);
 
                     }
                 },

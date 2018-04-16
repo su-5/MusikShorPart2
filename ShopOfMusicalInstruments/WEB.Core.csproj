@@ -364,6 +364,7 @@
     <Content Include="Angular\Controllers\OrderFormCtrl.js" />
     <Content Include="Angular\Controllers\RegistrationCtrl.js" />
     <Content Include="Angular\Controllers\topMenu.js" />
+    <Content Include="Angular\Controllers\userRoomCtrl.js" />
     <Content Include="Angular\ModalWindows\ControlAddNewProductModalWindow.html" />
     <Content Include="Angular\ModalWindows\ControlBrendModalMindow.html" />
     <Content Include="Angular\ModalWindows\ControlCategoryModalWindow.html" />
@@ -384,6 +385,7 @@
     <Content Include="Angular\Services\productService.js" />
     <Content Include="Angular\Services\registerationService.js" />
     <Content Include="Angular\Services\subcategoryService.js" />
+    <Content Include="Angular\Services\userRoomService.js" />
     <Content Include="Angular\Services\userService.js" />
     <Content Include="Angular\Templates\DeleteCart.html" />
     <Content Include="Angular\Templates\isCheckNotZero.html" />
@@ -397,6 +399,7 @@
     <Content Include="Angular\Views\OrderForm.html" />
     <Content Include="Angular\Views\Registration.html" />
     <Content Include="Angular\Views\topMenu.html" />
+    <Content Include="Angular\Views\UserRoom.html" />
     <Content Include="App_Data\MusicDataBase.mdf" />
     <Content Include="App_Data\MusicDataBase_log.ldf">
       <DependentUpon>MusicDataBase.mdf</DependentUpon>
