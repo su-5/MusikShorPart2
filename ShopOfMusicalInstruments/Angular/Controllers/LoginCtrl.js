@@ -9,7 +9,8 @@
             }
             $rootScope.loadingShow();
             registerService.login(data).then(function (value) {
-                    $window.location.reload();
+             // обработка куков корзины авторизованого пользователя
+                $window.location.reload();
                 $state.go("mainPage/Catalog");
                 },
                 function (errorObject) {

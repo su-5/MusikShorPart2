@@ -134,6 +134,7 @@
     <Compile Include="ModelDTO\BrandDTO.cs" />
     <Compile Include="ModelDTO\CartDTO.cs" />
     <Compile Include="ModelDTO\CategoryDTO.cs" />
+    <Compile Include="ModelDTO\CookiesRecordDto.cs" />
     <Compile Include="ModelDTO\CountryDTO.cs" />
     <Compile Include="ModelDTO\NumberStringDTO.cs" />
     <Compile Include="ModelDTO\OrderDTO.cs" />

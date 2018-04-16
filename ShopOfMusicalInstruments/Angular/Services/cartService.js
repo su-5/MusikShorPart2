@@ -14,10 +14,21 @@
             return deferred.promise;
         };
 
-        this.cookiesRecordDb = function (productId,userMail) {
-            var data = {}
+        this.cookiesRecordDb = function (product, userMail) {
+            var data = { ProductList :product , UserMail: userMail}
             var deferred = $q.defer();
             $http.post("api/Cart/cookiesRecordDb", data)
+                .then(function (response) {
+                    deferred.resolve(response.data);
+                }).catch(function onError(response) {
+                    deferred.reject(response.data);
+                });
+            return deferred.promise;
+        };
+
+        this.getAllProductCartInDataBase = function (userMail) {
+            var deferred = $q.defer();
+            $http.post("api/Cart/getAllProductCartInDataBase", userMail)
                 .then(function (response) {
                     deferred.resolve(response.data);
                 }).catch(function onError(response) {
