@@ -183,6 +183,7 @@
             } else {
                 $rootScope.toaster('info', 'Вы не зарегистрированы.  Только зарегистрированые пользователи могут совершать покупки.', 0);
                 $state.go("mainPage/Registration");
+                $rootScope.loadingHide();
             }
         }
 
