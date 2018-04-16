@@ -14,6 +14,8 @@ namespace BLL.Core.BLL_Core.Repository
         private ICategoryBLL _category;
         private IUserBLL _user;
         private IOrderBLL _order;
+        private ICityBLL _city;
+        private IRegionBLL _region;
         public BLLFactory()
         {
             _dalFactory = new DalFactory(new DbFactory());
@@ -27,5 +29,7 @@ namespace BLL.Core.BLL_Core.Repository
         public ICategoryBLL CategoryBll => _category ?? (_category = new CategoryBLL(_dalFactory));
         public IUserBLL UserBll => _user ?? (_user = new UserBLL(_dalFactory));
         public IOrderBLL OrderBll => _order ?? (_order = new OrderBLL(_dalFactory));
+        public ICityBLL CityBll => _city ?? (_city = new CityBLL(_dalFactory));
+        public IRegionBLL RegionBll => _region ?? (_region = new RegionBLL(_dalFactory));
     }
 }
