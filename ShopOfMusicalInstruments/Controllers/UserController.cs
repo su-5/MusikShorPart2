@@ -27,6 +27,13 @@ namespace ShopOfMusicalInstruments.Core.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        public IHttpActionResult GetUserName(string mail)
+        {
+            string result = _bllFactory.UserBll.GetUserName(mail);
+            return Ok(result);
+        }
+
         [HttpPost]
         public IHttpActionResult Add(AppUserDto user)
         {

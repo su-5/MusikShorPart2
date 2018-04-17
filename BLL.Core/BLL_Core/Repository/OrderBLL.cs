@@ -26,7 +26,16 @@ namespace BLL.Core.BLL_Core.Repository
             {
                 try
                 {
-                    data.NumberOrder = (_dalFactory.Order.GetAll().Max(v => v.Id)) + (1) + DateTime.Now.Day + DateTime.Now.Year;
+                    var allOrder = _dalFactory.Order.GetAll().ToList();
+                    if (!allOrder.Any())
+                    {
+                        data.NumberOrder = 1 + DateTime.Now.Day + DateTime.Now.Year;
+                    }
+                    else
+                    {
+                        data.NumberOrder = (allOrder.Max(v => v.Id)) + (1) + DateTime.Now.Day + DateTime.Now.Year;
+                    }
+
                     var result = Mapper.Map<OrderDto, Order>(data);
                     result.UserId = _dalFactory.User.GetAll().FirstOrDefault(e => e.Email == data.UserEmail)?.Id;
                     result.AddressDeliveryId = null;
@@ -43,7 +52,7 @@ namespace BLL.Core.BLL_Core.Repository
                     transaction.Commit();
                     return result.NumberOrder;
                 }
-                catch (Exception) // блок сработает в случае ошибки выполнения кода выше который в блоке try!!!
+                catch (Exception ex) // блок сработает в случае ошибки выполнения кода выше который в блоке try!!!
                 {
                     transaction.Rollback();
                 }
@@ -52,10 +61,36 @@ namespace BLL.Core.BLL_Core.Repository
             }
         }
 
-        public void Order(OrderDto data)
+        public void Order(PaidOrderDTO data)
         {
-            var result = Mapper.Map<OrderDto, Order>(data);
-            _dalFactory.Order.Add(result);
+            var order = _dalFactory.Order.GetAll().FirstOrDefault(f => f.NumberOrder == data.NumberOrder);
+            string cityId = data.AddressDelivery.City.Id.ToString();
+            string paymentSystem = data.PaymentRequisite.PaymentSystems.Id.ToString();
+            if (order != null)
+            {
+                order.TypeOrdersId = 2;
+                order.DatePurchase = DateTime.Now;
+                order.PaymentRequisite = new PaymentRequisite
+                {
+                    PaymentSystemsId = Convert.ToInt32(paymentSystem),
+                    DateAction = DateTime.Now,
+                    NumberAccount = data.PaymentRequisite.NumberAccount,
+                    NumberCard = data.PaymentRequisite.NumberCard,
+                    UserName = data.PaymentRequisite.UserName
+                };
+                order.AddressDelivery = new AddressDelivery
+                {
+                    CityId = Convert.ToInt32(cityId),
+                    House = data.AddressDelivery.House,
+                    Flat = data.AddressDelivery.Flat,
+                    Street = data.AddressDelivery.Street
+                };
+            }
+
+            if (order != null)
+            {
+                _dalFactory.Order.UpdateVoid(order, order.Id);
+            }
         }
         // пересчет продуктов исходя из заказа
         public void CalculateProduct(List<OrdersProduct> prodгсList)

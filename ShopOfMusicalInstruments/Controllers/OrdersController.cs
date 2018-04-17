@@ -33,7 +33,7 @@ namespace ShopOfMusicalInstruments.Core.Controllers
 
         [Route("order")]
         [HttpPost]
-        public IHttpActionResult Order(OrderDto data)
+        public IHttpActionResult Order(PaidOrderDTO data)
         {
             try
             {

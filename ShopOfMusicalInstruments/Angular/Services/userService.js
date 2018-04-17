@@ -48,6 +48,18 @@
                 });
             return deferred.promise;
         };
+
+
+        this.getUserName = function (userMail) {
+            var deferred = $q.defer();
+            $http.get('api/User?mail=' + userMail)
+                .then(function (response) {
+                    deferred.resolve(response.data);
+                }).catch(function onError(response) {
+                    deferred.reject(response.data);
+                });
+            return deferred.promise;
+        };
     };
 
 

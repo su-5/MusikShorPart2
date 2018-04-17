@@ -9,7 +9,7 @@ using DAL.Core.ModelDTO;
 
 namespace BLL.Core.BLL_Core.Repository
 {
-    public class UserBLL:IUserBLL 
+    public class UserBLL : IUserBLL
     {
 
         private readonly DalFactory _dalFactory;
@@ -45,6 +45,13 @@ namespace BLL.Core.BLL_Core.Repository
         {
             var entity = _dalFactory.User.GetById(id);
             _dalFactory.User.UpdateVoid(entity, Convert.ToDecimal(entity.Id));
+        }
+
+        public string GetUserName(string mail)
+        {
+            var res = _dalFactory.User.GetAll().FirstOrDefault(f => f.Email == mail)?.LastName;
+            return res;
+
         }
     }
 }

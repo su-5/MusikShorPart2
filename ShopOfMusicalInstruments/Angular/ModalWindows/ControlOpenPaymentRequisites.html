@@ -10,10 +10,10 @@
                         <label>Платежная система<select class="form-control form-order-label select-order-form" ng-model="Payment.PaymentSystems" required ng-options="obj as obj.NamePaymentSystems for obj in listPaymentSystem"><option value="">--Выберите платежную систему--</option></select></label>
                     </div>
                     <div align="right">
-                        <label>Номер аккаунта<input type="text" class="form-control form-order-label select-order-form" ng-model="Payment.NumberAccount" required/></label>
+                        <label>Номер счета<input type="text" class="form-control form-order-label select-order-form" ng-model="Payment.NumberAccount" required/></label>
                     </div>
                     <div align="right">
-                        <label>Номер карты<input type="text" class="form-control form-order-label select-order-form"  ng-model="Payment.NumberCard" required /></label>
+                        <label>Номер карты<input type="date" class="form-control form-order-label select-order-form"  ng-model="Payment.NumberCard" required /></label>
                     </div>
                     <div align="right">
                         <label>Фио пользователя<input type="text" class="form-control form-order-label" ng-model="Payment.UserName" required /></label>

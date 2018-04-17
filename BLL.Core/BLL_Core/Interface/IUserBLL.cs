@@ -9,5 +9,6 @@ namespace BLL.Core.BLL_Core.Interface
         void Add(AppUserDto user);
         void Edit(List<AppUserDto> data);
         void Delete(int id);
+        string GetUserName(string mail);
     }
 }

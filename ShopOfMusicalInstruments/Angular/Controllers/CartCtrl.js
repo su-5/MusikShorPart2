@@ -207,25 +207,26 @@
                 DateShapingOrders: new Date(),
                 OrderListProducts: masProdukt,
                 UserEmail: $rootScope.authenticationUserName
-        }
+            }
 
             //передача данных preOrder на сервер
             orderService.savePreOrder(preOrder).then(function (value) {
                 if (value !== 0) {
-               
-                        $rootScope.toaster('info', "Ваш заказ № " + value + " успешно сформирован со статусом неоплачен", 3000);
 
-                    }
-                },
+                    $rootScope.toaster('info', "Ваш заказ № " + value + " успешно сформирован со статусом неоплачен", 3000);
+                    debugger;
+                    $rootScope.numberOrder = value;
+                }
+            },
                 function (errorObject) {
                     $rootScope.toaster('error', errorObject.Message, 9000);
                     for (var i = 0; i < errorObject.ModelState.error.length; i++) {
                         $rootScope.toaster('error', errorObject.ModelState.error[i], 9000);
                     }
                 }).finally(function () {
-                $rootScope.loadingHide();
-            });
-            
+                    $rootScope.loadingHide();
+                });
+
         }
 
 
@@ -234,5 +235,5 @@
     };
     angular
         .module("Web.Controllers")
-        .controller("cartController", ["$scope", "$rootScope", "$cookies", "cartService", "$window", "$state","orderService", cartController]);
+        .controller("cartController", ["$scope", "$rootScope", "$cookies", "cartService", "$window", "$state", "orderService", cartController]);
 })();

@@ -132,6 +132,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ModelDTO\AddressDeliveryDTO.cs" />
     <Compile Include="ModelDTO\AppUserDto.cs" />
     <Compile Include="ModelDTO\BrandDTO.cs" />
     <Compile Include="ModelDTO\CartDTO.cs" />
@@ -140,6 +141,8 @@
     <Compile Include="ModelDTO\CountryDTO.cs" />
     <Compile Include="ModelDTO\NumberStringDTO.cs" />
     <Compile Include="ModelDTO\OrderDTO.cs" />
+    <Compile Include="ModelDTO\PaidOrderDTO.cs" />
+    <Compile Include="ModelDTO\PaymentRequisiteDTO.cs" />
     <Compile Include="ModelDTO\PaymentSystemDTO.cs" />
     <Compile Include="ModelDTO\ProductDTO.cs" />
     <Compile Include="ModelDTO\ProductsListIdDto.cs" />

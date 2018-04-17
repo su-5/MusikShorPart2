@@ -8,8 +8,8 @@
 
     var app = angular.module("Web", ["Web.Services", "Web.Directives", "Web.Externals", "Web.Controllers", "ui.bootstrap"]);
 
-    app.run(["$rootScope", "$location", "$http", "$state", "$stateParams", "$sce", "loadingService", "toaster", "$cookies", "productService", "$window", "cartService",
-        function ($rootScope, $location, $http, $state, $stateParams, $sce, loadingService, toaster, $cookies, productService, $window, cartService) {
+    app.run(["$rootScope", "$location", "$http", "$state", "$stateParams", "$sce", "loadingService", "toaster", "$cookies", "productService", "$window", "cartService","userService",
+        function ($rootScope, $location, $http, $state, $stateParams, $sce, loadingService, toaster, $cookies, productService, $window, cartService, userService) {
             $rootScope.loadingShow = function () {
                 $rootScope.loadingIsShow = loadingService.show(); // loading
             };
@@ -63,6 +63,7 @@
 
             $rootScope.authenticationUser = function () {
                 $rootScope.authenticationUserName = angular.element('#userName').val();
+                getUserName();
                 $rootScope.authentication = angular.element('#authentication').val();
                 if ($rootScope.authentication === 'value') {
                     $rootScope.auchUser = true;
@@ -71,54 +72,70 @@
                 }
             }
 
+            function getUserName() {
+                userService.getUserName($rootScope.authenticationUserName).then(function(value) {
+                        $rootScope.userName = value;
+                    },
+                    function(errorObject) {
+                        $rootScope.toaster('error', errorObject.Message, 9000);
+                        for (var i = 0; i < errorObject.ModelState.error.length; i++) {
+                            $rootScope.toaster('error', errorObject.ModelState.error[i], 9000);
+                        }
+                    }).finally(function() {
+                   // $rootScope.loadingHide();
+                });
+            }
+
             //считываем текущие куки и записываем из в БД
-            $rootScope.cookiesRecordDb = function () {
-                var productsCookie = $cookies.getObject('productToCart');
-                cookiesRecordDb(productsCookie);
+                $rootScope.cookiesRecordDb = function () {
+                    var productsCookie = $cookies.getObject('productToCart');
+                    cookiesRecordDb(productsCookie);
+                }
+                // считываем продукты в корзину из БД
+                $rootScope.getAllProductCartInDataBase = function () {
+                    $rootScope.loadingShow();
+                    cartService.getAllProductCartInDataBase($rootScope.authenticationUserName).then(function (value) {
+
+                    },
+                        function (errorObject) {
+                            $rootScope.toaster('error', errorObject.Message, 9000);
+                            for (var i = 0; i < errorObject.ModelState.error.length; i++) {
+                                $rootScope.toaster('error', errorObject.ModelState.error[i], 9000);
+                            }
+                        }).finally(function () {
+                            $rootScope.loadingHide();
+                        });
+                }
+
+                function cookiesRecordDb(cookies) {
+                    //$rootScope.loadingShow();
+                    //cartService.cookiesRecordDb(cookies, $rootScope.authenticationUserName).then(function (value) {
+                    //    if (value) {
+                    //        resetCart();
+                    //        $rootScope.getAllProductCartInDataBase();
+                    //    }
+
+                    //},
+                    //    function (errorObject) {
+                    //        $rootScope.toaster('error', errorObject.Message, 9000);
+                    //        for (var i = 0; i < errorObject.ModelState.error.length; i++) {
+                    //            $rootScope.toaster('error', errorObject.ModelState.error[i], 9000);
+                    //        }
+                    //    }).finally(function () {
+                    //        $rootScope.loadingHide();
+                    //    });
+                }
+
+                $rootScope.numberOrder = "";
+
+                //вызываем функцию, которая считывает куки и выводит их кол-во id в корзину
+                $rootScope.lengthCartProducts();
+                $rootScope.authenticationUser();
+                $rootScope.ProduktsFilter = false;
+                $rootScope.siteFilter = true;
+                //запись куки в бд
+                $rootScope.cookiesRecordDb();
             }
-            // считываем продукты в корзину из БД
-            $rootScope.getAllProductCartInDataBase = function () {
-                $rootScope.loadingShow();
-                cartService.getAllProductCartInDataBase($rootScope.authenticationUserName).then(function (value) {
-
-                },
-                    function (errorObject) {
-                        $rootScope.toaster('error', errorObject.Message, 9000);
-                        for (var i = 0; i < errorObject.ModelState.error.length; i++) {
-                            $rootScope.toaster('error', errorObject.ModelState.error[i], 9000);
-                        }
-                    }).finally(function () {
-                        $rootScope.loadingHide();
-                    });
-            }
-
-            function cookiesRecordDb(cookies) {
-                $rootScope.loadingShow();
-                cartService.cookiesRecordDb(cookies, $rootScope.authenticationUserName).then(function (value) {
-                    if (value) {
-                        resetCart();
-                        $rootScope.getAllProductCartInDataBase();
-                    }
-
-                },
-                    function (errorObject) {
-                        $rootScope.toaster('error', errorObject.Message, 9000);
-                        for (var i = 0; i < errorObject.ModelState.error.length; i++) {
-                            $rootScope.toaster('error', errorObject.ModelState.error[i], 9000);
-                        }
-                    }).finally(function () {
-                        $rootScope.loadingHide();
-                    });
-            }
-
-            //вызываем функцию, которая считывает куки и выводит их кол-во id в корзину
-            $rootScope.lengthCartProducts();
-            $rootScope.authenticationUser();
-            $rootScope.ProduktsFilter = false;
-            $rootScope.siteFilter = true;
-            //запись куки в бд
-            $rootScope.cookiesRecordDb();
-        }
     ]);
 
 })();
