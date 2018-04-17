@@ -84,9 +84,24 @@ namespace BLL.Core.BLL_Core.Repository
             return resultList;
         }
 
-        public void CookiesRecordDb(List<dynamic> data)
+        public void CookiesRecordDb(CookiesRecordDto data)
         {
-            var produkts = GetAllToCart(data);
+            var produkts = GetAllToCart(data.ProductList);
+            var user = _dalFactory.User.GetAll().FirstOrDefault(u => u.Email == data.UserMail);
+            foreach (var produkt in produkts)
+            {
+                if (user != null)
+                {
+                    var searchduplicates = user.UsersProducts.Where(p => p.ProductId == produkt.Id).ToList();
+                //        
+                    if (searchduplicates.Count == 0)
+                    {
+                        _dalFactory.UsersProduct.Add(new UsersProduct{UserId = user.Id,DateCreate = DateTime.Now,ProductId = produkt.Id});
+                    }
+                }
+
+              
+            }
         }
     }
 }
