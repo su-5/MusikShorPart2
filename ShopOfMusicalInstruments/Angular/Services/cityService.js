@@ -16,5 +16,5 @@
 
     angular
         .module("Web.Services")
-        .service("regionService", ["$cookies", "$http", "$rootScope", "$q", cityService]);
+        .service("cityService", ["$cookies", "$http", "$rootScope", "$q", cityService]);
 })();

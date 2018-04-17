@@ -7,22 +7,22 @@
             <div align="center">
                 <div style="width: 50%">
                     <div align="right">
-                        <label>Страна<select class="form-control form-order-label select-order-form" ng-model="Address.CountryId" required ng-options="obj.Id as obj.Name for obj in listCountry"><option value="">--Выберите страну--</option></select></label>
+                        <label>Страна<select class="form-control form-order-label select-order-form" ng-model="Address.Country" required ng-options="obj as obj.Name for obj in listCountry"><option value="">--Выберите страну--</option></select></label>
                     </div>
                     <div align="right">
-                        <label>Регион<select class="form-control form-order-label select-order-form" ng-disabled="!Address.CountryId" ng-model="Address.RegionId" required ng-options="obj.Id as obj.Name for obj in listRegion"><option value="">--Выберите регион--</option></select></label>
+                        <label>Регион<select class="form-control form-order-label select-order-form" ng-disabled="!Address.Country" ng-model="Address.Region" required ng-options="obj as obj.Name for obj in listRegion"><option value="">--Выберите регион--</option></select></label>
                     </div>
                     <div align="right">
-                        <label>Нас.пункт<select class="form-control form-order-label select-order-form" ng-disabled="!Address.RegionId" ng-model="Address.CityId" required ng-options="obj.Id as obj.Name for obj in listCity"><option value="">--Выберите нас.пункт--</option></select></label>
+                        <label>Нас.пункт<select class="form-control form-order-label select-order-form" ng-disabled="!Address.Region" ng-model="Address.City" required ng-options="obj as obj.Name for obj in listCity"><option value="">--Выберите нас.пункт--</option></select></label>
                     </div>
                     <div align="right">
-                        <label>Улица<input type="text" class="form-control form-order-label" /></label>
+                        <label>Улица<input type="text" class="form-control form-order-label" ng-model="Address.Street" required /></label>
                     </div>
                     <div align="right">
-                        <label>Дом<input type="text" class="form-control form-order-label" /></label>
+                        <label>Дом<input type="text" class="form-control form-order-label" ng-model="Address.House" required/></label>
                     </div>
                     <div align="right">
-                        <label>Квартира<input type="text" class="form-control form-order-label" /></label>
+                        <label>Квартира<input type="text" class="form-control form-order-label" ng-model="Address.Flat" required /></label>
                     </div>
                 </div>
 
@@ -30,7 +30,7 @@
         </form>
     </div>
     <div class="modal-footer">
-        <button type="submit" class="btn btn-xs btn-primary" ng-click="AddAddressForm()">Добавить</button>
+        <button type="submit" class="btn btn-xs btn-primary" ng-click="AddAddressForm(Address,addressForm)">Добавить</button>
         <button type="button" class="btn btn-xs btn-warning" ng-click="cancel()">Отмена</button>
     </div>
 </div>

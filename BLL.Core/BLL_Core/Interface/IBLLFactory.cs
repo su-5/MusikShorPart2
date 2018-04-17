@@ -12,5 +12,6 @@
         IOrderBLL OrderBll { get; }
         ICityBLL CityBll { get; }
         IRegionBLL RegionBll { get; }
+        IPaymentSystemBLL PaymentSystemBll { get; }
     }
 }

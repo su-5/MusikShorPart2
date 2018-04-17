@@ -17,6 +17,7 @@ namespace DAL.Core.DAL_Core
         private ICityDAL _city;
         private IRegionDAL _region;
         private IUsersProductDAL _usersProduct;
+        private IPaymentSystemDAL _paymentSystem;
 
         private MusicDataBaseEntities _dbContext;
         private readonly IDbFactory _dbFactory;
@@ -39,6 +40,7 @@ namespace DAL.Core.DAL_Core
         public ICityDAL City => _city ?? (_city = new CityDAL(_dbFactory));
         public IRegionDAL Region => _region ?? (_region = new RegionDAL(_dbFactory));
         public IUsersProductDAL UsersProduct => _usersProduct ?? (_usersProduct = new UsersProductDAL(_dbFactory));
+        public IPaymentSystemDAL PaymentSystem => _paymentSystem ?? (_paymentSystem = new PaymentSystemDAL(_dbFactory));
     }
 
 }

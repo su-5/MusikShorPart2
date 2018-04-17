@@ -20,6 +20,7 @@ namespace BLL.Core.BLL_Core
                 x.AddProfile<OrderMapper>();
                 x.AddProfile<CityMapper>();
                 x.AddProfile<RegionMapper>();
+                x.AddProfile<PaymentSystemMapper>();
             });
         }
     }

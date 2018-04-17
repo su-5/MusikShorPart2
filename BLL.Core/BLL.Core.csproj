@@ -149,6 +149,7 @@
     <Compile Include="BLL_Core\Interface\ICountryBLL.cs" />
     <Compile Include="BLL_Core\Interface\INumberStringBLL.cs" />
     <Compile Include="BLL_Core\Interface\IOrderBLL.cs" />
+    <Compile Include="BLL_Core\Interface\IPaymentSystemBLL.cs" />
     <Compile Include="BLL_Core\Interface\IProductBLL.cs" />
     <Compile Include="BLL_Core\Interface\IRegionBLL.cs" />
     <Compile Include="BLL_Core\Interface\ISubcategoryBLL.cs" />
@@ -160,6 +161,7 @@
     <Compile Include="BLL_Core\Mapping\CountryMapper.cs" />
     <Compile Include="BLL_Core\Mapping\NumberStringMapper.cs" />
     <Compile Include="BLL_Core\Mapping\OrderMapper.cs" />
+    <Compile Include="BLL_Core\Mapping\PaymentSystemMapper.cs" />
     <Compile Include="BLL_Core\Mapping\ProductMapper.cs" />
     <Compile Include="BLL_Core\Mapping\RegionMapper.cs" />
     <Compile Include="BLL_Core\Mapping\SubcategoryMapper.cs" />
@@ -171,6 +173,7 @@
     <Compile Include="BLL_Core\Repository\CountryBLL.cs" />
     <Compile Include="BLL_Core\Repository\NumberStringBLL.cs" />
     <Compile Include="BLL_Core\Repository\OrderBLL.cs" />
+    <Compile Include="BLL_Core\Repository\PaymentSystemBLL.cs" />
     <Compile Include="BLL_Core\Repository\ProductBLL.cs" />
     <Compile Include="BLL_Core\Repository\RegionBLL.cs" />
     <Compile Include="BLL_Core\Repository\SubcategoryBLL.cs" />

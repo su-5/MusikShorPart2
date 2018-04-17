@@ -30,6 +30,12 @@
                     <input type="text" class="form-control" id="order_address" name="order_address" ng-click="openModalAddress()" ng-model="order.address" required>
                 </div>
             </div>
+            <div class="form-group" ng-class="{'has-success': order.requisites}">
+                <label for="order_requisites" class="control-label col-lg-3">Платежные реквизиты:</label>
+                <div class="col-lg-6">
+                    <input type="text" class="form-control" id="order_requisites" name="order_requisites" ng-click="openPaymentRequisites()" ng-model="order.requisites" required>
+                </div>
+            </div>
             <div class="form-group" ng-class="{'has-success': order.comments}">
                 <label for="order_comments" class="control-label col-lg-3">Комментарии к заказу:</label>
                 <div class="col-lg-6">
@@ -37,7 +43,7 @@
                 </div>
             </div>
             <div align="center">
-                <button type="submit" style="border-radius: 5px;" ng-click="send(orderform, order)" class="btn btn-success">Отправить</button>
+                <button type="submit" style="border-radius: 5px;" ng-click="send(order, orderform)" class="btn btn-success">Отправить</button>
             </div>
         </form>
     </div>

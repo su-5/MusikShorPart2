@@ -96,6 +96,7 @@
     <Compile Include="GenericRepositoryModel\Interfaces\INumberStringDAL.cs" />
     <Compile Include="GenericRepositoryModel\Interfaces\IOrderDAL.cs" />
     <Compile Include="GenericRepositoryModel\Interfaces\IOrdersProductDAL.cs" />
+    <Compile Include="GenericRepositoryModel\Interfaces\IPaymentSystemDAL.cs" />
     <Compile Include="GenericRepositoryModel\Interfaces\IProductDAL.cs" />
     <Compile Include="GenericRepositoryModel\Interfaces\IRegionDAL.cs" />
     <Compile Include="GenericRepositoryModel\Interfaces\ISubcategoryDAL.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="GenericRepositoryModel\Repository\NumberStringDAL.cs" />
     <Compile Include="GenericRepositoryModel\Repository\OrderDAL.cs" />
     <Compile Include="GenericRepositoryModel\Repository\OrdersProductDAL.cs" />
+    <Compile Include="GenericRepositoryModel\Repository\PaymentSystemDAL.cs" />
     <Compile Include="GenericRepositoryModel\Repository\ProductDAL.cs" />
     <Compile Include="GenericRepositoryModel\Repository\RegionDAL.cs" />
     <Compile Include="GenericRepositoryModel\Repository\SubcategoryDAL.cs" />
@@ -137,6 +139,7 @@
     <Compile Include="ModelDTO\CountryDTO.cs" />
     <Compile Include="ModelDTO\NumberStringDTO.cs" />
     <Compile Include="ModelDTO\OrderDTO.cs" />
+    <Compile Include="ModelDTO\PaymentSystemDTO.cs" />
     <Compile Include="ModelDTO\ProductDTO.cs" />
     <Compile Include="ModelDTO\ProductsListIdDto.cs" />
     <Compile Include="ModelDTO\RegionDTO.cs" />

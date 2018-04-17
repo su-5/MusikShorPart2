@@ -16,5 +16,6 @@ namespace DAL.Core.DAL_Core
         ICityDAL City { get; }
         IRegionDAL Region { get; }
         IUsersProductDAL UsersProduct { get; }
+        IPaymentSystemDAL PaymentSystem { get; }
     }
 }

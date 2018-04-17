@@ -340,6 +340,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NumberStringsController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\PaymentSystemController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RegionController.cs" />
     <Compile Include="Controllers\SubcategoriesController.cs" />
@@ -374,6 +375,7 @@
     <Content Include="Angular\ModalWindows\ControlFullDescModalWindow.html" />
     <Content Include="Angular\ModalWindows\ControlNumberStringModalWindow.html" />
     <Content Include="Angular\ModalWindows\ControlOpenModalAddress.html" />
+    <Content Include="Angular\ModalWindows\ControlOpenPaymentRequisites.html" />
     <Content Include="Angular\ModalWindows\ControlProductModalWindow.html" />
     <Content Include="Angular\ModalWindows\ControlSubcategoryModalWindows.html" />
     <Content Include="Angular\ModalWindows\ControlUserModalWindow.html" />
@@ -386,6 +388,7 @@
     <Content Include="Angular\Services\loadingService.js" />
     <Content Include="Angular\Services\orderFormService.js" />
     <Content Include="Angular\Services\orderService.js" />
+    <Content Include="Angular\Services\paymentSystemService.js" />
     <Content Include="Angular\Services\productService.js" />
     <Content Include="Angular\Services\regionService.js" />
     <Content Include="Angular\Services\registerationService.js" />

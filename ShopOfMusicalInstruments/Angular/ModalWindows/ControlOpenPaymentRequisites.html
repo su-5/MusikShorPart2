@@ -1,0 +1,30 @@
+﻿<div>
+    <div class="modal-header">
+        <h3 style="padding-top: -8px; text-align: center">Добавление платежных реквизитов</h3>
+    </div>
+    <div сlass="modal-body">
+        <form name="paymentForm" class="form-inline">
+            <div align="center">
+                <div style="width: 50%">
+                    <div align="right">
+                        <label>Платежная система<select class="form-control form-order-label select-order-form" ng-model="Payment.PaymentSystems" required ng-options="obj as obj.NamePaymentSystems for obj in listPaymentSystem"><option value="">--Выберите платежную систему--</option></select></label>
+                    </div>
+                    <div align="right">
+                        <label>Номер аккаунта<input type="text" class="form-control form-order-label select-order-form" ng-model="Payment.NumberAccount" required/></label>
+                    </div>
+                    <div align="right">
+                        <label>Номер карты<input type="text" class="form-control form-order-label select-order-form"  ng-model="Payment.NumberCard" required /></label>
+                    </div>
+                    <div align="right">
+                        <label>Фио пользователя<input type="text" class="form-control form-order-label" ng-model="Payment.UserName" required /></label>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-xs btn-primary" ng-click="AddPaymentForm(Payment,paymentForm)">Добавить</button>
+        <button type="button" class="btn btn-xs btn-warning" ng-click="cancel()">Отмена</button>
+    </div>
+</div>
